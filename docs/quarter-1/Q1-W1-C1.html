@@ -10,7 +10,7 @@
 <link href="Q1-W1-C1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.54">
 
-  <title>Q1-W1-C1 - Introduction to D2M-R</title>
+  <title>Introduction to D2M-R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -325,38 +325,334 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Q1-W1-C1 - Introduction to D2M-R</h1>
+  <h1 class="title">Introduction to D2M-R</h1>
+  <p class="subtitle">Q1-W1-C1</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
-</section>
-<section id="bullets" class="slide level2">
-<h2>Bullets</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
+<section id="course" class="slide level2">
+<h2>Course</h2>
+<h3 id="from-data-to-manuscript-in-r---quarter-1">From Data to Manuscript in R - Quarter 1</h3>
 <ul>
-<li>Content authored with markdown</li>
-<li>Output from executable code</li>
+<li><strong>PSYC/MAPS/MACS/CHDV 30550</strong></li>
+<li><strong>Course website:</strong> <a href="https://d2m-r.github.io/">d2m-r.github.io</a></li>
+<li><strong>Textbook:</strong> <a href="https://d2m-r.github.io/book/">Data to Manuscript in R</a></li>
 </ul>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<section id="people" class="slide level2">
+<h2>People</h2>
+<h3 id="professor-dr.-natalie-dowling">Professor: Dr.&nbsp;Natalie Dowling</h3>
+<ul>
+<li><strong>Pronouns:</strong> she/her</li>
+<li><strong>Email:</strong> ndowling@uchicago.edu</li>
+<li><strong>GitHub:</strong> @nrdowling</li>
+<li><strong>Office hours:</strong>
+<ul>
+<li>1155 E 60th St, Rm 404</li>
+<li>Thursdays 2-4pm by appointment - <a href="">book here</a></li>
+<li>Email to set up an alternative meeting time</li>
+</ul></li>
+</ul>
+<h3 id="teaching-assistant-name">Teaching Assistant: (NAME)</h3>
+<ul>
+<li><strong>Pronouns:</strong> —</li>
+<li><strong>Email:</strong> —</li>
+<li><strong>GitHub:</strong> @—</li>
+<li><strong>Office hours:</strong>
+<ul>
+<li><em>location</em></li>
+<li><em>day/time</em></li>
+</ul></li>
+</ul>
+</section>
+<section>
+<section id="syllabus" class="title-slide slide level1 center">
+<h1>Syllabus</h1>
+
+</section>
+<section id="expectations-course-goals" class="slide level2">
+<h2>Expectations &amp; Course Goals</h2>
+<h3 id="this-sequence-will-give-you">This sequence will give you</h3>
+<ul>
+<li>A basic knowledge of how to use GitHub, R, RStudio, RMarkdown, and the tidyverse packages</li>
+<li>Strategies for how to identify and resolve bugs in the data-to-manuscript process</li>
+<li>Supports for establishing and maintaining a workflow within your project</li>
+<li>Tools to implement your own data analysis and visualization plans</li>
+</ul>
+<h3 id="this-sequence-will-not-give-you">This sequence will <em>not</em> give you</h3>
+<ul>
+<li>Comprehensive expertise in any of the tools or packages or depth in packages outside the tidyverse</li>
+<li>Instructors or classmates who solve your technical problems for you</li>
+<li>Accountability hand-holding or objectively “correct” ways of working</li>
+<li>New knowledge of statistics or research design practices</li>
+</ul>
+</section>
+<section id="d2m-r-workflow" class="slide level2">
+<h2>D2M-R Workflow</h2>
+<ol type="1">
+<li>Create a GitHub repo and corresponding R Project that are always synced</li>
+<li>Create an Quarto notebook (.qmd) that will become your full, complete, and final manuscript</li>
+<li>Use .R scripts to wrangle and export data into intermediate datasets that you can then quickly read-in to your manuscript in a code chunk</li>
+<li>Create and source .R scripts for “background” needs like functions and style</li>
+<li>Create and maintain a .bib file with all the material you may cite in your manuscript using BibTeX and R citation syntax</li>
+<li>Analyze and visualize your data in code chunks within your Quarto notebook</li>
+<li>Write the narrative of your manuscript in your single, dedicated notebook file</li>
+<li>Knit your manuscript to a publishable file format using pre-defined formatting and citation style</li>
+<li>Dynamically update and maintain your manuscript</li>
+</ol>
+</section>
+<section id="quarter-1" class="slide level2">
+<h2>Quarter 1</h2>
+<ol type="1">
+<li><strong>Create a GitHub repo and corresponding R Project that are always synced</strong></li>
+<li><strong>Create an Quarto notebook (.qmd) that will become your full, complete, and final manuscript</strong></li>
+<li><strong>Use .R scripts to wrangle and export data into intermediate datasets that you can then quickly read-in to your manuscript in a code chunk</strong></li>
+<li><strong>Create and source .R scripts for “background” needs like functions and style</strong></li>
+<li>Create and maintain a .bib file with all the material you may cite in your manuscript using BibTeX and R citation syntax</li>
+<li><strong>(a little)</strong> Analyze and visualize your data in code chunks within your Quarto notebook</li>
+<li>Write the narrative of your manuscript in your single, dedicated notebook file</li>
+<li>Knit your manuscript to a publishable file format using pre-defined formatting and citation style</li>
+<li>Dynamically update and maintain your manuscript</li>
+</ol>
+</section></section>
+<section>
+<section id="course-policies" class="title-slide slide level1 center">
+<h1>Course Policies</h1>
+
+</section>
+<section id="communication-slack" class="slide level2">
+<h2>Communication: Slack</h2>
+<ul>
+<li><strong>Slack participation is required</strong></li>
+<li>Link to join our Slack channel is on Canvas</li>
+<li><strong>THE</strong> place outside of class to get help with nearly anything</li>
+<li>Use the appropriate channel to request help
+<ul>
+<li>Take your best guess if you’re not sure where it goes</li>
+</ul></li>
+<li>Intended for peer collaboration
+<ul>
+<li>Instructors will moderate and answer questions when needed, <em>after</em> students have responded</li>
+<li>Collaborative engagement is part of your grade; you are expected to both seek and offer support to your classmates</li>
+</ul></li>
+<li>You can DM and/or start private channels with classmates, but you are not required/expected to participate in private messaging</li>
+<li><strong>Do not direct message instructors (including TAs).</strong>
+<ul>
+<li>Email us.</li>
+<li>We will not respond to Slack DMs.</li>
+</ul></li>
+</ul>
+</section>
+<section id="communication-slack-vs.-email" class="slide level2">
+<h2>Communication: Slack vs.&nbsp;Email</h2>
+<h3 id="email">Email</h3>
+<ul>
+<li>Private communication with professors or TAs</li>
+<li>Use for personal matters, scheduling, or other private issues
+<ul>
+<li>Topics that concern you and only you</li>
+</ul></li>
+<li>Requests for accommodations</li>
+</ul>
+<h3 id="slack">Slack</h3>
+<ul>
+<li>Class-wide communication with instructors and students</li>
+<li>Topics that may concern others, e.g.:
+<ul>
+<li>Questions about course content</li>
+<li>Clarifications about course policies</li>
+<li>Requests for troubleshooting and debugging support</li>
+</ul></li>
+<li>Optionally: Private communication with other students</li>
+</ul>
+</section>
+<section id="communication-in-person" class="slide level2">
+<h2>Communication: In-person</h2>
+<ul>
+<li>Dr.&nbsp;Dowling’s office hours are Thursdays 2-4pm by appointment
+<ul>
+<li>Appointments are required – <a href="">book here</a></li>
+</ul></li>
+<li><em>TA office hours information</em></li>
+<li>Call me either Natalie or Dr/Professor Dowling</li>
+<li>You do not need to let us know if you will be missing class
+<ul>
+<li>But you can reach out if you feel behind due to absences</li>
+</ul></li>
+<li>Be cautious about disclosing personal information over email/Slack
+<ul>
+<li>Remember you <em>never</em> need to share details about your health!</li>
+</ul></li>
+<li>Stressed about emails? The <a href="">student toolkit</a> has a guide to help you out
+<ul>
+<li>Pro tip: Don’t use chatGPT. It’s super annoying.</li>
+</ul></li>
+<li><strong>Please do not line up to ask questions at the end of class.</strong>
+<ul>
+<li>Those “1-minute” questions add up</li>
+<li>That’s what Slack is for</li>
+</ul></li>
+</ul>
+</section>
+<section id="climate" class="slide level2">
+<h2>Climate</h2>
+<ul>
+<li>View the class climate policy <a href="">here</a>.</li>
+<li>But really just…be cool, ok?</li>
+<li>We will all be kind, respectful, responsive, and supportive to one another in the classroom, on Slack, and all other interaction.</li>
+<li>If you have problems with other students or the TA:
+<ul>
+<li>Contact me first (if possible)</li>
+<li>If we can’t resolve it contact <a href="https://cares.uchicago.edu/">UChicago CARES</a></li>
+</ul></li>
+<li>If you have a problem with me
+<ul>
+<li>Discuss it with me directly <em>if and only if you feel comfortable doing so</em></li>
+<li>Bring it to <a href="https://cares.uchicago.edu/">UChicago CARES</a></li>
+</ul></li>
+<li>You can <em>always</em> go to CARES without going through anyone else first, but my goal is to create a classroom climate where you feel comfortable talking to me about ways to create a more welcoming and respectful envioronment.</li>
+</ul>
+</section>
+<section id="accessibility-accommodation" class="slide level2">
+<h2>Accessibility &amp; Accommodation</h2>
+<ul>
+<li>Requests for formal accommodations should go through Student Disability Services
+<ul>
+<li>SDS will send <em>undergraduate</em> accommodation letters to me automatically</li>
+<li><em>Graduate students</em> need to ask SDS to send me a letter</li>
+<li>You <em>never</em> need to disclose personal details to me or anyone outside SDS</li>
+</ul></li>
+<li>If you have an informal request for an accommodation, with me in office hours
+<ul>
+<li>We can almost always work something out, but we need to follow SDS policies</li>
+</ul></li>
+<li>After sending your letter, schedule a meeting with me to make an accommodation plan
+<ul>
+<li>If you do need accommodations, you will factor your accommodation plan into your accountability plan (next slide)</li>
+</ul></li>
+</ul>
+</section>
+<section id="accountability-plan" class="slide level2">
+<h2>Accountability Plan</h2>
+<ul>
+<li><strong>You create an assignment schedule for yourself.</strong> With very few exceptions, there are no top-down deadlines in this class. Why?
+<ul>
+<li>This class is about developing and maintaining a research workflow</li>
+<li>A major part of that is learning how to set and meet your own deadlines</li>
+<li>Making your own plan and sticking to it <em>is part of the syllabus</em></li>
+</ul></li>
+<li>You will create a personal timeline and accountability plan for the quarter
+<ul>
+<li>Initial plans are due by Monday of Week 3</li>
+<li>Revised plans and reflections are due by Monday of Week 6</li>
+<li>Final reflections are due Monday of Week 10 (finals week)</li>
+</ul></li>
+<li>You can base your plan on the suggested timeline in the <a href="">assignment instructions</a>
+<ul>
+<li>Use the suggested plan without changes (great option of the idea of designing your own schedule feels overwhelming)</li>
+<li>Start with this plan and make adjustments</li>
+<li>Start from scratch!</li>
+</ul></li>
+<li>If your SDS accommodations include extended deadlines, you will factor those into the plan
+<ul>
+<li>i.e.&nbsp;We are using this plan to agree on extensions now. I will not grant extensions to the planned extensions as we go.</li>
+</ul></li>
+<li><strong>10%</strong> of your final grade is based on your accountability plan, including:
+<ul>
+<li>Meeting the actual deadlines that I have set for the plan itself</li>
+<li>Meeting the deadlines you set for yourself</li>
+<li>Reflecting on your progress and making adjustments to your plan</li>
+<li><em>Suggesting</em> a grade (of 10) for how well you think you followed your plan</li>
+</ul></li>
+</ul>
+</section>
+<section id="academic-integrity-text" class="slide level2">
+<h2>Academic Integrity: Text</h2>
+<ul>
+<li>View the academic integrity policy <a href="">here</a>.</li>
+<li>Plagiarism is bad. Cheating is bad. Don’t do it.</li>
+<li>All written/textual content in your submitted assignments must be fully produced by you, including but not limited to:
+<ul>
+<li>Narrative text in manuscripts (lit review, discussion, etc.)</li>
+<li>Reflections or responses in projects</li>
+<li>GitHub/directory documents, like README files</li>
+</ul></li>
+<li><strong>Assignments that include written/textual content produced by any entity other than you, human or otherwise, will receive a non-negotiable 0. </strong></li>
+<li>Coding is…different.</li>
+</ul>
+</section>
+<section id="artificial-intelligence" class="slide level2">
+<h2>Artificial Intelligence</h2>
+
+<img data-src="images/ai-lephant.png" class="r-stretch quarto-figure-center"><p class="caption">The AIlephant in the room</p><p>This is DALL-E’s best attempt at “An elephant with the letters A and I on its ears.” Not very impressive, but I can’t blame it too much. It wasn’t a good pun to begin with.</p>
+<p>To see GPT’s coding skills in action, watch <a href="https://www.youtube.com/watch?v=YnN6eBamwj4">DougDoug force it to create Snake 2</a> (with mixed success).</p>
+</section>
+<section id="academic-integrity-code-ai" class="slide level2">
+<h2>Academic Integrity: Code &amp; AI</h2>
+<ul>
+<li>View the AI policy <a href="">here</a>.</li>
+<li>You <em>are</em> allowed to use LLMs like ChatGPT and Copilot to help you with code in this class</li>
+<li>You are <em>required</em> to disclose all AI use in a statement with each submission
+<ul>
+<li>Even if you did not use AI, you submit that as your statement.</li>
+</ul></li>
+<li>You will not be penalized for using AI to help you with code (not text!).
+<ul>
+<li>If you have clearly crossed the line into plagiarism, I will discuss it with you and give you a chance to resubmit without penalty.</li>
+</ul></li>
+</ul>
+</section>
+<section id="academic-integrity-you-ai" class="slide level2">
+<h2>Academic Integrity: You &amp; AI</h2>
+<p>Here’s the deal: You should only be taking this class if you want to gain practical skills that will be useful to you outside of the class. Hopefully you are using the class to make progress on a research project you are invested in. If you do not use AI wisely, you may not be “cheating” in a way that will hurt your grade, but you will be cheating yourself out of the reason you joined the class. If you don’t care enough to actually learn the material yourself, this probably isn’t the right class for you.</p>
+<ul>
+<li>You can read my <a href="">guide</a> for what I personally believe are ethical and constructive uses of AI in higher education.</li>
+</ul>
+</section></section>
+<section>
+<section id="assessment-grading" class="title-slide slide level1 center">
+<h1>Assessment &amp; Grading</h1>
+
+</section>
+<section id="grading-overview" class="slide level2">
+<h2>Grading Overview</h2>
+<ul>
+<li>You start at 0 points and work to 100. You don’t start at 100 and lose points.</li>
+<li>100 points are earned by:
+<ul>
+<li>Submitting, following, and reflecting on your accountability plan (10 points)</li>
+<li>Engaging with the community in the classroom and on Slack (10 points)</li>
+<li>Demonstrating specific course objectives in projects (50 points)</li>
+<li>Demonstrating <em>all</em> specific course objectives in a final manuscript (30 points)</li>
+</ul></li>
+</ul>
+</section>
+<section id="q1-learning-objectives-broad" class="slide level2">
+<h2>Q1 Learning Objectives: Broad</h2>
+<ul>
+<li>Organize and independently maintain a plan for project goals, timelines, and accountability</li>
+<li>Develop and implement a research workflow using:
+<ul>
+<li>Git, GitHub, and version control</li>
+<li>RStudio, RMarkdown, and Quarto</li>
+<li>Base R and tidyverse packages</li>
+</ul></li>
+<li>Learn and practice strategies for debugging and troubleshooting in the data-to-manuscript process</li>
+<li>Learn and practice skills in data wrangling, analysis, and visualization</li>
+<li>Apply skills to an independent project with your own data</li>
+</ul>
+</section>
+<section id="q1-learning-objectives-specific" class="slide level2">
+<h2>Q1 Learning Objectives: Specific</h2>
+<p>You earn points by demonstrating each of [##] specific learning objectives …</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -567,44 +863,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

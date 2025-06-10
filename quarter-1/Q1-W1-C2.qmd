@@ -1,0 +1,248 @@
+---
+title: "Best Practices & Troubleshooting"
+subtitle: Q1-W1-C2
+order: 2
+format: revealjs
+---
+
+## A Preface
+
+- Debugging is programming.
+    - It's not extra; it's essential.
+- Programming depends on collaboration.
+    - Asking for help is not cheating!
+- Questions > Answers
+    - Get the basics down, then get everything else you need when you need it.
+- Troubleshooting includes debugging, *among other things*.
+    - These skills translate beyond fixing code.
+    - Please stop telling me that "in programming it's called debugging."
+
+    
+# Best Practices
+
+The best way to troubleshoot is to avoid it.
+
+## Big Ideas
+
+Keep your code:
+
+- Standardized
+    - style guides, internal consistency
+- Intelligible
+    - informative comments, meaningful naming, documentation
+- Maintainable
+    - data and function lifecycles, DRY, transportable
+- Contextualized
+    - community "rules", prioritize project needs
+
+## Standardized - R Formatting
+
+- R is pretty forgiving
+    - whitespace insensitive
+    - few "forbidden" characters
+- Choose where to be cautious
+    - avoid special characters (even if they are allowed)
+    - prioritize readability over conciseness
+    
+## Standardized - Style Guides
+
+- The right style is the one you can stick to.
+- Use a style guide to help you be consistent.
+    - [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
+    - [Tidyverse Style Guide](https://style.tidyverse.org/)
+    - [Individualized Style Guide]()
+        - my own guide, a tweaked version of the tidyverse guide
+
+## Intelligible - Commenting
+
+
+
+## Intelligible - Naming
+
+
+
+## Intelligible - Documentation
+
+
+
+## Maintainable - Lifecycles
+
+
+
+## Maintainable - DRY Programming
+
+
+
+## Maintainable - Transportable
+
+
+
+## Contextualized - Community Rules
+
+
+
+## Contextualized - Project Needs
+
+
+
+## GitHub & Version Control
+
+
+
+## R & Quarto Notebooks
+
+
+
+## Code Chunks
+
+
+
+# Troubleshooting
+
+## Documentation
+
+
+
+## ?help
+
+
+
+## Function Documentation
+
+
+
+## Package Documentation
+
+
+
+## Resources
+
+
+
+# Solving Your Own Problems
+
+## Solving Your Own Problems
+
+Because no one will help you until you at least try.
+
+- Error messages
+- Line-by-line debugging
+- Rubber duck debugging
+- Garbage in, garbage out
+
+## Error Messages
+
+
+
+## Common Error Messages
+
+<!-- see textbook for more examples and detailed explanations -->
+
+
+## Other Errors
+
+"But my error message isn't common!"
+
+"My error message is common but the solution isn't working!"
+
+"I have literally no idea what this message means!"
+
+**Google it.**
+
+## Errors vs. Warnings
+
+
+
+## Line-by-Line Debugging
+
+
+
+## Rubber Duck Debugging
+
+
+
+## Garbage In, Garbage Out
+
+
+
+## Bad Data & Bad Decisions
+
+
+# Ask the Internet
+
+## Ask the Internet
+
+It's very smart sometimes.
+
+- Start strong
+- Crowdsource
+- AI
+
+## Start Strong
+
+
+
+## How to Ask Questions
+
+<!-- cartoons & links -->
+
+
+## Tips for Asking Questions
+
+
+
+## Crowdsource
+
+- Slack (not just ours)
+- Stack Overflow
+    - also Datacamp, R bloggers, Reddit, etc.
+    - mostly Stack Overflow
+- **The key is asking the right questions!**
+
+## Ask AI
+
+"Can AI just do this for me?"
+
+Yes and no.
+
+## I Asked AI
+
+In its own words...
+
+
+# Ask Humans
+
+## Ask Humans
+
+Because are people on the internet even real?
+
+- Classmates & groups
+- Class slack
+- Instructors
+
+## D2M-R Troubleshooting Process
+
+1. Read relevant documentation.
+2. Identify error messages and warnings and attempt to resolve them.
+3. Confirm that your data and code play nice together.
+4. Review code line by line (and talk to a duck).
+5. Identify as many *specific* issues as you can and construct questions that will address them.
+6. Use peer, crowdsource, and AI resources to find answers to those questions.
+7. Email your TA or attend their open office hours.
+8. Email Dr. Dowling or make an office hours appointment.
+
+If you email Dr. Dowling or your TA, your email must outline how you have gone through these steps.
+
+# Starting From "Nothing"
+
+## When you're at a loss...
+
+"What's this git ignore thing you keep mentioning?"
+
+"How do I find a function or package that I need if I don't even know if one exists?"
+
+"How do I get started with complex packages like ggplot2, stats, and psych?"
+
+Know the outcome you want and work backwards. 
+What do you need to know? 
+What questions do you need to ask?
