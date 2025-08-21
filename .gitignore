@@ -4,3 +4,6 @@
 .Ruserdata
 
 /.quarto/
+
+conversion-guide.md
+*.DS_Store

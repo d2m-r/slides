@@ -1,0 +1,780 @@
+---
+title: "TIDYING & WRANGLING DATA"
+subtitle: "tidyr, purrr, stringr, forcats"
+date: "1/31/2025" 
+format:
+  revealjs:
+    theme: [default, ../d2mr.scss]
+    slide-number: c/t
+    width: 1600
+    height: 900
+    margin: .1
+    scrollable: true
+    incremental: false
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-line-numbers: true
+    code-copy: true
+    footer: "D2M-R Q# | Week # Class #" #  quarter, week, and class
+    logo: ""
+    chalkboard: true
+    multiplex: false
+editor: source
+execute:
+  echo: true
+  eval: false
+  warning: false
+  message: false
+---
+
+## HOUSEKEEPING & REMINDERS {.smaller}
+
+::: {.incremental}
+- **FOLLOW ALONG** with today's lecture in the `in-class-materials/demo-snippets.R` file in the assessment repo (ie pull it now!)
+
+- **git stuff** - I'm going to put together a walkthrough for extra help managing your fork
+
+- In the meantime, following the **cardinal rules of git** will solve 99% of issues and avert merge conflicts:
+  - **PULL** from upstream at the start of any session
+  - **COMMIT** frequently, but most critically at the end of every session  
+  - **PUSH** commits at the end of every session
+
+- **assessment repo mistake** - the cleaning-level-1 project folder included an old assessment file that should not have been there
+  - I renamed the file `assessment_old.md` rather than delete it
+  - If you have not already submitted this project, **DO NOT USE THAT ASSESSMENT FILE!** Use the current one from the root directory
+:::
+
+# CORE PACKAGES FOR TIDY DATA PREP & MANIPULATION
+
+## Core Tidyverse Packages: Today 
+
+:::: {.columns}
+
+::: {.column width="20%"}
+**tibble**  
+reimagine the dataframe!
+:::
+
+::: {.column width="20%"}
+**readr**  
+easily import and export tabular data
+:::
+
+::: {.column width="20%"}
+**dplyr**  
+a grammar of data manipulation
+:::
+
+::: {.column width="20%"}
+**tidyr**  
+tidy your messy data
+:::
+
+::: {.column width="20%"}
+**ggplot2**  
+a grammar of graphics
+:::
+
+::::
+
+:::: {.columns .fragment}
+
+::: {.column width="25%"}
+**purrr**  
+enhancements for R's functional programming
+:::
+
+::: {.column width="25%"}
+**stringr**  
+simplify working with strings
+:::
+
+::: {.column width="25%"}
+**forcats**  
+simplify working with factors
+:::
+
+::: {.column width="25%"}
+:::
+
+::::
+
+# COMBINING DATA(SETS)
+*actually part of dplyr, not tidyr – but conceptually related*
+
+## BIND ROWS {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Append rows of one dataframe after the last row of another
+
+**base::rbind()**
+- dataframes must have exactly the same columns in the same order
+
+**dplyr::bind_rows()**
+- dataframes can have different column structures
+- missing values will be treated as NA
+:::
+
+::: {.column width="50%"}
+### What's with the base:: and dplyr:: bits?
+
+It's a shortcut to specify what package the function comes from. Usually not necessary in your actual code, but it can come in handy when:
+
+1. you don't have that package loaded and you just need that single specific function
+2. you have multiple packages loaded that define that function and you want to specify which of them to use
+:::
+
+::::
+
+## BIND COLUMNS {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Append columns of one dataframe after the last column of another
+
+**base::cbind()**
+- dataframes must have the same number of rows
+
+**dplyr::bind_cols()**
+- dataframes must have the same number of rows
+:::
+
+::: {.column width="50%"}
+### If they work the same way, which should I use?
+
+**Neither! Use joins instead.**
+:::
+
+::::
+
+## MERGE DATA WITH *_join() FUNCTIONS
+
+```{r}
+#| eval: false
+#| echo: true
+*_join(left.tbl, right.tbl, by = ...)
+# replace * with left, right, inner, or full
+# the first dataframe is "left" and second is "right", 
+# whether you name both in the function or name one then pipe 
+# it into the function
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**left_join()** - includes all the rows of x and only the rows of y that have matches in x
+
+**right_join()** - includes all the rows of y and only the rows of x that have matches in y
+:::
+
+::: {.column width="50%"}
+**inner_join()** - includes only rows present in both x and y
+
+**full_join()** - includes all rows present in either x or y, matched where possible
+:::
+
+::::
+
+::: {.callout-tip}
+See r4ds Chapter 19: Joins for more explanation
+:::
+
+## [*_join(): Merge 2 Tibbles into 1]{.smaller}
+
+
+```{r}
+#| code-line-numbers: "|1-3|5-7|9-11|13-16|18-19|21-22"
+# these are all identical
+left_join(band_members, band_instruments)
+left_join(band_members, band_instruments, by = join_by(name)) 
+left_join(band_members, band_instruments, by = "name")
+
+right_join(band_instruments, band_members)
+band_instruments %>% 
+  right_join(band_members, by = "name")
+
+# specify to match columns with different names:
+# by = join_by(name == artist)
+
+# specify multiple columns to match: 
+# join_by(a, c == d)
+```
+
+::: {.callout-note}
+- use `by = join_by(colname)` or `by = "colname"` to specify which columns should match
+- if by is not specified, it assumes all identically named columns should match
+:::
+
+# tidyr
+*with a quick review of "tidy" data*
+
+## TIBBLES, TIDY DATA {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+- **Tibbles** are a kind of data.frame designed to simplify working with tabular data
+- Tibbles work best with **tidy data**
+- In fact, the whole tidyverse revolves around tidy data
+
+### Tidy Data Rules:
+1. Each variable forms a column
+2. Each observation forms a row  
+3. Each cell is a single measurement
+:::
+
+::: {.column width="40%"}
+### tidyr: TIDY DATA WRANGLING
+
+- Create tidy data from any data to use within the tidyverse
+- [Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+
+**pivot** - reshape data  
+**split & combine** - separate & merge column values  
+**missing values** - make missing data implicit or explicit  
+**nest** - restructure embedded data  
+**rectangle** - turn deeply nested data into tibbles
+:::
+
+::::
+
+## PIVOTING: LONG & WIDE DATA {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### WIDE DATA
+- What you're used to; "the Excel way"
+- First column contains unique values
+- Compact and human-friendly
+- Lacks precision, hard to manipulate structurally
+- create with `pivot_wider()`
+- *formerly/alternatively: spread, cast, pivot, unfold*
+:::
+
+::: {.column width="50%"}
+### LONG DATA
+- What the tidyverse wants
+- First column repeats values
+- Difficulty to spot patterns or comparisons
+- Easily manipulable, precise, standardized  
+- create with `pivot_longer()`
+- *formerly/alternatively: gather, melt, unpivot, fold*
+:::
+
+::::
+
+## pivot_longer(): RESHAPE WIDE TO LONG {.smaller}
+
+```{r}
+#| code-line-numbers: "|1|3-8|9|10"
+pivot_longer(tbl, cols, ..., names_to, values_to...)
+
+# Convert wide mmdata to long
+# Where is the count of m&ms of each color in each bag stored?
+# mmdata: colors are columns; count values in grid
+# mmdata.long: colors are values; all counts listed in single "Number" column
+mmdata.long <- mmdata %>%
+  pivot_longer(cols = c("Red", "Green", "Blue", "Orange", "Yellow", "Brown"),
+               names_to = "Color",
+               values_to = "Number")
+```
+
+::: {.callout-note}
+**names_to:** "Turn the pivoted column NAMES_TO values in a new column with this name."  
+**values_to:** "Within the pivoted columns, move the VALUES_TO a new column with this name."
+:::
+
+## pivot_wider(): RESHAPE LONG TO WIDE {.smaller}
+
+```{r}
+#| code-line-numbers: "|1|3-8|9-12"
+pivot_wider(tbl, cols, ..., names_from, values_from...)
+
+# Convert mmdata.long to wide
+# Where is the count of m&ms of each color in each bag stored?
+# mmdata.long: colors are values; all counts listed in single "Number" column
+# mmdata.wide: colors are columns; count values in grid – identical to mmdata
+mmdata.wide <- mmdata.long %>%
+  pivot_wider(names_from = "Color",
+              values_from = "Number") %>% 
+  relocate(Weight, .after = last_col())
+```
+
+::: {.callout-note}
+**names_from:** "Create new column NAMES_FROM the values in the column with this name."  
+**values_from:** "Fill in the new columns with VALUES_FROM the column with this name."
+:::
+
+## separate(): BREAK APART VALUES {.smaller}
+
+```{r}
+#| code-line-numbers: "|1|3-6|8-12"
+separate(tbl, col, newcols, sep)
+
+# Separate "notes" column into two columns by recognizing "_" separator
+glasses.sep <- glasses %>%
+  separate(notes, c("vision_correction", "other_notes"),
+           sep = "_")
+
+# separate() has been superseded:
+# separate_wider_delim() will split based on a given separator, like separate()
+# but has slightly different syntax:
+# separate_wider_delim(tbl, col, delim, newcols)
+glasses.sep.delim <- glasses %>%
+  separate_wider_delim(notes, delim = "_", 
+                       names = c("vision_correction", "other_notes"))
+```
+
+## unite(): COLLAPSE VALUES TO A SINGLE COLUMN {.smaller}
+
+```{r}
+#| code-line-numbers: "|1|3-6"
+unite(tbl, newcol, cols, sep)
+
+# Unite the 2 columns back to 1 with a new separator (use ; not _)
+glasses.unite <- glasses.sep %>%
+  unite("semicolon_notes",
+        "vision_correction":"other_notes", 
+        sep = ";")
+```
+
+## HANDLING MISSING VALUES {.smaller}
+
+Create new combinations of variables or identify missing values that should be present in the data.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**expand()** - create a new tibble with all possible combinations of the passed columns; drop other columns
+
+**complete()** - add missing possible combinations of passed columns; fill in missing data in other columns with NA
+
+**drop_na()** - drop all rows containing NAs in the passed columns
+:::
+
+::: {.column width="50%"}
+**fill()** - replace NAs with the next or previous non-empty value
+
+**replace_na()** - replace NAs with some value
+:::
+
+::::
+
+## NESTING {.smaller}
+
+::: {.callout-warning}
+Beyond the scope of this class, but good to know how powerful tidyr is!
+:::
+
+- **nested df** is one where 1+ columns is a list of data frames
+- conceptually related to grouping with `group_by()`: each row in the input corresponds to one group in the output
+- imagine a data frame with columns x, y, and z
+  - `df %>% group_by(x) %>% summarize(mean = mean(y), sum = sum(z))`
+  - each row in the summarized output processes data about multiple rows in the input
+- `df2 %>% nest(my_nested_var = c(y, z))`
+  - each row in the nested output contains the data itself as defined by unique values of everything that isn't nested
+  - since the data is unchanged, the data in the new variable is itself a table (or tibble)
+
+::: {.callout-tip}
+See [tidyverse article on nesting](https://tidyr.tidyverse.org/articles/nest.html) for more info
+:::
+
+## RECTANGLING {.smaller}
+
+::: {.callout-warning}
+Also beyond the scope of this class! But if you're using JSON data you need to understand this.
+:::
+
+- Turns nested lists into tidy tibbles
+- Useful for deeply nested formats like JSON, but not typically necessary for working with data already in a tabular format
+
+::: {.callout-tip}
+For more info see [tidyverse article on rectangling](https://tidyr.tidyverse.org/articles/rectangle.html) with `unnest_longer()`, `unnest_wider()`, & `hoist()`
+:::
+
+# purrr
+
+## PURRR {.smaller}
+
+::: {.callout-warning}
+Yet again, beyond the scope of this class.
+:::
+
+But it's a core tidyverse package so it's worth saying:
+
+- it's a way to apply functions across all items in one or more lists, including functions using relationships across lists
+- centers on the `map()` family of functions are an alternative to base `apply()` family
+- Also allows for "purrr-style lambda syntax" for using "anonymous functions"
+  - Looks like this: `map(xs, ~ mean((.x + 5)^2))`
+  - But is being phased out in favor of base R lambda syntax: `map(xs, \(x) mean((x + 5)^2))`
+- You'll see this in a lot of tidyverse documentation (both the old and new syntax)
+
+# stringr
+
+## STRINGS {.smaller}
+
+**Strings** are ordered sequences of any characters
+
+- aka "character vectors", an ordered list of individual characters
+- Surrounded with 'single' or "double quotes"
+  - The other one can then be used within the string
+- Special characters are "escaped" with a backslash:
+  - `\@`, `\#`, `\"`
+  - escape the escape signifier: `\\`
+
+## USEFUL BASE R STRING FUNCTIONS {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**merge multiple strings into a single string:**
+```{r}
+paste("x", "y") # [1] "x y"
+paste0("x", "y") # [1] "xy"
+```
+
+**concatenate multiple strings into a list:**
+```{r}
+c("x", "y") # [1] "x" "y"
+```
+
+**change case:**
+```{r}
+toupper("xyz") # [1] "XYZ"
+tolower("XYZ") # [1] "xyz"
+```
+:::
+
+::: {.column width="50%"}
+**is this a string?**
+```{r}
+is.character(123) # [1] FALSE
+```
+
+**turn this into a string:**
+```{r}
+toString(123) # [1] "123"
+```
+:::
+
+::::
+
+## REGULAR EXPRESSIONS {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+- A **standardized form of pattern matching** in strings
+- Use "grep" functions – global regular expression (search and) print
+- base R has grep functions: 
+  - `grep()`, `grepl()`, `gsub()`, and more...
+
+![](https://imgs.xkcd.com/comics/regular_expressions.png){fig-align="center" width="400"}
+:::
+
+::: {.column width="30%"}
+### stringr: DETECT MATCHES
+
+**stringr functions are grep functions** designed to be more:
+- convenient
+- intuitive  
+- compatible with tidyverse (and pipes)
+- use regex or simplified stringr specific string matching
+- **stringr functions begin with prefix `str_`**
+:::
+
+::::
+
+## stringr: DETECT MATCHES {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**str_detect(), str_starts(), str_ends()**  
+return whether a string contains/starts with/ends with a pattern match
+
+**str_count()**  
+count the number of times a pattern occurs in a string
+:::
+
+::: {.column width="50%"}
+**str_subset()**  
+return strings that match a pattern
+
+**str_length()**  
+return length (# characters) in a string
+
+**str_pad(), str_trunc()**  
+make strings a constant length by adding or removing characters
+
+**str_trim()**  
+remove whitespace
+:::
+
+::::
+
+## stringr: MUTATE, JOIN, AND SPLIT {.smaller}
+
+**str_sub()** - (extract or) replace substrings
+
+**str_replace[_all]()** - replace first substring [all substrings] matching a pattern
+
+**str_remove[_all]()** - remove first substring [all substrings] matching a pattern
+
+**str_to_[lower/upper/title]()** - convert characters in string to lower, upper, or title case (comparable to base `tolower()` and `toupper()`)
+
+**str_c() & str_glue()** - join multiple strings into one string
+- comparable to `paste0()`; `str_glue` allows for inclusion of expressions
+
+**str_flatten()** - create one string from a list of strings
+
+# forcats
+
+## FACTOR VARIABLES {.smaller}
+
+**Factors are what R calls categorical variables**
+
+- usually look like strings
+- may look like numeric or logical variables
+- can be **ordered** (e.g., "high school", "some college", "college degree") 
+- or **unordered** (e.g., "education", "finance", "hospitality") 
+
+**Factors have levels**
+
+::: {.callout-note}
+### What about labels?
+Factor "levels" and "labels" in R are not equivalent to how they are used in some other languages (e.g., Stata, SPSS). Labels are used as one option for recoding levels. Effectively, a level's label is the level itself. If you don't like this, there are packages that change this behavior (e.g., labelled).
+:::
+
+## KEY FACTOR FUNCTIONS {.smaller}
+
+::: {.callout-important}
+The 2 most essential factor functions for forcats manipulation are from **base R**, not forcats:
+:::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**factor()** - create or coerce factor variable
+
+**levels()** - return or set factor levels
+:::
+
+::: {.column width="50%"}
+### KEY forcats FUNCTIONS
+
+forcats functions start with `fct_`
+
+You can do most of these things with just `factor()` and `levels()`, but these essentially act like shortcuts for the most common needs
+:::
+
+::::
+
+## forcats Functions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**fct_relevel()** - manually reorder levels
+
+**fct_reorder()** - reorder by another variable
+
+**fct_infreq()** - reorder by descending frequency (very useful for plots and tables)
+
+**fct_rev()** - reverse current level order
+:::
+
+::: {.column width="50%"}
+**fct_recode()** - manually change levels
+
+**fct_collapse()** - combine levels into manually defined groups
+
+**fct_other()** - replace some levels with "other"
+
+**fct_drop()** - drop unused levels
+
+**fct_expand()** - add level(s)
+:::
+
+::::
+
+# EXERCISES
+*(more than usual because this is the only lecture for Week 4)*
+
+## W4C1: CONCEPTUALIZE YOUR DATASET {.smaller}
+
+✓ **Conceptualize the dataset you'll need to create for your final research project:**
+
+This is pretty vague, so some ideas to help get you thinking:
+
+- Draw out a couple mock figures and/or articulate your questions and hypotheses
+- How will you need to organize your variables and groups to produce those figures? What data types will your variables need to be?
+
+✓ **Mock up a preliminary dataset & begin prep:**
+
+- Create a tabular mock-up of your goal data structure using Excel (or similar) either by manipulating your actual data or creating mock data
+- You can do this in R, but the goal is to get a solid concept of data structure rather than actually wrangling data
+
+---
+
+✓ **In your final research project repo, create an .R script called data-prep.R:**
+
+- Use comments to write out in plain English the steps you need to make your existing data look like your mock-up, including data read-in, wrangling, and write-out of intermediate datasets
+- Note which steps you do and do not (yet) know how to execute in R
+- Begin to fill in code where you can e.g., import/export, filtering/selecting, object assignment
+
+::: {.callout-warning}
+**Keep GitHub best practices in mind as you work!**  
+GitHub objectives about version control require showing work over time. Get those practices in place now! You won't be able to show long-term practices in a short-term timeframe.
+:::
+
+*Unassessed: 1, 9, 14, 16*
+
+## W4C1: DATA WRANGLING PRACTICE {.smaller}
+
+Find two data wrangling structured exercises in the **d2mr-assessment repo**. Complete the mini-projects directly in the existing .qmd like a digital workbook.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+✓ **Level 1 Data Wrangling: Recreate a starwars Dataset**
+- Start with a medium-sized dataset (starwars) and transform the data to match a goal dataset
+- Most tasks are outlined in the assignment script
+
+*Associated mini-project:*  
+`d2mr-assessment/02_data-wrangling/01_recreate-level-1`
+:::
+
+::: {.column width="50%"}
+✓ **Level 2 Data Wrangling: Recreate a gapminder Dataset**
+- Work with a more complex dataset (gapminder), perform more involved wrangling and transformation tasks
+- General guidance is given without much structured support
+
+*Associated mini-project:*  
+`d2mr-assessment/02_data-wrangling/02_recreate-level-2`
+:::
+
+::::
+
+*Assessed: 5, 6, 8, 9, 10, 11, 12; Unassessed: 1, 2, 9, 12, 13*
+
+::: {.callout-note}
+As of now (1/23/25) there is an empty directory for a wrangling walkthrough without an actual walkthrough. Between the cleaning walkthrough, the cleaning projects, the in-class demos, and the highly structured format, you should be able to approach Level1 wrangling on your own. I may add one later if I see there is a need for it.
+:::
+
+## W4C1: GROUP MAKE-A-MESS {.smaller}
+
+Work together with a classmate to each dramatically transform/wrangle a dataset for the other(s) to recreate. This will work best in **pairs** so that you can swap datasets but you can adjust things to do in a small group if you prefer.
+
+✓ Each partner chooses a publicly available dataset (recommend the built-in ones)
+
+✓ In a script or notebook, transform your df using tidyverse functions and save to a .csv
+
+✓ Swap your transformed data files
+
+✓ In a script or notebook, recreate your partner's transformed dataset
+
+✓ Discuss the process with your partner/group
+
+*Assessed: 5, 6, 8, 9, 10, 11, 12; Unassessed: 1, 2, 5, 9, 14, 22*
+
+*Associated mini-project: `02_data-wrangling/03_group-make-a-mess`*
+
+::: {.callout-note}
+This is similar to, but separate from, the "group uncleaning" mini-project. Read the instructions for each carefully. You can complete and submit both!
+:::
+
+## W4C1: DATA WRANGLING FUNCTION {.smaller}
+
+**Define a function to execute procedural data wrangling tasks.** Your final product should be an .R script that defines your function, then runs your function in a variety of test cases.
+
+✓ **Identify a data wrangling problem that needs a solution.** Ideally you should identify a need and develop the concept for your function based on a need you actually have (like something for your research project data wrangling), but you can alternatively select from one of the examples in the mini-project README.
+
+✓ **Conceptually and programmatically define your function.**
+- Write a "conceptual definition" of the function using plain-English comments. Start broad and narrow as you work.
+- Fill in the code to match your commented function structure, revising the conceptual definition and comments as needed.
+
+✓ **Run your function on a diverse set of test cases** that would result in the function processing arguments in different ways.
+
+*Assessed: 6, 7, 8, 9, 10, 11, 12; Unassessed: 1, 2, 3, 4, 5, 8, 12, 13*
+
+*Associated mini-project: `06_r-programming/03_wrangling-function`*
+
+::: {.callout-note}
+You may use your final research project data to guide the development of your function in this mini-project. This is an exception to the general rule that MPs must be distinct from your research project. Code you submit for this mini-project will not also count toward objectives on your final project.
+:::
+
+## W4C1: RECREATE AN EXISTING FUNCTION {.smaller}
+
+**Recreate one or more existing functions from base R or a package of your choice.** Your final product should be an .R script that defines your function, then compares the output with that of the original function.
+
+✓ **Choose an existing function to recreate** from base R, the tidyverse, or another package you are independently familiar with.
+
+✓ **Examine how the existing function is defined.** Try to determine the general logic behind the function and identify which parts you can and can't follow along with.
+
+✓ **Write a "conceptual definition" of the function using comments.** Focus on outlining the way the function works for your typical use cases, with only the arguments you use.
+
+✓ **Using your conceptual definition to guide you** and revising as you work, fill in as much code as you can to define a function that works like the original.
+
+✓ **Run both your function and the original** on a variety of test cases and compare the output.
+
+*Assessed: 6, 7, 8, 9, 10, 11, 12; Unassessed: 1, 2, 3, 4, 5, 8, 12, 13*
+
+*Associated mini-project: `06_r-programming/04_recreate-function`*
+
+## READINGS & RESOURCES {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Today's class:
+
+**dplyr joins**
+- [documentation](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+- r4ds: 19 - joins
+
+**tidyr**
+- [documentation](https://tidyr.tidyverse.org/) & [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
+- [tidyverse guide to tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html)
+- r4ds: 5 – Data tidying*
+
+**forcats**
+- [documentation](https://forcats.tidyverse.org/) & [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/factors.pdf)
+- r4ds: 16 – Factors*
+:::
+
+::: {.column width="50%"}
+**stringr**
+- [documentation](https://stringr.tidyverse.org/) & [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf)
+- r4ds: 14 – Strings*
+- r4ds: 15 – Regular expressions
+
+**purrr** *(advanced, low priority for d2m)*
+- [documentation](https://purrr.tidyverse.org/) & [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
+
+### Next class:
+- **Data preparation workshop** – no new material!
+- We will catch up on anything we didn't get to in the Tidyverse lectures, then have dedicated time to walk through demo scripts, work on projects, and get in-class support.
+- Review the documentation and cheatsheets for readr, tidyr, dplyr, stringr, and forcats as well as the chapters on data tidying and data types in R for Data Science
+:::
+
+::::
+
+## Speaker Notes {.notes}
+
+This slide deck covers the core concepts of data tidying and wrangling using the tidyverse packages. Key points to emphasize:
+
+1. **Git Best Practices**: Start every session with pull, end with commit and push
+2. **Tidyverse Philosophy**: All packages work together with tidy data principles
+3. **Joins vs Binds**: Prefer joins over binding columns for data integrity
+4. **Tidy Data**: Each variable is a column, each observation is a row
+5. **Pivoting**: Wide data is human-readable, long data is analysis-ready
+6. **String Manipulation**: stringr functions are more intuitive than base R
+7. **Factors**: Essential for categorical data analysis and visualization
+
+Make sure to demonstrate live coding examples for each major function discussed. Encourage students to follow along with the demo-snippets.R file.

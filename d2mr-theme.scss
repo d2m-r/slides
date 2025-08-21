@@ -1,0 +1,1005 @@
+/*-- scss:defaults --*/
+
+@import 'color-theme';
+
+
+// Default the theme name
+$theme-name: if(variable-exists(theme), $theme, "gris");
+
+/// In use to optionally redefine
+// $font-size-sm
+// $border-radius:               1rem !important;
+
+
+// Page level
+
+$body-bg:           $light !default;
+$body-color:        $dark-lake !default;
+$text-on-dark:      $light !default;
+$text-on-light:     $dark-lake !default;         
+//$link-color:        $lake !default;      // Default link color for websites
+
+// link colors weird, need to figure out to be consistent
+$link-color: $light; // Color for footer link icons only, because I can't get it to change any other way
+// after messing with the site theme for a while, I'm thinking this might have something to do with a default override function somewhere that's blending an "optimal" link color...
+$link-color-main: $lake; // Color for main links in the presentation 
+
+// Font/Text
+
+/// Headings
+$headings-color:              $maroon !default;
+$mid-headings-color:          $mid-lake !default;
+$low-headings-color:          $secondary !default;
+$accordion-heading-size:      1.4rem !default;
+$accordion-date-size:        1rem !default;
+
+/// Body text
+
+$font-size-sm:       .8rem !default;
+$font-size-lg:      1.2rem !default;
+
+// Slide-only styling
+
+$presentation-heading-color: $mid-lake !default;
+$selectionBackgroundColor: lighten($accent1,10%) !default;
+
+
+// Tables & Borders
+/// Also used in callouts and other stand-alone components
+$table-border-color:          $dark-greystone !default;
+
+
+// Navbar
+/// Avoid triggering bootstrap overrides
+$navbar-bg:                   $maroon;
+$navbar-link-color:           $warm-white;
+$navbar-hl:                   $warm-white;
+$navbar-brand:                lighten($navbar-bg, 70%);
+
+
+// Buttons
+$btn-line-height:             1.5rem !default;
+$input-btn-padding-y:         .2rem !default;
+$input-btn-padding-x:         .8rem !default;
+$input-btn-padding-y-sm:      .1rem !default;
+$input-btn-padding-x-sm:      .6rem !default;
+$input-btn-padding-y-lg:      .5rem !default;
+$input-btn-padding-x-lg:      1rem !default;
+$btn-font-weight:             500 !default;
+
+// Code blocks
+
+/// Code block borders
+$code-block-border: $greystone;
+
+/// Code block background
+$code-block-bg: $code-grey !default;
+$code-block-bg-padding: 0.5em !default;
+$code-block-bg-alpha: 0 !default;
+$code-block-border-color: $secondary;
+
+/// Controls when the code block will switch to a dark
+/// version of a theme
+$code-block-theme-dark-threshhold: 40% !default;
+
+/// Inline code formatting
+$code-color: $dark-lake !default;
+$code-bg: $code-grey !default;
+
+
+// Callouts
+
+/// Values for default callout colors
+$callout-color-note: $note;
+$callout-color-tip: $tip;
+$callout-color-important: $important;
+$callout-color-caution: $caution;
+$callout-color-warning: $brick;
+
+/// Callout styling
+$callout-border-width: 5px !default;
+$callout-border-scale: 0% !default;
+$callout-icon-scale: 10% !default;
+$callout-margin-top: 1.25rem !default;
+$callout-margin-bottom: 1.25rem !default;
+
+
+// Navbar
+
+
+
+// Pagination
+
+$pagination-border-color:           transparent !default;
+$pagination-hover-border-color:     $pagination-border-color !default;
+$pagination-disabled-border-color:  $pagination-border-color !default;
+
+
+
+
+/* Random questionably necessary settings */
+// Disable default grid system and switch to CSS grid
+$enable-grid-classes: false;
+$enable-cssgrid: true;
+
+$zindex-pagelayout: 998;
+
+$popover-bg: if(variable-exists(body-bg), $body-bg, null) !default;
+$input-bg: if(variable-exists(body-bg), $body-bg, null) !default;
+
+$bootstrap-version: 5;
+
+
+/*-- scss:functions --*/
+
+// Accessibile contrast
+
+@function custom-contrast($color, $bgColor, $level: "A") {
+  $black: rgb(0, 0, 0) !default;
+  $white: rgb(255, 255, 255) !default;
+
+  @if tone($bgColor) == "light" {
+    @return custom-accessibleContrast($color, $black, $bgColor, $level);
+  } @else {
+    @return custom-accessibleContrast($color, $white, $bgColor, $level);
+  }
+}
+
+@function custom-accessibleContrast($startColor, $mixColor, $bgColor, $level: "A") {
+  // A: 3:1
+  // AA: 4.5:1
+  // AAA: 7:1
+  $goalContrastRatio: 3;
+  @if $level == "AA" {
+    $goalContrastRatio: 4.5;
+  } @else if $level == "AAA" {
+    $goalContrastRatio: 7;
+  }
+
+  $percentMix: 100;
+  $contrastRatio: 0;
+  $contrastColor: null;
+  @while ($contrastRatio < $goalContrastRatio and $percentMix > 0) {
+    $contrastColor: mix(
+      $startColor,
+      $mixColor,
+      percentage(quarto-math.div($percentMix, 100))
+    );
+    $contrastRatio: contrast($contrastColor, $bgColor);
+    $percentMix: $percentMix - 1;
+  }
+
+  @return $contrastColor;
+}
+
+
+/*-- scss:rules --*/
+
+// Variables
+
+// Fonts & text
+
+.title {
+  font-weight: 600;
+  font-size: 2.5rem;
+  letter-spacing: 0.1rem;
+  padding-bottom: 0.5rem;
+  color: $accent1;
+  border-bottom: 4px double $accent1;
+}
+
+
+h2, h3 {
+//  font-weight: 600;
+  color: $mid-headings-color;
+}
+
+h4, h5, h6 {
+  //font-weight: 600;
+  color: $low-headings-color;
+}
+
+h6 {
+  font-style: italic;
+}
+
+// Navbar
+
+.navbar {
+  font-size: $font-size-sm;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  &-nav {
+    .nav-link {
+      padding-top: .715rem;
+      padding-bottom: .715rem;
+    }
+  }
+
+.nav-link {
+    //color: mix($light-greystone, $primary-muted, 85%);
+    color: mix($text-on-dark, $primary, 75%);
+}
+
+.navbar-nav a:hover {
+    //color: mix($light-greystone, $primary-muted, 60%);
+    color: $text-on-dark;
+}
+
+}
+
+.navbar-nav .nav-link.active {
+  //color: mix($light, $main2, 37%);
+  color: $body-bg;
+  font-weight: 600;
+  text-decoration-line: underline overline;
+}
+
+
+.navbar .dropdown-menu {
+    //background-color: mix(#ddd, $navbar-bg, 70%);
+    background-color: mix($light, $navbar-bg, 80%);
+    opacity: 95%;
+    border-width: 2px;
+    border-color: mix(#222, $navbar-bg, 30%);
+    border-radius: 10px;
+    
+    & a.dropdown-item:hover {
+        background-color: $body-bg;
+        color: $navbar-bg;
+        opacity: 100%;
+        
+        //&:last-child {
+          //  border-bottom-left-radius: 10px;
+            //border-bottom-right-radius: 10px;
+        //}
+        
+    }
+    
+    & li:first-child :hover {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    & li:last-child :hover{
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+}
+
+// Accordions
+
+.accordion-button:not(.collapsed) {
+    background-color: $light-greystone;
+    color: $dark;
+}
+
+.accordion {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-width:2px;
+    border-radius:5px;
+}
+
+.accordion-item {
+    border-color: $dark-greystone;
+    border-width:2px;
+}
+
+.accordion-button {
+    color: $light;
+    background-color: $dark;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    
+    > p {
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+        margin-bottom: 0px;
+    }
+}
+
+.titlebox {
+  background-color: $dark-lake;
+  text-align: center;
+  font-weight: bold;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  margin-bottom: 0px;
+  
+  > p, h1, h2, h3 {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      color: $light;
+      //font-variant: small-caps;
+      font-weight: bold;
+      font-size: $accordion-heading-size;
+  }
+
+}
+
+.datebox {
+  background-color: $light;
+  text-align: center;
+  font-weight: bold;
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+
+
+}
+
+.datebox p {
+    color: $dark-lake;
+    font-size: $accordion-date-size;
+    //font-variant: small-caps;
+    margin-bottom: 0px;
+}
+
+.prep{
+    background-color: $prep;
+}
+
+.inclass {
+    background-color: $inclass;
+}
+
+.todo {
+    background-color: $todo; 
+}
+
+.misc {
+    background-color: $misc;
+}
+
+.finalbox {
+    background-color:$final;
+}
+
+.minibox {
+    background-color:mix($dark, $accent1, 15%);
+}
+
+.classbox {
+    background-color:$accent3;
+}
+
+
+
+ 
+// Buttons
+
+.btn {
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+
+  &-sm {
+    font-size: 10px;
+  }
+
+  &-warning {
+    &,
+    &:hover,
+    &:not([disabled]):not(.disabled):active,
+    &:focus {
+      color: $white;
+    }
+  }
+}
+
+// Border add-ons
+/// For buttons and callouts mostly
+
+/// Primary
+
+.border-primary {
+  border: 3px solid mix($dark, $primary, 60%) !important;
+}
+
+.border-secondary {
+  border: 3px solid mix($dark, $secondary, 60%) !important;
+}
+
+.border-danger {
+  border: 3px solid mix($dark, $danger, 60%) !important;
+}
+
+.border-success {
+  border: 3px solid mix($dark, $success, 60%) !important;
+}
+
+.border-info {
+  border: 3px solid mix($dark, $info, 60%) !important;
+}
+
+.border-warning {
+  border: 3px solid mix($dark, $warning, 60%) !important;
+}
+
+
+
+// Alerts
+
+/// Fix margins in alert boxes
+.alert {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.alert p:last-of-type {
+  margin-bottom: 0;
+}
+
+@mixin no-top-margin-headings($container) {
+  #{$container} {
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+    }
+  }
+}
+
+@include no-top-margin-headings('.alert');
+@include no-top-margin-headings('.callout');
+
+/// Make alert headings dependent on alert box background color
+$alert-colors: (
+  "warning": (
+    heading-color: $warning,
+    bg: rgba($warning, 0.15) // 15% opacity background
+  ),
+  "caution": (
+    heading-color: $caution,
+    bg: rgba($caution, 0.15) // 15% opacity background
+  ),
+  "info": (
+    heading-color: $info,
+    bg: rgba($info, 0.15) // 15% opacity background
+  ),
+  "success": (
+    heading-color: $success,
+    bg: rgba($success, 0.15) // 15% opacity background
+  ),
+  // danger works differently, just adjusting brightness not transparency
+  // for consistency across pages 
+  "danger": (
+    heading-color: darken($danger, 20%),
+    bg: lighten($danger, 30%)
+  )
+);
+
+@each $name, $colors in $alert-colors {
+  .alert-#{$name} {
+    background-color: map-get($colors, bg);
+
+    h1, h2, h3, h4, h5, h6 {
+      color: map-get($colors, heading-color);
+    }
+  }
+}
+
+// Make headings inside alerts not be anchored or show up in the table of contents
+
+// ???? Can't figure out how to do this without affecting headings outside alerts too
+
+
+
+// Callouts
+
+
+.callout {
+  margin-top: $callout-margin-top;
+  margin-bottom: $callout-margin-bottom;
+  border-radius: $border-radius;
+  overflow-wrap: break-word;
+}
+
+.callout .callout-title-container {
+  overflow-wrap: anywhere;
+}
+
+.callout.callout-style-simple {
+  padding: 0.4em 0.7em;
+  border-left: $callout-border-width solid;
+  border-right: 1px solid $table-border-color;
+  border-top: 1px solid $table-border-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.callout.callout-style-default {
+  border-left: $callout-border-width solid;
+  border-right: 1px solid $table-border-color;
+  border-top: 1px solid $table-border-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.callout .callout-body-container {
+  flex-grow: 1;
+}
+
+.callout.callout-style-simple .callout-body {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.callout.callout-style-default .callout-body {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.callout:not(.no-icon).callout-titled.callout-style-simple .callout-body {
+  padding-left: 1.6em;
+}
+
+.callout.callout-titled > .callout-header {
+  padding-top: 0.2em;
+  margin-bottom: -0.2em;
+  color: $black;
+}
+
+.callout.callout-style-simple > div.callout-header {
+  border-bottom: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.callout.callout-style-default > div.callout-header {
+  border-bottom: none;
+  font-weight: 600;
+  opacity: 70%;
+  font-size: 0.9rem;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.callout.callout-style-default .callout-body {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.callout.callout-style-default .callout-body > :first-child {
+  padding-top: 0.5rem;
+  margin-top: 0;
+}
+
+.callout > div.callout-header[data-bs-toggle="collapse"] {
+  cursor: pointer;
+}
+
+.callout.callout-style-default .callout-header[aria-expanded="false"],
+.callout.callout-style-default .callout-header[aria-expanded="true"] {
+  padding-top: 0px;
+  margin-bottom: 0px;
+  align-items: center;
+}
+
+.callout.callout-titled .callout-body > :last-child:not(.sourceCode),
+.callout.callout-titled .callout-body > div > :last-child:not(.sourceCode) {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+
+.callout:not(.callout-titled) .callout-body > :first-child,
+.callout:not(.callout-titled) .callout-body > div > :first-child {
+  margin-top: 0.25rem;
+}
+
+.callout:not(.callout-titled) .callout-body > :last-child,
+.callout:not(.callout-titled) .callout-body > div > :last-child {
+  margin-bottom: 0.2rem;
+}
+
+$code-block-border-left-color: $table-border-color !default;
+
+.callout.callout-style-simple .callout-icon::before,
+.callout.callout-style-simple .callout-toggle::before {
+  height: 1rem;
+  width: 1rem;
+  display: inline-block;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+}
+
+.callout.callout-style-default .callout-icon::before,
+.callout.callout-style-default .callout-toggle::before {
+  height: 0.9rem;
+  width: 0.9rem;
+  display: inline-block;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 0.9rem 0.9rem;
+}
+
+.callout.callout-style-default .callout-toggle::before {
+  margin-top: 5px;
+}
+
+.callout .callout-btn-toggle .callout-toggle::before {
+  transition: transform 0.2s linear;
+}
+
+.callout .callout-header[aria-expanded="false"] .callout-toggle::before {
+  transform: rotate(-90deg);
+}
+
+.callout .callout-header[aria-expanded="true"] .callout-toggle::before {
+  transform: none;
+}
+
+.callout.callout-style-simple:not(.no-icon) div.callout-icon-container {
+  padding-top: 0.2em;
+  padding-right: 0.55em;
+}
+
+.callout.callout-style-default:not(.no-icon) div.callout-icon-container {
+  padding-top: 0.1em;
+  padding-right: 0.35em;
+}
+
+.callout.callout-style-default:not(.no-icon) div.callout-title-container {
+  margin-top: -1px;
+}
+
+.callout.callout-style-default.callout-caution:not(.no-icon)
+  div.callout-icon-container {
+  padding-top: 0.3em;
+  padding-right: 0.35em;
+}
+
+.callout > .callout-body > .callout-icon-container > .no-icon,
+.callout > .callout-header > .callout-icon-container > .no-icon {
+  display: none;
+}
+
+
+// Generate per callout type css to customize their appearance
+// Define the callouts for which we should define styles
+$callouts: (
+  // NOTE
+  "note":
+    (
+      "color": $callout-color-note,
+      "icon":
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>',
+    ),
+  // TIP
+  "tip":
+    (
+      "color": $callout-color-tip,
+      "icon":
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/></svg>',
+    ),
+  // WARNING
+  "warning":
+    (
+      "color": $callout-color-warning,
+      "icon":
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/><path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/></svg>',
+    ),
+  // CAUTION
+  "caution":
+    (
+      "color": $callout-color-caution,
+      "icon":
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16"><path d="M9.97 4.88l.953 3.811C10.158 8.878 9.14 9 8 9c-1.14 0-2.159-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.274 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/></svg>',
+    ),
+  // IMPORTANT
+  "important":
+    (
+      "color": $callout-color-important,
+      "icon":
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/></svg>',
+    )
+);
+
+
+@each $name, $info in $callouts {
+  div.callout-#{$name}.callout {
+    border-left-color: shift-color(
+      quarto-map.get($info, "color"),
+      $callout-border-scale
+    );
+  }
+
+  div.callout-#{$name}.callout-style-default > .callout-header {
+    @if (quarto-color.blackness($body-bg) > $code-block-theme-dark-threshhold) {
+      background-color: shift-color(quarto-map.get($info, "color"), 60%);
+    } @else {
+      background-color: shift-color(quarto-map.get($info, "color"), -50%);
+    }
+  }
+
+  $shifted-color: #{shift-color(
+      quarto-map.get($info, "color"),
+      $callout-icon-scale
+    )};
+  $shifted-color-svg: str-replace($shifted-color, "#", "%23"); // replacement for svg encoding 
+
+  div.callout-#{$name}:not(.callout-titled) .callout-icon::before {
+    background-image: #{"url('data:image/svg+xml," +
+      str-replace(
+        quarto-map.get($info, "icon"),
+        'fill="currentColor"',
+        'style="fill: #{$shifted-color-svg}"'
+      ) +
+      "');"};
+  }
+
+  div.callout-#{$name}.callout-titled .callout-icon::before {
+    background-image: #{"url('data:image/svg+xml," +
+      str-replace(
+        quarto-map.get($info, "icon"),
+        'fill="currentColor"',
+        'style="fill: #{$shifted-color-svg}"'
+      ) +
+      "');"};
+  }
+
+  div.callout-#{$name} .callout-toggle::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#{colorToRGB($body-color)}" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+  }
+}
+
+// jsreveal-specific rules
+
+/* Main slide styling */
+.reveal {
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 30px;
+    color: $body-color;
+}
+
+/* Title slide customization */
+.reveal #title-slide h1.title {
+    //color: mix(#000, $primary, 10%);
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    //font-variant-caps: all-caps;
+    border-bottom: 5px double $accent1;
+    margin-bottom: 0.3em;
+}
+
+.reveal #title-slide .subtitle {
+    color: $primary-muted;
+    font-size: 2em;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: .5em;
+}
+
+.reveal #title-slide .author,
+.reveal #title-slide .date {
+    text-align: center;
+    font-size: 1em;
+    color: $dark;
+}
+
+/* Headings */
+
+/**  Section Header  **/
+.reveal h1 {
+    color: $primary;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 0.5em;
+    border-bottom: 3px solid $accent1;
+    padding-bottom: 0.2em;
+}
+
+.reveal h2 {
+    color: $mid-headings-color;
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 0.8em;
+    border-left: 4px solid $accent1;
+    padding-left: 15px;
+}
+
+.reveal h3 {
+    color: $mid-headings-color;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-top: .8em;
+    margin-bottom: 0.6em;
+}
+
+.reveal h4, .reveal h5, .reveal h6 {
+    color: $low-headings-color;
+}
+
+
+/* Code styling */
+
+
+.reveal .sourceCode, 
+.reveal .cell-code {
+    background-color: #fff !important;
+    border-radius: 4px;
+    font-family: "Fira Code", Menlo, "Courier New", monospace;
+    font-size: 0.9em;
+    margin-bottom: 1.2em !important;
+    border-width: 2px !important;
+    padding-top: 0.5em !important;
+}
+
+.reveal .sourceCode .code-with-copy {
+    max-width: 97%;
+}
+
+/* Inline code */
+
+.reveal code {
+    background-color: $code-block-bg;
+    color: $code-color;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: "Fira Code", Menlo, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+/* Column layouts */
+
+.reveal .columns {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Lists */
+.reveal ul {
+    margin-left: 1em;
+}
+
+.reveal ul li {
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+}
+
+.reveal ul li::marker {
+    color: $accent1;
+}
+
+/* Dimming */
+
+.reveal .fragment.dimmable {
+  opacity: 0.2;
+  visibility: visible;
+}
+.reveal .fragment.dimmable.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Callout boxes */
+
+.reveal .callout {
+    border: 1px solid $dark;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 1em 0;
+}
+
+.reveal .callout-tip {
+    border-left: 4px solid $callout-color-tip;
+    background-color: mix(#ffffff,$callout-color-tip, 70%);
+}
+
+.reveal .callout-note {
+    border-left: 4px solid $callout-color-note;
+    background-color: mix(#ffffff,$callout-color-note, 70%);
+}
+
+.reveal .callout-important {
+    border-left: 4px solid $callout-color-important;
+    background-color: mix(#ffffff, $callout-color-important, 70%);
+}
+
+.reveal .callout-warning {
+    border-left: 4px solid $callout-color-warning;
+    background-color: mix(#ffffff,$callout-color-warning, 70%);
+}
+
+
+/* Links */
+.reveal a {
+    color: $link-color-main;
+    text-decoration: none;
+}
+
+.reveal a:hover {
+    color: lighten($link-color-main, 20%);
+    text-decoration: underline;
+}
+
+
+/* Footer styling */
+.reveal .footer,
+.reveal .footer-default
+.reveal .footer p {
+    background-color: $primary;
+    color: $link-color;
+    font-size: 1em;
+    //padding-bottom: 8px;
+}
+
+.reveal .footer,
+.reveal .footer-default {
+    bottom: 0px !important;
+    height: 40px !important;
+    padding-top: 10px;
+}
+
+.reveal .footer p {
+    position: relative;
+    top: 10%;
+}
+
+/* Slide numbers */
+.reveal .slide-number,
+.reveal .slide-number a {
+    background-color: $primary;
+    color: $link-color !important;
+    font-size: 1em;
+    //padding-top: 5px;
+    //position-bottom: 5px !important;
+}
+
+/* Progress bar */
+.reveal .progress {
+    color: mix(#fff, $secondary, 20%);
+}
+
+
+/* Special formatting for smaller text */
+.reveal .smaller {
+        font-size: .8em !important;
+    }
+    
+/* Special formatting for larger text */
+.reveal .bigger {
+        font-size: 1.5em;
+    }
+
+/* Emphasize important text */
+    .reveal strong {
+        color: var(--secondary-color);
+        font-weight: 700;
+    }
+
+/* Package name styling */
+    .reveal .pkg {
+        background-color: lighten($accent3, 60%);
+            color: $accent3;
+            padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "Fira Code", Menlo, "Courier New", monospace;
+        font-weight: 500;
+    }
+
+/* Function name styling */
+    .reveal .func {
+        background-color: lighten($accent2, 50%);
+            color: $accent2;
+            padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "Fira Code", Menlo, "Courier New", monospace;
+    }
+
+/* Better spacing for slide content */
+    .reveal .slides section .fragment {
+        margin-bottom: 0.5em;
+    }
+
+/* Speaker notes (hidden in presentation mode) */
+    .notes {
+        display: none;
+    }
+    
+// Questionably necessary rules
+
+.quarto-toggle-container {
+  display: flex;
+  align-items: center;
+}
