@@ -4,7 +4,7 @@ subtitle: Q1-W1-C2
 order: 2
 format:
   revealjs:
-    theme: [default, ../d2mr.scss]
+    theme: [default, ../d2mr-theme.scss]
     slide-number: c/t
     width: 1600
     height: 900
@@ -47,28 +47,58 @@ execute:
 
 # A Preface
 
-## Debugging *is* Programming
+## The Myth of the "Programmer"
 
-::::: columns
-::: {.column width="50%"}
-<!-- probably a cartoon -->
+:::: columns
 
-### The Myth
+::: {.column width="60%"}
 
--   **Programmers are geniuses who have a sacred knowledge.**
-    -   They just know everything and never need to ask for help
--   **The debugging coders do is a highly specialized skill.**
-    -   You need lots of training to understand what it even is.
--   **If you're debugging, you did something wrong.**
-    -   If you knew what you were doing then you would have done it right.
--   **Programming requires mastery of a programming language.**
-    -   You need to know all the functions and processes before you can do anything.
--   **You can recognize an expert programmer by their abundant knowledge of the language.**
-    -   If they do have to ask for help, they have to find someone who knows more than they do.
+-   Programmers are geniuses who have a sacred knowledge.
+-   The debugging coders do is a highly specialized skill.
+-   If you're debugging, you did something wrong.
+-   Programming requires mastery of a programming language.
+-   You can recognize an expert programmer by their abundant knowledge of the language.
+    - or their wardrobe of unwashed hoodies meticulously curated to signal how much they don't care about anything but code
+    
 :::
 
-::: {.column width="50%"}
-### The Reality
+::: {.column width="40%"}
+<!-- probably a gif from silicon valley -->
+:::
+
+::::
+
+
+## The Reality of Getting Shit Done
+
+:::: columns
+
+::: {.column width="60%"}
+
+-   Debugging is not extra – it's the majority of the process.
+-   Debugging is one application of more generalizable problem-solving skills.
+-   Programming depends on collaboration.
+-   Once you "master" the foundations, you learn the rest by just going for it.
+-   You can recognize an expert programmer by their ability to find solutions.
+    -   They might also wear gross hoodies, but don't we all from time to time?
+
+:::
+
+::: {.column width="40%"}
+
+<!-- a cartoon about most of programming being dubugging, of which there are many -->
+
+:::
+
+:::::
+
+
+::: {.callout-tip .bigger}
+## Questions \> Answers
+Knowing how to ask the right questions to solve problems and learn independently is legitimately, indisputably more valuable than the party trick of recalling lots of functions and language-specific processes.
+:::
+
+::: notes
 
 -   **Debugging is not extra – it's essential**
     -   80% of programming time is spent debugging <!-- there's got to be a cartoon for this -->
@@ -82,15 +112,10 @@ execute:
     -   Get the basics down, then get everything else you need when you need it.
 -   **Master the foundations and then just go for it**
 :::
-:::::
-
-::: callout-tip
-Knowing how to ask the right questions to solve problems and learn independently is legitimately and indisputably more valuable than knowing lots of functions and language-specific processes.
-:::
 
 # Best Practices
 
-> The best way to troubleshoot is to avoid it.
+> The best way to troubleshoot is to avoid it. 
 
 ## Keep Your Code:
 
@@ -100,6 +125,7 @@ Knowing how to ask the right questions to solve problems and learn independently
     -   style guides, internal consistency
 -   **Intelligible** - clear comments and naming
     -   informative comments, meaningful naming, documentation
+
 :::
 
 ::: {.column width="50%"}
