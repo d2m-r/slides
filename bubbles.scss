@@ -1,0 +1,164 @@
+/*-- scss:rules --*/
+
+$left-bubble: $lake;
+$right-bubble: $brick;
+$left-outline: $dark-lake;
+$right-outline: $dark-brick;
+
+////// BUBBLES
+
+div.bubble-chain {
+position: fixed;
+  left: 0px;
+  right: 0px;
+  width: auto;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  pointer-events: none;
+
+  /* Allow vertical overflow but prevent scrollbars */
+  overflow-x: visible;
+  overflow-y: visible;
+
+  /* Avoid height constraints */
+  max-height: none; 
+  height: auto;
+
+  &.top {
+    top: 100px;      /* top anchor */
+    bottom: unset;   /* unset bottom */
+  }
+
+  /* Positioning default to bottom if not top */
+  &:not(.top) {
+    bottom: 100px;
+    top: unset;
+  }
+}
+
+
+/* Common bubble styles */
+div.bubble-chain p.bubble-left,
+div.bubble-chain p.bubble-right {
+  pointer-events: auto;
+  position: relative;
+  margin-bottom: .5em;
+  max-width: 45vw;
+  width: max-content;
+  min-width: 150px;
+  text-align: center;
+  border-radius: 30px;
+  padding: .7em 1.2em;
+  font-size: .9em;
+  color: white;
+  z-index: 1;
+
+  &:before,
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+}
+
+/* LEFT BUBBLES */
+div.bubble-chain p.bubble-left {
+  background-color: $left-bubble;
+  border: 8px solid $left-outline;
+  align-self: flex-start;
+  margin-left: -30px;
+
+  /* Tail at bottom (default) */
+  &:before {
+    border-color: transparent transparent $left-outline;
+    border-width: 0px 48px 28px 48px;
+    left: 0;
+    bottom: -50px;
+    transform-origin: 0 100%;
+    transform: rotate(-0.5rad);
+  }
+
+  &:after {
+    border-color: transparent transparent $left-bubble;
+    border-width: 0px 36px 16px 36px;
+    left: 20px;
+    bottom: -32px;
+    transform-origin: 0 100%;
+    transform: rotate(-0.53rad);
+  }
+}
+
+/* Left bubble tails when container is top aligned */
+div.bubble-chain.top p.bubble-left:before {
+  border-color: $left-outline transparent transparent transparent;
+  border-width: 28px 48px 0 48px;
+  left: 0;
+  top: -50px;
+  bottom: unset;
+  transform-origin: 0 0;
+  transform: rotate(0.5rad);
+}
+
+div.bubble-chain.top p.bubble-left:after {
+  border-color: $left-bubble transparent transparent transparent;
+  border-width: 16px 36px 0 36px;
+  left: 20px;
+  top: -32px;
+  bottom: unset;
+  transform-origin: 0 0;
+  transform: rotate(0.53rad);
+}
+
+
+/* RIGHT BUBBLES */
+div.bubble-chain p.bubble-right {
+  background-color: $right-bubble;
+  border: 8px solid $right-outline;
+  margin-right: -30px;
+  align-self: flex-end;
+
+  /* Tail at bottom (default) */
+  &:before {
+    border-color: transparent transparent $right-outline;
+    border-width: 0px 48px 28px 48px;
+    right: 0;
+    bottom: -50px;
+    transform-origin: 100% 100%;
+    transform: rotate(0.5rad);
+  }
+
+  &:after {
+    border-color: transparent transparent $right-bubble;
+    border-width: 0px 36px 16px 36px;
+    right: 20px;
+    bottom: -32px;
+    transform-origin: 100% 100%;
+    transform: rotate(0.53rad);
+  }
+}
+
+/* Right bubble tails when container is top aligned */
+div.bubble-chain.top p.bubble-right:before {
+  border-color: $right-outline transparent transparent transparent;
+  border-width: 28px 48px 0 48px;
+  right: 0;
+  top: -50px;
+  bottom: unset;
+  transform-origin: 100% 0;
+  transform: rotate(-0.5rad);
+}
+
+div.bubble-chain.top p.bubble-right:after {
+  border-color: $right-bubble transparent transparent transparent;
+  border-width: 16px 36px 0 36px;
+  right: 20px;
+  top: -32px;
+  bottom: unset;
+  transform-origin: 100% 0;
+  transform: rotate(-0.53rad);
+}

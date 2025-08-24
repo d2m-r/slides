@@ -203,6 +203,10 @@ h6 {
   font-style: italic;
 }
 
+.text-blur {
+    filter: blur(2px) saturate(0) opacity(.5);
+}
+
 // Navbar
 
 .navbar {
@@ -749,6 +753,11 @@ $callouts: (
     color: $body-color;
 }
 
+
+.reveal .slides section {
+  overflow: visible !important; /* required for speech bubbles to extend l/r of content */
+}
+
 /* Title slide customization */
 .reveal #title-slide h1.title {
     //color: mix(#000, $primary, 10%);
@@ -774,6 +783,24 @@ $callouts: (
     font-size: 1em;
     color: $dark;
 }
+
+/* Slide backgrounds and images */
+
+.reveal .slides section.transparent-bg {
+  position: relative;
+}
+
+.reveal .slides section.transparent-bg::before {
+  content: "";
+  background: inherit; /* inherit background-image from slide attribute */
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.3; /* Adjust transparency */
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+}
+
 
 /* Headings */
 
@@ -815,18 +842,36 @@ $callouts: (
 
 .reveal .sourceCode, 
 .reveal .cell-code {
-    background-color: #fff !important;
     border-radius: 4px;
+    //background-color: $dark-lake;
     font-family: "Fira Code", Menlo, "Courier New", monospace;
-    font-size: 0.9em;
-    margin-bottom: 1.2em !important;
+    font-size: 0.8em;
     border-width: 2px !important;
-    padding-top: 0.5em !important;
+    //padding-top: 0.5em !important;
+}
+
+.reveal .cell-code {
+   margin-bottom: 1.2em !important;
 }
 
 .reveal .sourceCode .code-with-copy {
-    max-width: 97%;
+    //max-width: 97%;
 }
+
+pre > code.sourceCode > span {
+    //color: $text-on-dark !important;
+}
+
+.reveal .sourceCode .r code {
+    padding: 20px;
+}
+
+.reveal .cell-output-stdout,
+.reveal .cell-output {
+  font-size: 1.3em !important;  /* Adjust em value as needed */
+
+}
+
 
 /* Inline code */
 
@@ -927,13 +972,11 @@ $callouts: (
 .reveal .footer,
 .reveal .footer-default {
     bottom: 0px !important;
-    height: 40px !important;
+    height: 50px !important;
     padding-top: 10px;
 }
 
 .reveal .footer p {
-    position: relative;
-    top: 10%;
 }
 
 /* Slide numbers */
@@ -942,8 +985,10 @@ $callouts: (
     background-color: $primary;
     color: $link-color !important;
     font-size: 1em;
-    //padding-top: 5px;
-    //position-bottom: 5px !important;
+    //position: absolute;
+    //bottom: 10px;
+    //right: 10px;
+    //width: auto;
 }
 
 /* Progress bar */
@@ -997,9 +1042,30 @@ $callouts: (
         display: none;
     }
     
+/* Footnotes */
+
+.reveal .slide aside, .reveal .slide div.aside {
+//  position: absolute;
+//  bottom: 0px;
+  right: 5%;
+  color: $dark-lake;
+  font-style: italic;
+  align-items: right;
+  font-size: .8em;
+  margin-top: 20px;
+}
+
+.reveal .slide.scrollable aside, .reveal .slide.scrollable div.aside {
+  position: absolute;
+}
+
+
 // Questionably necessary rules
 
 .quarto-toggle-container {
   display: flex;
   align-items: center;
 }
+
+
+@import 'bubbles';
