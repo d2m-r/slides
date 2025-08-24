@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="Q1-W3-C2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Q1-W3-C2_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Q1-W3-C2_files/libs/quarto-html/popper.min.js"></script>
+<script src="Q1-W3-C2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Q1-W3-C2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Q1-W3-C2_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Q1-W3-C2_files/libs/quarto-html/quarto-syntax-highlighting-1fa1d8026083a9bddc52b4aafc7f818e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="dcterms.date" content="2025-01-24">
+  <title>Welcome to the Tidyverse</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Q1-W3-C2_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Q1-W3-C2_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="Q1-W3-C2_files/libs/revealjs/dist/theme/quarto-05cab023e37883b8462a2894676fe9db.css">
+  <link href="Q1-W3-C2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Q1-W3-C2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Q1-W3-C2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Q1-W3-C2_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="Q1-W3-C2_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="Q1-W3-C2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script type="text/javascript" src="../bubbles.js"></script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Welcome to the Tidyverse</h1>
+  <p class="subtitle">Tidy data &amp; core packages (pt1 – readr, tibble, dplyr)</p>
+
+<div class="quarto-title-authors">
+</div>
+
+  <p class="date">2025-01-24</p>
+</section>
+<section>
+<section id="tidy-data" class="title-slide slide level1 center">
+<h1>Tidy Data</h1>
+
+</section>
+<section id="what-makes-data-tidy" class="slide level2">
+<h2>What Makes Data “Tidy”?</h2>
+<div class="r-stack">
+<p><img data-src="../images/tidyverse/tidy-data-def-frag1.jpg" class="fragment" height="700"></p>
+<p><img data-src="../images/tidyverse/tidy-data-def-frag2.jpg" class="fragment" height="700"></p>
+<p><img data-src="../images/tidyverse/tidy-data-def-frag3.jpg" class="fragment" height="700"></p>
+<p><img data-src="../images/tidyverse/tidy-data-def-frag4.jpg" class="fragment" height="700"></p>
+<p><img data-src="../images/tidyverse/tidy-data-def-frag5-FULL.jpg" class="fragment" height="700"></p>
+</div>
+
+<aside><div>
+Illustrations from the <a href="https://www.openscapes.org/">Openscapes</a> blog <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Tidy Data for reproducibility, efficiency, and collaboration</a> by Julia Lowndes and Allison Horst
+</div></aside></section>
+<section class="slide level2">
+
+<p><img data-src="../images/tidyverse/tolstoy.png" class="absolute" style="top: 0px; right: 0px; height: 200px; "></p>
+<p><img data-src="../images/tidyverse/tidy-data-quote-frag1.jpg" class="fragment" height="300"></p>
+<p><img data-src="../images/tidyverse/tidy-data-quote-frag2.jpg" class="fragment" height="300"></p>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column">
+<p><img data-src="../images/tidyverse/tidy-data-workshop-frag1.jpg" class="fragment" height="800"></p>
+</div><div class="column">
+<p><img data-src="../images/tidyverse/tidy-data-workshop-frag2.jpg" class="fragment" height="800"></p>
+</div></div>
+</section>
+<section id="messy-vs.-tidy-example" class="slide level2" data-background-image="../images/mms.jpg" data-background-opacity="0.1">
+<h2>Messy vs.&nbsp;Tidy: Example</h2>
+<div class="container-fluid" style="margin-top: -150px;">
+<div class="row" style="margin-bottom: 50px;">
+<div class="col-6">
+
+</div>
+<div class="col-6">
+<div style="font-size: 1.2em;">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>These tables hold exactly the same data!</strong></p>
+</div>
+<div class="callout-content">
+<p>What are the differences? What are the advantages of each?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-7">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>mmdata.messy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 8
+     Bag   Red Green  Blue Orange Yellow Brown Weight
+   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1     1    15     9     3      3      9    19   49.8
+ 2     2     9    17    19      3      3     8   49.0
+ 3     3    14     8     6      8     19     4   50.4
+ 4     4    15     7     3      8     16     8   49.2
+ 5     5    10     3     7      9     22     4   47.6
+ 6     6    12     7     6      5     17    11   49.8
+ 7     7     6     7     3      6     26    10   50.2
+ 8     8    14    11     4      1     14    17   51.7
+ 9     9     4     2    10      6     18    18   48.4
+10    10     9     9     3      9      8    15   46.2
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</div>
+<div class="col-5">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>mmdata.tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 180 × 4
+     Bag Weight Color  Number
+   &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+ 1     1   49.8 Red        15
+ 2     1   49.8 Green       9
+ 3     1   49.8 Blue        3
+ 4     1   49.8 Brown      19
+ 5     1   49.8 Yellow      9
+ 6     1   49.8 Orange      3
+ 7     2   49.0 Red         9
+ 8     2   49.0 Green      17
+ 9     2   49.0 Blue       19
+10     2   49.0 Brown       8
+# ℹ 170 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+That messy data looks pretty clean to me…
+</p>
+<p class="bubble-right fragment">
+It <em>is</em> clean! It’s just not <strong>tidy</strong>.
+</p>
+</div>
+</section>
+<section id="messy-data-clarification" class="slide level2">
+<h2>“Messy” Data Clarification</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>“Messy” data:</strong> any alternative, conventional way of organizing information</p>
+<p><strong>messy ≠ bad</strong> (except in the tidyverse context)</p>
+</div>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment">Data wrangling starts with reading your data, then prepping it for visualization &amp; analysis</li>
+<li class="fragment">To use tidyverse packages, this prepping includes tidying messy data</li>
+<li class="fragment">This can be shockingly complicated and time-consuming!</li>
+</ul>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left">
+Left bubble
+</p>
+<p class="bubble-right">
+Another from the right
+</p>
+<p class="bubble-right">
+Another really really really really really really really really really really really really really really really really really long one from the right
+</p>
+<p class="bubble-right">
+Short right
+</p>
+<p class="bubble-left">
+One last one from the left
+</p>
+<p><!-- ...mix as desired --></p>
+</div>
+</section></section>
+<section>
+<section id="terminology-detour" class="title-slide slide level1 center">
+<h1>Terminology Detour</h1>
+
+</section>
+<section id="messy-clean-tidy" class="slide level2">
+<h2>Messy, Clean, Tidy</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Important Distinctions</strong></p>
+</div>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment"><strong>Messy</strong> can either mean “not clean” or “not tidy”</li>
+<li class="fragment">We <strong>never</strong> want data that aren’t cleaned. That’s bad.</li>
+<li class="fragment">We <strong>often</strong> want data that are tidy. Good for tidyverse stuff.</li>
+<li class="fragment">We <strong>sometimes</strong> also want data that aren’t tidy.</li>
+<li class="fragment">Could we call this “untidy”? Yes, that would make more sense.</li>
+<li class="fragment">But for some reason people just use “messy” for both. Sorry.</li>
+</ul>
+</div>
+</section>
+<section id="data-preparation-terms" class="slide level2">
+<h2>Data Preparation Terms</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 26%">
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Process</th>
+<th style="text-align: center;">Start State</th>
+<th style="text-align: center;">Goal</th>
+<th style="text-align: center;">End State</th>
+<th style="text-align: left;">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Data Cleaning</strong> Error correction</td>
+<td style="text-align: center;">Raw data</td>
+<td style="text-align: center;">Accuracy, consistency, legibility</td>
+<td style="text-align: center;">Clean data, not yet specialized</td>
+<td style="text-align: left;">Removing duplicate data<br>Correcting syntax errors<br>Fixing typos<br>Handling missing values<br>Change data types</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Data Wrangling</strong> Data preparation</td>
+<td style="text-align: center;">Clean data</td>
+<td style="text-align: center;">Usability for medium-scope purpose</td>
+<td style="text-align: center;">Interpretable and specialized data, not yet analyzable</td>
+<td style="text-align: left;">Preparing for narrow use cases<br>Grouping and summarizing<br>Transforming variables or values</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Data Transformation</strong> Data restructuring</td>
+<td style="text-align: center;">Interpretable data</td>
+<td style="text-align: center;">Usability for narrow-scope tasks</td>
+<td style="text-align: center;">Analyzable and visualizable data</td>
+<td style="text-align: left;">Reshaping long ↔︎ wide<br>Generating new data-based variables<br>Merging datasets<br>Eliminating unnecessary data</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="terminology-confusion" class="slide level2 smaller">
+<h2>Terminology Confusion</h2>
+<div class="fragment highlight-red">
+<p>“You put cleaning/wrangling tasks in the opposite wrangling/cleaning mini-projects!”</p>
+</div>
+<div class="fragment highlight-blue">
+<p>“Those are the same thing.”</p>
+</div>
+<div class="fragment highlight-green">
+<p>“That’s not what I learned.”</p>
+</div>
+<div class="fragment">
+<p><strong>OK FINE. Yes. You’re all correct.</strong><br>
+<strong>You’re also all incorrect.</strong><br>
+<strong>Honestly it doesn’t really matter.</strong><br>
+<strong>Just mess with your data until they are usable. Call it what you want as long as it works.</strong></p>
+</div>
+</section></section>
+<section>
+<section id="tidyverse-packages" class="title-slide slide level1 center">
+<h1>TidyVerse Packages</h1>
+
+</section>
+<section id="core-tidyverse-packages" class="slide level2">
+<h2>Core Tidyverse Packages</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><strong><span class="pkg">tibble</span></strong><br>
+reimagine the dataframe!</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">readr</span></strong><br>
+easily import and export tabular data</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">dplyr</span></strong><br>
+a grammar of data manipulation</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">tidyr</span></strong><br>
+tidy your messy data</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">ggplot2</span></strong><br>
+a grammar of graphics</p>
+</div></div>
+<div class="columns fragment">
+<div class="column" style="width:25%;">
+<p><strong><span class="pkg">purrr</span></strong><br>
+enhancements for R’s functional programming</p>
+</div><div class="column" style="width:25%;">
+<p><strong><span class="pkg">stringr</span></strong><br>
+simplify working with strings</p>
+</div><div class="column" style="width:25%;">
+<p><strong><span class="pkg">forcats</span></strong><br>
+simplify working with factors</p>
+</div><div class="column" style="width:25%;">
+
+</div></div>
+</section>
+<section id="core-tidyverse-packages-week-3-focus" class="slide level2">
+<h2>Core Tidyverse Packages: Week 3 Focus</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><strong><span class="pkg">tibble</span></strong> ✅<br>
+reimagine the dataframe!</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">readr</span></strong> ✅<br>
+easily import and export tabular data</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">dplyr</span></strong> ✅<br>
+a grammar of data manipulation</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">tidyr</span></strong><br>
+tidy your messy data</p>
+</div><div class="column" style="width:20%;">
+<p><strong><span class="pkg">ggplot2</span></strong><br>
+a grammar of graphics</p>
+</div></div>
+</section></section>
+<section>
+<section id="readr" class="title-slide slide level1 center">
+<h1>readr</h1>
+
+</section>
+<section id="tibbles" class="slide level2">
+<h2>Tibbles</h2>
+<div>
+<ul>
+<li class="fragment">Like base R’s <span class="func">data.frame</span> structure but <strong>better</strong></li>
+<li class="fragment">Tibbles are <em>also</em> data.frames</li>
+<li class="fragment">Tidyverse package(s) work with tibbles, not base data.frames</li>
+</ul>
+</div>
+</section>
+<section id="readr-import-tibbles" class="slide level2">
+<h2>readr: Import Tibbles</h2>
+<p><strong>Figure out which import function you need for your data:</strong></p>
+<div>
+<ul>
+<li class="fragment">Field separators?</li>
+<li class="fragment">Non-tabular data?</li>
+<li class="fragment">Multiple sheets?</li>
+<li class="fragment">Check that your data file is in a sensible directory and note the path to your file</li>
+</ul>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>File Organization Best Practices</strong> - ALL data in your repo - Raw, protected data in a localonly dir - Wrangled or sourced data in git-managed directory</p>
+</div>
+</div>
+</div>
+</section>
+<section id="read_-functions" class="slide level2">
+<h2>read_* Functions</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Common readr functions</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">read_csv</span>()    <span class="co"># Comma separated values</span></span>
+<span id="cb5-3"><a href=""></a><span class="fu">read_tsv</span>()    <span class="co"># Tab separated values</span></span>
+<span id="cb5-4"><a href=""></a><span class="fu">read_delim</span>()  <span class="co"># Any delimiter</span></span>
+<span id="cb5-5"><a href=""></a><span class="fu">read_fwf</span>()    <span class="co"># Fixed width files</span></span>
+<span id="cb5-6"><a href=""></a><span class="fu">read_table</span>()  <span class="co"># Whitespace separated</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p><strong>Note:</strong> <code>read_csv</code> vs <code>read_csv2</code> - Most English-speaking countries and countries in Asia use the period as decimal mark (csv) - Most non-English European countries use a comma instead (csv2)</p>
+</div>
+</section>
+<section id="bonus-readxl-googlesheets4" class="slide level2">
+<h2>BONUS: readxl &amp; googlesheets4</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Complementary packages to readr</strong></p>
+</div>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment">Mimic readr’s <span class="func">read_*</span> functions</li>
+<li class="fragment"><em>Not</em> tidyverse packages</li>
+<li class="fragment">Install and load them separately</li>
+</ul>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># readxl for Excel files</span></span>
+<span id="cb6-2"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb6-3"><a href=""></a><span class="fu">read_excel</span>(<span class="st">"data.xlsx"</span>)</span>
+<span id="cb6-4"><a href=""></a></span>
+<span id="cb6-5"><a href=""></a><span class="co"># googlesheets4 for Google Sheets</span></span>
+<span id="cb6-6"><a href=""></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb6-7"><a href=""></a><span class="fu">read_sheet</span>(<span class="st">"spreadsheet_url"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="importing-with-readr" class="slide level2">
+<h2>Importing with readr</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Default behavior - guesses all data types</span></span>
+<span id="cb7-2"><a href=""></a>read_<span class="sc">*</span>(file.csv, <span class="at">col_types =</span> <span class="cn">NULL</span>)</span>
+<span id="cb7-3"><a href=""></a></span>
+<span id="cb7-4"><a href=""></a><span class="co"># Specify columns with cols()</span></span>
+<span id="cb7-5"><a href=""></a>read_<span class="sc">*</span>(file.csv, <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb7-6"><a href=""></a>  <span class="at">my_factor =</span> <span class="fu">col_factor</span>(),</span>
+<span id="cb7-7"><a href=""></a>  <span class="at">your_string =</span> <span class="fu">col_character</span>()</span>
+<span id="cb7-8"><a href=""></a>))</span>
+<span id="cb7-9"><a href=""></a></span>
+<span id="cb7-10"><a href=""></a><span class="co"># String shortcut - needs character for each col in order</span></span>
+<span id="cb7-11"><a href=""></a>read_<span class="sc">*</span>(file.csv, <span class="at">col_types =</span> <span class="st">"fc"</span>)</span>
+<span id="cb7-12"><a href=""></a><span class="co"># Use "?" for columns to guess</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>The <code>adult-data.csv</code> dataset is in the repo for you to explore and/or use for mini-projects.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exporting-with-readr" class="slide level2">
+<h2>EXPORTING with readr</h2>
+<p><strong>Write intermediate datasets after:</strong></p>
+<div>
+<ul>
+<li class="fragment">De-identifying data</li>
+<li class="fragment">Complex wrangling</li>
+<li class="fragment">Dropping unneeded data</li>
+<li class="fragment">Managing empty data</li>
+</ul>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># readr read_*() functions have matching write_*()</span></span>
+<span id="cb8-2"><a href=""></a><span class="fu">write_delim</span>()</span>
+<span id="cb8-3"><a href=""></a><span class="fu">write_csv</span>()</span>
+<span id="cb8-4"><a href=""></a><span class="fu">write_csv2</span>()</span>
+<span id="cb8-5"><a href=""></a><span class="fu">write_excel_csv</span>()</span>
+<span id="cb8-6"><a href=""></a><span class="fu">write_excel_csv2</span>()</span>
+<span id="cb8-7"><a href=""></a><span class="fu">write_tsv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="workflow-example" class="slide level2">
+<h2>Workflow Example</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Start with messy data</span></span>
+<span id="cb9-2"><a href=""></a>messy_df <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"localpath/messy.xlsx"</span>, </span>
+<span id="cb9-3"><a href=""></a>                     <span class="at">sheet=</span><span class="st">"my sheet"</span>)</span>
+<span id="cb9-4"><a href=""></a></span>
+<span id="cb9-5"><a href=""></a><span class="co"># Process in R: tidy, clean, transform...</span></span>
+<span id="cb9-6"><a href=""></a></span>
+<span id="cb9-7"><a href=""></a><span class="co"># Export clean version</span></span>
+<span id="cb9-8"><a href=""></a>clean_df <span class="ot">&lt;-</span> <span class="co"># ... your cleaning steps</span></span>
+<span id="cb9-9"><a href=""></a><span class="fu">write_csv</span>(clean_df, <span class="st">"localpath/clean.csv"</span>)</span>
+<span id="cb9-10"><a href=""></a></span>
+<span id="cb9-11"><a href=""></a><span class="co"># Later, read the clean version</span></span>
+<span id="cb9-12"><a href=""></a>clean_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"localpath/clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="practice-read-write" class="slide level2 scrollable">
+<h2>Practice: Read &amp; Write</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>In-class Exercise</strong></p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Pull the most recent commit of the d2mr-assessment repo</li>
+<li>Find the Excel spreadsheet: <code>in-class-materials/data/MM data.xlsx</code></li>
+<li>Load the <span class="pkg">readxl</span> library</li>
+<li>Use the <span class="func">read_excel()</span> function to assign the data to a tibble called <code>mmdata</code></li>
+<li>Examine your data in the console to see if it looks correct</li>
+</ol>
+<div class="fragment">
+<p><strong>Oh no!</strong> Thank goodness you are smarter than a computer.</p>
+</div>
+</section>
+<section id="troubleshooting" class="slide level2">
+<h2>Troubleshooting</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Common Issues</strong> - “That folder doesn’t exist!” (and/or) “It doesn’t read/write/both where I want it to.” - Relative paths can be handled differently by <span class="func">read_*</span> and <span class="func">write_*</span></p>
+</div>
+</div>
+</div>
+<p><strong>Your Task:</strong> - Open <code>MM data.xlsx</code> in Excel and examine it with your human eyeballs - What about this file creates problems when you read-in? - How would you fix the issue in Excel? (just think; don’t do it!) - Review the <code>?read_excel</code> documentation - What arguments can you pass to fix the issue on read-in?</p>
+</section></section>
+<section>
+<section id="magrittr-the-pipe" class="title-slide slide level1 center">
+<h1>magrittr: THE PIPE %&gt;%</h1>
+
+</section>
+<section id="the-pipe-operator" class="slide level2">
+<h2>The Pipe Operator</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>magrittr</strong>: dependency tidyverse package with one purpose – <strong>the pipe operator: %&gt;%</strong></p>
+</div>
+</div>
+</div>
+<p>The <strong>%&gt;%</strong> allows you to:</p>
+<div>
+<ul>
+<li class="fragment">create some data %&gt;%
+<ul>
+<li class="fragment">change it with function X %&gt;%</li>
+<li class="fragment">change it with function Y %&gt;%</li>
+<li class="fragment">as much as you like</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Human-readable alternative to multiple embedded functions:</strong> <code>as much as you like(change it with function Y(change it with function X(create some data)))</code></p>
+</div>
+</section>
+<section id="keyboard-shortcut" class="slide level2">
+<h2>Keyboard Shortcut</h2>
+<div class="fragment highlight-red">
+<p>“That’s annoying. It’s also annoying to type %&gt;% all the time.”</p>
+</div>
+<div class="fragment">
+<p><strong>Fair! Fortunately, RStudio has a built-in shortcut:</strong></p>
+<p><strong>shift + cmd/ctrl + m</strong></p>
+</div>
+</section>
+<section id="pipe-example" class="slide level2">
+<h2>Pipe Example</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># Assign everything to mmdata.long</span></span>
+<span id="cb10-2"><a href=""></a><span class="co"># Using the mmdata tbl...</span></span>
+<span id="cb10-3"><a href=""></a>mmdata.long <span class="ot">&lt;-</span> mmdata <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href=""></a>  <span class="co"># ...select three columns...</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">select</span>(Red, Green, Blue) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href=""></a>  <span class="co"># ...then make that 3 col tbl long...</span></span>
+<span id="cb10-7"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"Red"</span>, <span class="st">"Green"</span>,<span class="st">"Blue"</span>),</span>
+<span id="cb10-8"><a href=""></a>               <span class="at">names_to =</span> <span class="st">"Color"</span>,</span>
+<span id="cb10-9"><a href=""></a>               <span class="at">values_to =</span> <span class="st">"Number"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href=""></a>  <span class="co"># ...then sort that tbl by new Number column...</span></span>
+<span id="cb10-11"><a href=""></a>  <span class="fu">arrange</span>(Number)</span>
+<span id="cb10-12"><a href=""></a><span class="co"># Pipeline is over, so everything assigned to mmdata.long</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="alternative-pipe" class="slide level2">
+<h2>Alternative Pipe: |&gt;</h2>
+<div class="fragment">
+<p>“I thought this was the pipe: |”</p>
+</div>
+<div class="fragment">
+<p>Yeah…it is. This is another one. The OR operator pipe <code>|</code> looks like a pipe. The tidyverse pipe <code>%&gt;%</code> acts like a pipe.</p>
+</div>
+</section></section>
+<section>
+<section id="dplyr" class="title-slide slide level1 center">
+<h1>dplyr</h1>
+
+</section>
+<section id="dplyr-tidy-transformation" class="slide level2">
+<h2>dplyr: Tidy Transformation</h2>
+<p>Use the magrittr <strong>%&gt;%</strong> pipe to make data flow smoothly through these core dplyr functions:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong><span class="func">filter()</span></strong> - subset/sort rows</p>
+<p><strong><span class="func">select()</span></strong> - subset/sort columns</p>
+<p><strong><span class="func">mutate()</span></strong> - create new column</p>
+</div><div class="column" style="width:50%;">
+<p><strong><span class="func">group_by()</span></strong> &amp; <strong><span class="func">summarize()</span></strong> - compute summary values</p>
+<p><strong><span class="func">arrange()</span></strong> - perform operations on subgroups of data</p>
+</div></div>
+</section>
+<section id="filter-create-a-subset" class="slide level2">
+<h2>filter(): Create a Subset</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">filter</span>(tbl, cond1, cond2, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<ul>
+<li class="fragment">Evaluates on <strong>observations</strong> (rows)</li>
+<li class="fragment"><strong>Conditions</strong> are logical evaluations of <strong>values</strong>
+<ul>
+<li class="fragment">specified by column</li>
+<li class="fragment">logical operators: <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>, <code>==</code></li>
+</ul></li>
+<li class="fragment"><strong>Returns a tbl</strong> made up of all rows that meet all conditions</li>
+</ul>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Condition examples</span></span>
+<span id="cb12-2"><a href=""></a>transport <span class="sc">==</span> <span class="st">"bicycle"</span></span>
+<span id="cb12-3"><a href=""></a><span class="fu">has.handlebars</span>(transport) <span class="sc">|</span> transport <span class="sc">==</span> <span class="st">"boat"</span></span>
+<span id="cb12-4"><a href=""></a>(<span class="fu">has.handlebars</span>(transport) <span class="sc">&amp;</span> <span class="fu">n.wheels</span>(transport) <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">|</span> </span>
+<span id="cb12-5"><a href=""></a>  (<span class="fu">requires.gas</span>(transport) <span class="sc">&amp;</span> <span class="fu">n.wheels</span>(transport) <span class="sc">&gt;</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="filter-under-the-hood" class="slide level2">
+<h2>filter(): Under the Hood</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># Basically 2 embedded 'for' loops</span></span>
+<span id="cb13-2"><a href=""></a><span class="co"># FOR each row in tbl</span></span>
+<span id="cb13-3"><a href=""></a><span class="co">#   FOR each conditional argument</span></span>
+<span id="cb13-4"><a href=""></a><span class="co">#     Evaluate logic</span></span>
+<span id="cb13-5"><a href=""></a><span class="co">#     IF true, return tbl (continue loop to next arg.)</span></span>
+<span id="cb13-6"><a href=""></a><span class="co">#     ELSE (if false), remove row, return tbl (continue loop)</span></span>
+<span id="cb13-7"><a href=""></a><span class="co">#   when no conditional arg. remain, move to next row</span></span>
+<span id="cb13-8"><a href=""></a><span class="co"># When no rows remain, return tbl and end loop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>“Can’t I just know how to use it without this explanation?”</p>
+</div>
+<div class="fragment">
+<p>Sure! <em>But</em> there’s going to be an exercise and mini-project posted next class directly related to this kind of thing, so you may want to keep it in mind.</p>
+</div>
+</section>
+<section id="arrange-sort-your-rows" class="slide level2">
+<h2>arrange(): Sort Your Rows</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">arrange</span>(tbl, col1, col2, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+<ul>
+<li class="fragment">Sort rows</li>
+<li class="fragment">If 2+ variables, sorts in order given</li>
+<li class="fragment">Defaults to ascending order</li>
+<li class="fragment">Use <span class="func">desc()</span> or <code>-</code> for descending order</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Sort trial order within subject</span></span>
+<span id="cb15-2"><a href=""></a><span class="fu">arrange</span>(data, subject, trial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&gt; subject  trial
+&gt; A        1
+&gt; A        2  
+&gt; B        1
+&gt; B        2</code></pre>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Reverse trial order</span></span>
+<span id="cb17-2"><a href=""></a><span class="fu">arrange</span>(data, subject, <span class="fu">desc</span>(trial))</span>
+<span id="cb17-3"><a href=""></a><span class="fu">arrange</span>(data, subject, <span class="sc">-</span>trial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&gt; subject  trial
+&gt; A        2
+&gt; A        1
+&gt; B        2
+&gt; B        1</code></pre>
+</div></div>
+</section>
+<section id="select-subset-sort-rename-columns" class="slide level2">
+<h2>select(): Subset, Sort, &amp; Rename Columns</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">select</span>(tbl, col1, col2, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Basic Examples:</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co"># From tibble `data` with columns: colA, colB, colC, colD</span></span>
+<span id="cb20-2"><a href=""></a><span class="co"># Return a tibble with only colA and colB</span></span>
+<span id="cb20-3"><a href=""></a><span class="fu">select</span>(data, colA, colB)</span>
+<span id="cb20-4"><a href=""></a><span class="fu">select</span>(data, <span class="sc">-</span><span class="fu">c</span>(colC, colD))</span>
+<span id="cb20-5"><a href=""></a></span>
+<span id="cb20-6"><a href=""></a><span class="co"># Rename/reorder while selecting</span></span>
+<span id="cb20-7"><a href=""></a><span class="fu">select</span>(data, colC, <span class="at">column_A =</span> colA, colB)</span>
+<span id="cb20-8"><a href=""></a></span>
+<span id="cb20-9"><a href=""></a><span class="co"># Select ranges</span></span>
+<span id="cb20-10"><a href=""></a><span class="fu">select</span>(data, colA<span class="sc">:</span>colC)    <span class="co"># inclusive range between named columns</span></span>
+<span id="cb20-11"><a href=""></a><span class="fu">select</span>(data, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)          <span class="co"># inclusive range based on column number</span></span>
+<span id="cb20-12"><a href=""></a><span class="fu">select</span>(data, <span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">"D"</span>))  <span class="co"># use "tidy-select" functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="select-advanced-features" class="slide level2">
+<h2>select(): Advanced Features</h2>
+<div>
+<ul>
+<li class="fragment">Operates on <strong>variables</strong> (columns)</li>
+<li class="fragment">Returns tibble that <strong>includes:</strong>
+<ul>
+<li class="fragment">argument columns</li>
+<li class="fragment">in arg order</li>
+<li class="fragment">optionally renamed</li>
+</ul></li>
+<li class="fragment">Use hyphen to <strong>exclude</strong> columns
+<ul>
+<li class="fragment">Includes everything else</li>
+</ul></li>
+</ul>
+</div>
+<p><strong>Related function:</strong> <span class="func">rename()</span></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Change column names with similar syntax</span></span>
+<span id="cb21-2"><a href=""></a><span class="co"># but don't change tibble structure</span></span>
+<span id="cb21-3"><a href=""></a><span class="fu">rename</span>(<span class="at">column_B =</span> colB)  <span class="co"># new columns: colA, column_B, colC, colD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mutate-create-new-variable" class="slide level2">
+<h2>mutate(): Create New Variable</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">mutate</span>(tbl, <span class="at">newvar1 =</span> ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># All obs. in new column 'hello' have the same value</span></span>
+<span id="cb23-2"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">hello =</span> <span class="st">"hey there!"</span>)</span>
+<span id="cb23-3"><a href=""></a></span>
+<span id="cb23-4"><a href=""></a><span class="co"># Obs. in new column are computed by row</span></span>
+<span id="cb23-5"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">col1_plus_col2 =</span> col1 <span class="sc">+</span> col2)</span>
+<span id="cb23-6"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">round_col1_div_col2 =</span> <span class="fu">round</span>(col1<span class="sc">/</span>col2, <span class="dv">2</span>))</span>
+<span id="cb23-7"><a href=""></a></span>
+<span id="cb23-8"><a href=""></a><span class="co"># Multiple operations in sequence</span></span>
+<span id="cb23-9"><a href=""></a><span class="fu">mutate</span>(data,</span>
+<span id="cb23-10"><a href=""></a>  <span class="at">sum_cols =</span> col1 <span class="sc">+</span> col2,</span>
+<span id="cb23-11"><a href=""></a>  <span class="at">prop_col1 =</span> <span class="fu">round</span>(col1<span class="sc">/</span>sum_cols, <span class="dv">2</span>))</span>
+<span id="cb23-12"><a href=""></a>  </span>
+<span id="cb23-13"><a href=""></a><span class="co"># Change values in an existing column conditionally</span></span>
+<span id="cb23-14"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">colA =</span> <span class="fu">ifelse</span>(colA <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA</span>, colA))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="group_by-summarize-compute-summary-values" class="slide level2">
+<h2>group_by() &amp; summarize(): Compute Summary Values</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">group_by</span>(tbl, col1, col2, ...)</span>
+<span id="cb24-2"><a href=""></a><span class="fu">summarize</span>(tbl, <span class="at">newcol =</span> <span class="fu">fun</span>(col), ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Without Grouping:</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="co"># Average all values in score column</span></span>
+<span id="cb25-2"><a href=""></a><span class="fu">summarize</span>(data, <span class="at">mean_score =</span> <span class="fu">mean</span>(score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&gt; mean_score
+&gt; 20</code></pre>
+</div><div class="column" style="width:50%;">
+<p><strong>With Grouping:</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Average score for each subject</span></span>
+<span id="cb27-2"><a href=""></a><span class="fu">group_by</span>(data, subject) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">sub_mean_score =</span> <span class="fu">mean</span>(score),</span>
+<span id="cb27-4"><a href=""></a>           <span class="at">sub_first_score =</span> <span class="fu">first</span>(score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&gt; subject  sub_mean_score  sub_first_score
+&gt; A        18              17
+&gt; B        22              20</code></pre>
+</div></div>
+</section>
+<section id="advanced-grouping" class="slide level2">
+<h2>Advanced Grouping</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="co"># Grouping by multiple columns creates summary for each </span></span>
+<span id="cb29-2"><a href=""></a><span class="co"># unique combination of values</span></span>
+<span id="cb29-3"><a href=""></a><span class="fu">group_by</span>(data, subject, condition) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">sc_mean_score =</span> <span class="fu">mean</span>(score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&gt; subject  condition  sub_mean_score
+&gt; A        1          17
+&gt; A        2          19
+&gt; B        1          24
+&gt; B        2          20</code></pre>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong><span class="func">summarize()</span></strong> computes across obs. in a variable</li>
+<li>Summarizing without grouping computes across all data</li>
+<li><strong><span class="func">group_by()</span></strong> breaks observations into subsets</li>
+<li>Returns tbl with <em>only</em> new summary columns and any grouping columns</li>
+</ul>
+<p><strong>FYI:</strong> <code>summarize()</code> == <code>summarise()</code></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="combining-data-preview" class="title-slide slide level1 center">
+<h1>Combining Data (Preview)</h1>
+
+</section>
+<section id="just-a-preview" class="slide level2">
+<h2>Just a Preview…</h2>
+<p>The binding/merging/joining functions in the tidyverse are part of <span class="pkg">dplyr</span>, so I’m adding reference slides here.</p>
+<p>They make more sense to talk about together with the <span class="pkg">tidyr</span> functions next class, so we’ll skip these for now and come back to them.</p>
+</section>
+<section id="bind-rows" class="slide level2">
+<h2>Bind Rows</h2>
+<p><strong>Append <em>rows</em> of one dataframe after the last row of another</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>base::<span class="func">rbind()</span></strong> - dataframes must have exactly the same columns in the same order</p>
+</div><div class="column" style="width:50%;">
+<p><strong>dplyr::<span class="func">bind_rows()</span></strong> - dataframes can have different column structures, missing values will be treated as <em>NA</em></p>
+</div></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>What’s with the base:: and dplyr:: bits?</strong></p>
+<p>It’s a shortcut to specify what package the function comes from. Usually not necessary in your actual code, but it can come in handy when: 1) you don’t have that package loaded and you just need that single specific function or 2) you have multiple packages loaded that define that function and you want to specify which of them to use.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="bind-columns" class="slide level2">
+<h2>Bind Columns</h2>
+<p><strong>Append <em>columns</em> of one dataframe after the last column of another</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>base::<span class="func">cbind()</span></strong> - dataframes must have the same number of rows</p>
+</div><div class="column" style="width:50%;">
+<p><strong>dplyr::<span class="func">bind_cols()</span></strong> - dataframes must have the same number of rows</p>
+</div></div>
+<div class="fragment">
+<p>“If they work the same way, which should I use?”</p>
+</div>
+<div class="fragment">
+<p><strong>Neither! Use joins instead.</strong></p>
+</div>
+</section>
+<section id="merge-data-with-_join-functions" class="slide level2">
+<h2>Merge Data with *_join() Functions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong><span class="func">left_join()</span></strong> - includes all the rows of x and only the rows of y that have matches in x</p>
+<p><strong><span class="func">right_join()</span></strong> - includes all the rows of y and only the rows of x that have matches in y</p>
+</div><div class="column" style="width:50%;">
+<p><strong><span class="func">inner_join()</span></strong> - includes only rows present in both x and y</p>
+<p><strong><span class="func">full_join()</span></strong> - includes all rows present in either x or y, matched where possible</p>
+</div></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>See r4ds <a href="https://r4ds.hadley.nz/joins.html">Chapter 19: Joins</a> for more explanation</p>
+</div>
+</div>
+</div>
+</section>
+<section id="join-syntax" class="slide level2">
+<h2>*_join() Syntax</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="sc">*</span><span class="fu">_join</span>(left.tbl, right.tbl, <span class="at">by =</span> ...)</span>
+<span id="cb31-2"><a href=""></a><span class="co"># replace * with left, right, inner, or full</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># These are all identical</span></span>
+<span id="cb32-2"><a href=""></a><span class="fu">left_join</span>(band_members, band_instruments)</span>
+<span id="cb32-3"><a href=""></a></span>
+<span id="cb32-4"><a href=""></a><span class="fu">left_join</span>(band_members, band_instruments, </span>
+<span id="cb32-5"><a href=""></a>         <span class="at">by =</span> <span class="fu">join_by</span>(name))</span>
+<span id="cb32-6"><a href=""></a></span>
+<span id="cb32-7"><a href=""></a><span class="fu">left_join</span>(band_members, band_instruments, </span>
+<span id="cb32-8"><a href=""></a>         <span class="at">by =</span> <span class="st">"name"</span>)</span>
+<span id="cb32-9"><a href=""></a></span>
+<span id="cb32-10"><a href=""></a><span class="co"># Specify to match columns with different names:</span></span>
+<span id="cb32-11"><a href=""></a>by <span class="ot">=</span> <span class="fu">join_by</span>(name <span class="sc">==</span> artist)</span>
+<span id="cb32-12"><a href=""></a></span>
+<span id="cb32-13"><a href=""></a><span class="co"># Specify multiple columns to match:</span></span>
+<span id="cb32-14"><a href=""></a><span class="fu">join_by</span>(a, c <span class="sc">==</span> d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="practice-dplyr" class="title-slide slide level1 center">
+<h1>Practice: dplyr</h1>
+
+</section>
+<section id="try-it-out" class="slide level2">
+<h2>💻 Try It Out</h2>
+<p><strong>Using the mmdata tibble you created earlier, experiment with:</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong><span class="func">filter()</span></strong> - Create subsets based on conditions</li>
+<li class="fragment"><strong><span class="func">select()</span></strong> - Choose specific columns</li>
+<li class="fragment"><strong><span class="func">mutate()</span></strong> - Create new variables</li>
+<li class="fragment"><strong><span class="func">arrange()</span></strong> - Sort your data</li>
+<li class="fragment"><strong><span class="func">group_by()</span></strong> &amp; <strong><span class="func">summarize()</span></strong> - Calculate group statistics</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="exercises" class="title-slide slide level1 center">
+<h1>Exercises</h1>
+
+</section>
+<section id="w3c2-readwrite-practice-1-of-2" class="slide level2">
+<h2>💻 W3C2: Read/Write Practice (1 of 2)</h2>
+<p><strong>In the first code chunk of a new notebook (R/quarto):</strong></p>
+<div>
+<ul>
+<li class="fragment">Use readr functions to read in a simple tabular dataset (.csv/.tsv) using a relative path and assign to a new object</li>
+<li class="fragment">Use tidyverse functions to transform the data in some way (can be very simple as long as it creates recognizable changes)</li>
+<li class="fragment">Use readr functions to write your transformed data to a .csv file in the same location as your original data file (give it a unique file name)</li>
+<li class="fragment">Examine the assigned objects and written files; use one of the objects in a second code chunk</li>
+<li class="fragment">Make necessary changes if it does not work as expected</li>
+</ul>
+</div>
+<p><strong>Replicate</strong> the script above in a new .R script in the same directory as your notebook</p>
+<p><strong>In a new chunk,</strong> <em>source</em> the .R script, again examine objects/files and make changes so things work as expected</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Assessed:</strong> 9, 10, 22; <strong>Unassessed:</strong> 2, 4, 10</p>
+</div>
+</div>
+</div>
+</section>
+<section id="w3c2-readwrite-practice-2-of-2" class="slide level2">
+<h2>💻 W3C2: Read/Write Practice (2 of 2)</h2>
+<p><strong>Find or create a variety of datasets to repeat the process:</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong>Different file types:</strong> .csv, google sheets, .xlsx, .sav, etc.</li>
+<li class="fragment"><strong>Different “extra” stuff:</strong> multiple tabs, rich formatting, non-data text, header(s), etc.</li>
+<li class="fragment"><strong>Different combinations of file locations:</strong> notebook and script in root folder, one in root folder and one in a subdirectory, both in two different subdirectories, writing/reading files in a lower-level subdirectory, writing/reading files in a higher-level subdirectory, etc.</li>
+</ul>
+</div>
+<p><strong>Pay attention to:</strong> - Which packages are necessary to run which functions - Which functions include which arguments (and the default argument values) - Differences in relative paths depending on function and file locations</p>
+</section>
+<section id="w3c2-data-cleaning" class="slide level2">
+<h2>💻 W3C2: Data Cleaning</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Important:</strong> These exercises include functions from tidyverse packages we will cover next class. Look ahead with the resources for next class or do what you can now and finish it next week.</p>
+</div>
+</div>
+</div>
+<p><strong>Find three data cleaning exercises (1 walkthrough example; 2 structured assignments) in the d2mr-assessment repo.</strong> Complete the mini-projects directly in the existing .qmd like a digital workbook.</p>
+<div>
+<ul>
+<li class="fragment"><strong>Data cleaning walkthrough:</strong> Clean the iris Dataset (example, not a mini-project to complete/submit)</li>
+<li class="fragment"><strong>Level 1 Data Cleaning:</strong> Clean the mtcars Dataset - Work with a simple dataset, focus on basic data cleaning tasks</li>
+<li class="fragment"><strong>Level 2 Data Cleaning:</strong> Clean the midwest Dataset - Work with a more complex dataset, perform more involved cleaning tasks</li>
+</ul>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Assessed:</strong> 5, 6, 8, 9, 10, 11, 12; <strong>Unassessed:</strong> 1, 2, 9, 12, 13</p>
+</div>
+</div>
+</div>
+</section>
+<section id="w3c2-group-uncleaning" class="slide level2 scrollable">
+<h2>💻 W3C2: Group “Uncleaning”</h2>
+<p><strong>Work together with a classmate to each “unclean” a dataset for the other(s) to clean.</strong> This will work best in pairs so that you can swap datasets but you can adjust things to do in a small group if you prefer.</p>
+<div>
+<ol type="1">
+<li class="fragment">Each partner chooses a publicly available dataset (recommend the built-in ones)</li>
+<li class="fragment">In a script or notebook, transform your df to make it messy and save to a .csv</li>
+<li class="fragment">Swap your new messy data files</li>
+<li class="fragment">In a (different) script or notebook, clean your partner’s messy data</li>
+<li class="fragment">Discuss the process with your partner/group</li>
+</ol>
+</div>
+<p><strong>Associated mini-project:</strong> <code>d2mr-assessment/01_data-cleaning/03_group-unclean</code></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Assessed:</strong> 5, 6, 8, 9, 10, 11, 12; <strong>Unassessed:</strong> 1, 2, 5, 9, 14, 22</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="resources" class="title-slide slide level1 center">
+<h1>Resources 🗃️</h1>
+
+</section>
+<section id="todays-class" class="slide level2">
+<h2>Today’s Class</h2>
+<p><strong>tidyverse.org:</strong> <a href="https://www.tidyverse.org/">https://www.tidyverse.org/</a></p>
+<p><strong>readr:</strong> - <a href="https://readr.tidyverse.org/">documentation</a> &amp; <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf">cheatsheet</a> - <a href="https://r4ds.hadley.nz/data-import">r4ds: 7 – Data import</a></p>
+<p><strong>tibble:</strong> - <a href="https://tibble.tidyverse.org/">documentation</a> &amp; <a href="https://r4ds.had.co.nz/tibbles.html">r4ds: tibbles</a></p>
+<p><strong>dplyr:</strong> - <a href="https://dplyr.tidyverse.org/">documentation</a> &amp; <a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">cheatsheet</a> - <a href="https://r4ds.hadley.nz/data-transform">r4ds: 3 – Data transformation</a></p>
+</section>
+<section id="next-class" class="slide level2">
+<h2>Next Class</h2>
+<p><strong>tidyr:</strong> - <a href="https://tidyr.tidyverse.org/">documentation</a> &amp; <a href="https://rstudio.github.io/cheatsheets/html/tidyr.html">cheatsheet</a> - <a href="https://tidyr.tidyverse.org/articles/tidy-data.html">tidyverse guide to tidy data</a> - <a href="https://r4ds.hadley.nz/data-tidy">r4ds: 5 – Data tidying</a>*</p>
+<p><strong>stringr:</strong> - <a href="https://stringr.tidyverse.org/">documentation</a> &amp; <a href="https://github.com/rstudio/cheatsheets/blob/main/strings.pdf">cheatsheet</a> - <a href="https://r4ds.hadley.nz/strings">r4ds: 14 – Strings</a>* - <a href="https://r4ds.hadley.nz/regexps">r4ds: 15 – Regular expressions</a></p>
+</section>
+<section id="more-resources" class="slide level2">
+<h2>More Resources</h2>
+<p><strong>forcats:</strong> - <a href="https://forcats.tidyverse.org/">documentation</a> &amp; <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/factors.pdf">cheatsheet</a> - <a href="https://r4ds.hadley.nz/factors">r4ds: 16 – Factors</a>*</p>
+<p><strong>purrr</strong> <em>(advanced, low priority for d2mr)</em>: - <a href="https://purrr.tidyverse.org/">documentation</a> &amp; <a href="https://github.com/rstudio/cheatsheets/blob/main/purrr.pdf">cheatsheet</a></p>
+<p><strong>Quick Help:</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>?paste</span>
+<span id="cb33-2"><a href=""></a>?paste0</span>
+<span id="cb33-3"><a href=""></a>?filter</span>
+<span id="cb33-4"><a href=""></a>?read_csv</span>
+<span id="cb33-5"><a href=""></a>??read_csv  <span class="co"># search for functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>D2M-R Q1 | Week 3 Class 2</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="Q1-W3-C2_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Q1-W3-C2_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
