@@ -1,0 +1,778 @@
+---
+title: "RStudio IDE"
+subtitle: "Your new favorite workspace"
+date: "1/13/2026" # M/D/Y
+format:
+  revealjs:
+    theme: [default, ../theme/d2mr-theme.scss]
+    include-in-header:
+        # Opt into some
+      text: |
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="../theme/bubbles.js"></script>
+    slide-number: c/t
+    width: 1600
+    height: 900
+    margin: .1
+    scrollable: true
+    incremental: false
+    transition: slide
+    background-transition: fade
+    highlight-style: ../theme/d2mr-code-theme.theme
+    code-line-numbers: true
+    code-copy: true
+    footer: "D2M-R Q1 | Week 2" #  quarter, week, and class
+    logo: ""
+    chalkboard: true
+    multiplex: false
+editor: source
+execute:
+  echo: true
+  eval: false
+  warning: false
+  message: false
+---
+
+## Housekeeping {.smaller}
+
+- **Accountability plans** due Monday of Week 3
+- **Office hours** reminder: Thursdays 2-4pm by appointment
+- **Slack** - make sure you've joined and introduced yourself
+- Questions from Week 1 content?
+
+::: notes
+- Remind students that their accountability plans are due Monday of Week 3
+- Emphasize that office hours require appointments - they can book through the link on the course site
+- Check that everyone has joined Slack and encourage participation
+- Address any lingering questions from the introduction lecture
+:::
+
+# What is RStudio?
+
+## RStudio vs. R
+
+::: {.incremental}
+- **R** is a programming language and computing environment
+- **RStudio** is an Integrated Development Environment (IDE) for R
+- Think of it like the difference between:
+  - A recipe (R) vs. a fully equipped kitchen (RStudio)
+  - A text file (R) vs. Microsoft Word (RStudio)
+  - Raw ingredients (R) vs. a meal prep service (RStudio)
+:::
+
+::: bubble-chain
+  <p class="bubble-left fragment">So I could just use R without RStudio?</p>
+  <p class="bubble-right fragment">Technically yes, but you really don't want to!</p>
+:::
+
+::: notes
+R is the underlying programming language and statistical computing environment. You can run R from the command line or basic R console, but it's quite painful.
+
+RStudio is an IDE - an Integrated Development Environment - that makes working with R much more pleasant and productive. It provides:
+- Syntax highlighting
+- Code completion
+- Project management
+- Integrated help
+- Plot viewing
+- Package management
+- Git integration
+- And much more
+
+The analogies help students understand that while you CAN use R alone, RStudio makes everything so much easier that there's really no reason not to use it.
+:::
+
+## What Makes an IDE?
+
+An **Integrated Development Environment** combines multiple tools in one interface:
+
+::: {.incremental}
+- **Code editor** with syntax highlighting and completion
+- **Console** for running code interactively
+- **File management** and project organization
+- **Debugging tools** for finding and fixing errors
+- **Help system** and documentation access
+- **Version control** integration
+- **Package management**
+:::
+
+::: {.callout-tip}
+**Think of RStudio as your research workspace** - everything you need is in one place and works together seamlessly.
+:::
+
+::: notes
+Students coming from other software like SPSS or Excel may not be familiar with the concept of an IDE. Help them understand that:
+
+- It's like having all your research tools in one organized workspace
+- Everything talks to each other - your code, data, plots, help files
+- You don't have to switch between different applications
+- It keeps track of your work and makes it reproducible
+
+This is very different from point-and-click software where you might lose track of what you did.
+:::
+
+# The RStudio Interface
+
+## Default Layout
+
+![RStudio's default 4-pane layout](../images/rstudio-layout.png)
+
+::: {.incremental}
+1. **Top Left**: Source pane (your scripts and documents)
+2. **Top Right**: Environment & History
+3. **Bottom Left**: Console & Terminal  
+4. **Bottom Right**: Files, Plots, Packages, Help, Viewer
+:::
+
+::: notes
+Show students RStudio and point out each pane. Explain that:
+
+- The layout is customizable, but this default works well for most people
+- Each pane can contain multiple tabs
+- You can resize panes by dragging the borders
+- You can minimize/maximize panes
+- The layout will make more sense as we start using each component
+:::
+
+## Source Pane
+
+:::: {.columns}
+
+::: {.column width="60%"}
+**Your main workspace for writing code**
+
+::: {.incremental}
+- **Scripts** (.R files) - reusable code
+- **Notebooks** (.qmd/.Rmd files) - code + narrative
+- **Data files** for viewing
+- **Other text files** (README, etc.)
+:::
+
+**Key features:**
+
+- Syntax highlighting
+- Code completion
+- Line numbers
+- Code folding
+:::
+
+::: {.column width="40%"}
+::: {.callout-important}
+**This is where you'll spend most of your time!**
+
+Write your code here, not directly in the console.
+:::
+:::
+
+::::
+
+::: notes
+The source pane is where students will do most of their work. Emphasize:
+
+- Always write code in scripts/notebooks, not directly in console
+- Scripts are reusable and reproducible
+- Syntax highlighting makes code easier to read and helps catch errors
+- Code completion speeds up coding and reduces typos
+- We'll focus on .qmd files (Quarto notebooks) in this class
+- You can have multiple files open in tabs
+:::
+
+## Console Pane
+
+::: {.incremental}
+- **Interactive R session** - where code actually runs
+- **See output** from your code immediately  
+- **Test small bits** of code quickly
+- **Error messages** and warnings appear here
+:::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Use the console for:**
+
+- Quick calculations
+- Testing ideas
+- Exploring data
+- Installing packages
+:::
+
+::: {.column width="50%"}
+**Don't use the console for:**
+
+- Writing long scripts
+- Important analysis code
+- Anything you want to save
+:::
+
+::::
+
+::: bubble-chain
+  <p class="bubble-left fragment">Why not just write everything in the console?</p>
+  <p class="bubble-right fragment">Because then you'd lose all your work when you close RStudio!</p>
+:::
+
+::: notes
+Students often want to work directly in the console because it feels more immediate. Help them understand:
+
+Console is great for:
+- Quick explorations
+- Testing whether something works
+- One-off calculations
+- Immediate feedback
+
+But the console is terrible for:
+- Reproducibility - your code disappears
+- Making changes - you have to retype everything
+- Complex analysis - no syntax highlighting, hard to read
+- Sharing work - nothing to share
+
+The console is like a scratchpad, the source pane is like your notebook.
+:::
+
+## Environment Pane
+
+**Shows all objects in your current workspace**
+
+::: {.incremental}
+- **Data** objects (datasets, vectors, lists)
+- **Functions** you've created
+- **Values** you've assigned to variables
+- **Import** button for loading data
+:::
+
+::: {.callout-tip}
+**Think of this as your desk drawer** - everything you're currently working with is visible here.
+:::
+
+::: bubble-chain
+  <p class="bubble-left fragment">What if my Environment pane is empty?</p>
+  <p class="bubble-right fragment">That's normal when you first start! You haven't created any objects yet.</p>
+:::
+
+::: notes
+The Environment pane is very helpful for:
+
+- Seeing what data and objects you have available
+- Checking the size and type of your data
+- Quickly viewing data by clicking on dataset names
+- Understanding what's currently loaded in memory
+
+If it's empty, that just means they haven't created any objects yet. As soon as they assign something to a variable (like `x <- 5`), it will appear here.
+
+The Import button is a GUI way to load data, but we'll teach them to do it with code for reproducibility.
+:::
+
+## Files Pane
+
+**Your file manager within RStudio**
+
+::: {.incremental}
+- **Navigate** your computer's folder structure
+- **Open files** in RStudio by clicking them
+- **Create new files** and folders
+- **Upload/download** files (if using RStudio Server)
+- **Set working directory** with More menu
+:::
+
+::: {.callout-warning}
+**Important:** This shows your actual computer files, not just RStudio files!
+:::
+
+::: notes
+The Files pane is like a simplified version of Finder (Mac) or File Explorer (Windows) built into RStudio. 
+
+Key points:
+
+- It shows real files on your computer, not virtual RStudio files
+- You can do basic file operations here
+- Clicking on data files often opens them in the source pane for viewing
+- The working directory concept is important but we'll cover that more later
+- If they're using RStudio Cloud/Server, this is how they upload/download files
+:::
+
+## Plots Pane
+
+::: {.incremental}
+- **View visualizations** you create
+- **Navigate** between multiple plots with arrows
+- **Zoom** to see plots in a larger window
+- **Export** plots as images or PDFs
+:::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```r
+# Simple plot example
+plot(1:10, 1:10)
+```
+:::
+
+::: {.column width="50%"}
+::: {.callout-note}
+Plots appear here automatically when you run plotting code!
+:::
+:::
+
+::::
+
+::: notes
+The Plots pane is pretty straightforward but very useful:
+
+- Any plot you create will automatically appear here
+- You can flip between multiple recent plots
+- The zoom feature opens plots in a larger window for better viewing
+- Export lets you save plots in various formats
+- We'll be creating lots of plots in this class, especially in Quarter 2
+- For now, just know that this is where visualizations will show up
+:::
+
+## Packages Pane
+
+**Manage your R packages**
+
+::: {.incremental}
+- **See installed packages** (checked = loaded)
+- **Install new packages** with Install button
+- **Load packages** by checking the box
+- **Get help** by clicking package names
+:::
+
+::: {.callout-tip}
+**Remember:** Installed ≠ Loaded
+
+You install once, but load every session with `library()`
+:::
+
+::: notes
+The Packages pane is helpful for package management:
+
+- Shows all installed packages on your system
+- Checked boxes mean the package is currently loaded
+- You can install packages through the GUI here
+- Clicking package names opens their documentation
+
+However, emphasize that for reproducibility, they should load packages with `library()` in their scripts, not by clicking boxes in the interface.
+
+The install vs. load distinction is crucial:
+
+- Install = download and store on your computer (once)
+- Load = make available in current session (every time you start RStudio)
+:::
+
+## Help Pane
+
+**Your built-in documentation system**
+
+::: {.incremental}
+- **Function help** with `?function_name`
+- **Search** for functions and topics
+- **Vignettes** - longer tutorials for packages
+- **Cheat sheets** for quick reference
+:::
+
+```r
+# Examples of getting help
+?mean
+?lm
+??regression
+```
+
+::: notes
+The Help pane is incredibly valuable and underused by beginners:
+
+- Every R function has documentation accessible with ?
+- The documentation includes examples, which are great for learning
+- ?? searches more broadly across packages
+- Vignettes are longer-form tutorials that come with packages
+- RStudio also provides cheat sheets for popular packages
+
+Encourage students to get comfortable reading help files - they're usually well-written and include examples.
+:::
+
+## Other Panes (Quick Overview)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Less commonly used:**
+
+- **History** - previous commands
+- **Connections** - databases
+- **Build** - for package development
+- **VCS** - version control (Git)
+:::
+
+::: {.column width="50%"}
+**Occasionally useful:**
+
+- **Tutorial** - interactive lessons
+- **Viewer** - for web content
+- **Presentations** - slideshows
+:::
+
+::::
+
+::: {.callout-note}
+**Don't worry about these now** - we'll introduce them as needed throughout the course.
+:::
+
+::: notes
+Just briefly mention these exist so students aren't confused if they see them:
+
+- History can be useful for finding commands you ran earlier
+- VCS (Git) will be very important later in the course
+- Build is only for advanced users creating packages
+- Connections for database users
+- Tutorial tab appears when you run interactive lessons
+- Viewer shows HTML content and web apps
+- Presentations is for R-based slideshows
+
+The key message is that they don't need to understand everything now - RStudio shows you what you need when you need it.
+:::
+
+# Essential Keyboard Shortcuts
+
+## The Big Three
+
+::: {.fragment .highlight-red}
+**Learn these first - they'll change your life!**
+:::
+
+:::: {.columns}
+
+::: {.column width="60%"}
+1. **Run code:** `Cmd/Ctrl + Enter`
+   - Runs current line or selection
+2. **New script:** `Cmd/Ctrl + Shift + N`
+   - Creates a new R script file
+3. **Save file:** `Cmd/Ctrl + S`
+   - Saves your current document
+:::
+
+::: {.column width="40%"}
+::: {.callout-important}
+**Practice these right now!**
+
+Using keyboard shortcuts will make you much more efficient.
+:::
+:::
+
+::::
+
+::: notes
+These three shortcuts are absolutely essential:
+
+- Run code (Cmd/Ctrl + Enter) is probably the most-used shortcut in RStudio
+- Students need to get in the habit of saving files frequently
+- Creating new scripts quickly helps with organization
+
+Show these shortcuts in action. Have students practice them.
+:::
+
+## More Useful Shortcuts
+
+| Action | Shortcut | Why It's Useful |
+|:-------|:---------|:----------------|
+| **Comment/Uncomment** | `Cmd/Ctrl + Shift + C` | Quickly disable code |
+| **Clear Console** | `Cmd/Ctrl + L` | Clean up your workspace |
+| **Go to Line** | `Cmd/Ctrl + G` | Navigate long scripts |
+| **Find/Replace** | `Cmd/Ctrl + F` | Search within files |
+| **Restart R** | `Cmd/Ctrl + Shift + F10` | Fresh start |
+
+::: {.fragment}
+::: {.callout-tip}
+**See all shortcuts:** `Alt + Shift + K` or Help → Keyboard Shortcuts
+:::
+:::
+
+::: notes
+These shortcuts become more important as students advance:
+
+- Commenting code is essential for documentation and debugging
+- Clearing console helps when output gets cluttered  
+- Go to line is vital for longer scripts
+- Find/replace is crucial for making systematic changes
+- Restarting R gives you a clean slate and tests reproducibility
+
+Don't overwhelm them with too many shortcuts at once, but introduce these gradually.
+:::
+
+# Customizing RStudio
+
+## Making RStudio Yours
+
+**Tools → Global Options** (or RStudio → Preferences on Mac)
+
+::: {.incremental}
+- **Appearance** - themes, font size, colors
+- **Code** - syntax highlighting, completion
+- **Pane Layout** - rearrange your workspace  
+- **Saving** - auto-save options
+- **Git/SVN** - version control settings
+:::
+
+## Recommended Settings
+
+::: {.callout-important}
+**Essential first-time setup:**
+:::
+
+::: {.incremental}
+- **Uncheck** "Restore .RData into workspace at startup"
+- **Set** "Save workspace to .RData on exit" to **Never**
+- **Check** "Always save history"
+- **Consider** using a dark theme (easier on eyes)
+:::
+
+::: bubble-chain
+  <p class="bubble-left fragment">Why turn off the .RData stuff?</p>
+  <p class="bubble-right fragment">For reproducibility! You want a clean start every time.</p>
+:::
+
+::: notes
+The .RData settings are crucial for reproducibility:
+
+- Restoring workspace makes your code dependent on previous work
+- Saving workspace clutters things with old objects
+- Always starting fresh forces you to write complete, reproducible code
+- History is useful to keep so you can see what you did
+
+Other customization options:
+
+- Dark themes (like Tomorrow Night or Monokai) are popular
+- Increase font size if needed for readability
+- Some people prefer different pane arrangements
+- Code completion and syntax highlighting options can be adjusted
+
+Show students where to find these settings and why the .RData settings matter.
+:::
+
+## Pane Layout Options
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Default Layout:**
+
+- Source: Top Left
+- Console: Bottom Left  
+- Environment: Top Right
+- Files/Plots/etc: Bottom Right
+:::
+
+::: {.column width="50%"}
+**Popular Alternative:**
+
+- Source: Top Left
+- Console: Top Right
+- Environment: Bottom Left  
+- Files/Plots/etc: Bottom Right
+:::
+
+::::
+
+::: {.fragment}
+**Try different layouts and see what feels comfortable for your workflow!**
+:::
+
+::: notes
+Pane layout is personal preference:
+
+- Default layout keeps source and console on the left (logical flow)
+- Some prefer console on right to have it always visible
+- Environment placement depends on how often you reference it
+- Files/Plots pane placement depends on your priorities
+
+Let students know they can experiment and change it anytime. What matters is that they're comfortable and can find what they need quickly.
+:::
+
+# File Types in RStudio
+
+## Quick Preview
+
+We'll explore these in detail later, but here's what you'll encounter:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Code Files:**
+
+- `.R` - R scripts
+- `.qmd` - Quarto notebooks ⭐
+- `.Rmd` - R Markdown notebooks
+
+**Project Files:**
+
+- `.Rproj` - RStudio project file
+:::
+
+::: {.column width="50%"}
+**Data Files:**
+
+- `.csv` - Comma-separated values
+- `.xlsx` - Excel files  
+- `.sav` - SPSS files
+- Many others...
+
+**Behind-the-scenes:**
+
+- `.gitignore`, `.Rhistory`, etc.
+:::
+
+::::
+
+::: {.callout-note}
+**Focus on .qmd files** - that's what we'll use for the D2M-R workflow!
+:::
+
+::: notes
+This is just a preview - don't go into detail:
+
+- .qmd (Quarto) files will be our main focus - they combine code and narrative
+- .R files are pure code scripts
+- .Rmd files are the older version of .qmd (R Markdown)
+- .Rproj files define RStudio projects (very important for organization)
+- Data files can be opened and viewed in RStudio
+- Hidden files like .gitignore help with project management
+
+The key message is that .qmd files are what they'll primarily use in this class.
+:::
+
+# Getting Started Practice
+
+## 💻 Let's Explore Together
+
+**Follow along as we:**
+
+::: {.incremental}
+1. Open RStudio and identify each pane
+2. Create a new script (`Cmd/Ctrl + Shift + N`)
+3. Write some simple code in the source pane
+4. Run code with `Cmd/Ctrl + Enter`
+5. See the results in console and environment
+6. Save the script (`Cmd/Ctrl + S`)
+:::
+
+**Simple code to try:**
+```r
+# My first RStudio session
+x <- 5
+y <- 10
+result <- x + y
+print(result)
+```
+
+::: notes
+This is a hands-on demonstration where students follow along:
+
+1. Make sure everyone can identify the panes
+2. Have them create a new script and save it with a meaningful name
+3. Type the example code in the source pane (not console!)
+4. Use keyboard shortcut to run code line by line
+5. Watch objects appear in Environment pane
+6. Observe output in Console
+7. Save the script
+
+This reinforces the workflow of writing code in scripts, running it, and seeing results.
+:::
+
+## Troubleshooting Common Issues
+
+::: bubble-chain
+  <p class="bubble-left fragment">I can't see one of the panes!</p>
+  <p class="bubble-right fragment">Check View → Panes to make sure it's shown, or try resizing.</p>
+:::
+
+::: bubble-chain
+  <p class="bubble-left fragment">My code didn't run!</p>
+  <p class="bubble-right fragment">Make sure your cursor is on the line you want to run, then Cmd/Ctrl + Enter.</p>
+:::
+
+::: bubble-chain
+  <p class="bubble-left fragment">Where did my script go?</p>
+  <p class="bubble-right fragment">Check the Source pane tabs, or File → Recent Files to reopen it.</p>
+:::
+
+::: notes
+Common issues new users face:
+
+1. Panes disappearing - usually from accidental resizing or closing
+2. Code not running - cursor not in right place, or using wrong shortcut
+3. Lost scripts - not saved, or just hidden behind other tabs
+4. Confusion about where output appears
+5. Accidentally typing in console instead of script
+
+Address these proactively so students don't get frustrated.
+:::
+
+# Next Steps
+
+## What We've Covered
+
+::: {.incremental}
+- **What RStudio is** and why we use it
+- **The four main panes** and their purposes
+- **Essential keyboard shortcuts** for efficiency
+- **Basic customization** options
+- **File types** we'll work with
+:::
+
+## Coming Up
+
+::: {.incremental}
+- **Week 3:** Git & GitHub integration
+- **Week 4:** R language fundamentals  
+- **Week 5:** (Fall break - no class)
+- **Week 6:** Welcome to the tidyverse!
+:::
+
+::: {.callout-tip}
+**Before next week:** Spend time exploring RStudio, try different themes, practice the keyboard shortcuts!
+:::
+
+::: notes
+Recap what students learned today:
+
+- RStudio as their main workspace for R
+- Understanding the interface layout
+- Basic navigation and shortcuts
+- Customization for personal preference
+
+Preview what's coming:
+
+- Git/GitHub will add version control to their workflow
+- R language basics will give them the foundation for programming
+- Tidyverse will introduce modern data manipulation tools
+
+Encourage exploration - RStudio has lots of features and the best way to learn is by using it.
+:::
+
+## Resources 📚
+
+**RStudio Documentation:**
+
+- [RStudio IDE User Guide](https://docs.rstudio.com/ide/user/)
+- [Keyboard Shortcuts Reference](https://support.rstudio.com/hc/en-us/articles/200711853)
+
+**Video Tutorials:**
+
+- RStudio Essentials (rstudio.com/resources/webinars)
+- Posit Academy free courses
+
+**Quick Reference:**
+
+- Keep the keyboard shortcuts handy!
+- Experiment with different themes and layouts
+- Ask questions on Slack if you get stuck
+
+::: notes
+Provide resources for further learning:
+
+- Official documentation is comprehensive
+- Video tutorials can be helpful for visual learners  
+- Encourage experimentation - they can't break anything
+- Remind them that Slack is there for questions
+
+The goal is to make them comfortable with RStudio as their primary workspace for all R-related work in the course.
+:::

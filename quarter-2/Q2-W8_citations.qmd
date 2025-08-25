@@ -1,0 +1,215 @@
+---
+title: "Citations & Bibliographies"
+subtitle: "apa7 style, bibtex, citr+zotero, in-text citations"
+date: "5/12/26" # M/D/Y
+format:
+  revealjs:
+    theme: [default, ../theme/d2mr-theme.scss]
+    include-in-header:
+        # Opt into some
+      text: |
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="../theme/bubbles.js"></script>
+    slide-number: c/t
+    width: 1600
+    height: 900
+    margin: .1
+    scrollable: true
+    incremental: false
+    transition: slide
+    background-transition: fade
+    highlight-style: ../theme/d2mr-code-theme.theme
+    code-line-numbers: true
+    code-copy: true
+    footer: "D2M-R Q2 | Week 8" #  quarter, week, and class
+    logo: ""
+    chalkboard: true
+    multiplex: false
+editor: source
+execute:
+  echo: true
+  eval: false
+  warning: false
+  message: false
+---
+
+## Housekeeping {.smaller}
+
+This slide has smaller text
+
+- Housekeeping
+- and
+- announcements
+- without
+- animation 
+
+## Housekeeping {.bigger}
+
+This slide has bigger text
+ 
+- at least
+- I hope so 
+
+# New Main Section
+
+## Simple Bulleted Slide
+
+::: {.fragment .dimmable}
+A top-level line that will be dimmed at first.
+:::
+
+With a [link](index.html).
+
+### A Third Level Heading
+
+::: {.incremental}
+-   First level point
+  -  Second level point
+    -   Third level point
+    -   Third level point 2
+-   First level point 2
+
+:::
+
+
+## Code Slide
+
+Introductory content:
+
+```{r}
+#| echo: true
+#| eval: false
+ 
+# Define class name
+class_name <- "D2M-R"
+
+# Print a message with the variable
+paste("Hello", class_name)
+
+```
+ 
+**More information** about the code above.
+
+
+## Bubbles from the bottom
+
+
+::: bubble-chain
+  <p class="bubble-left fragment">Students ask? Students ask?Students ask?Students ask?Students ask? Students ask? Students ask? Students ask? Students ask?Students ask? </p>
+  <p class="bubble-right fragment">And I respond!</p>
+:::
+
+This slide has speech bubbles that pop in after all content has been covered.
+
+The container is anchored at the bottom of the page, and the tails point downward.
+
+
+- Left bubbles, in blue, are things I hear commonly from students
+- Right bubbles, in red, are my responses
+
+
+
+
+## Bubbles from the top
+ 
+On this slide, things are a little different:
+
+- The container is anchored to the top of the content section. 
+- Bubbles are mirrored vertically with tails pointing up.
+
+::: {.bubble-chain .top}
+  <p class="bubble-left fragment">Students ask - UP TOP?</p>
+  <p class="bubble-right fragment">And I respond, also up top!</p>
+:::
+ 
+ 
+## Callouts
+
+::: {.callout}
+Call-outs can be used without additional class features.
+:::
+
+::: {.callout-tip}
+Tip: Use call-outs to highlight important information.
+:::
+
+::: {.callout-note}
+
+## You can change the callout header from the default
+
+Note: These are examples of call-outs.
+:::
+
+::: {.callout-important}
+Important: Don't forget to use call-outs!
+:::
+
+::: {.callout-warning}
+Warning: You have used too many callouts
+:::
+
+
+## Columns
+
+:::: {.columns}
+
+::: {.column width="20%"}
+**tibble**  
+reimagine the dataframe!
+:::
+
+::: {.column width="20%"}
+**readr**  
+easily import and export tabular data
+:::
+
+::: {.column width="20%"}
+**dplyr**  
+a grammar of data manipulation
+:::
+
+::: {.column width="20%"}
+**tidyr**  
+tidy your messy data
+:::
+
+::: {.column width="20%"}
+**ggplot2**  
+a grammar of graphics
+:::
+
+::::
+
+:::: {.columns .fragment}
+
+::: {.column width="25%"}
+**purrr**  
+enhancements for R's functional programming
+:::
+
+::: {.column width="25%"}
+**stringr**  
+simplify working with strings
+:::
+
+::: {.column width="25%"}
+**forcats**  
+simplify working with factors
+:::
+
+::: {.column width="25%"}
+:::
+
+::::
+
+## Inline Styling
+
+You can style things like:
+
+- **bold text**
+- *italic text*
+- ~~strikethrough text~~
+- [links]()
+- `inline code`
+- [function_names]{.func}
+- [package_names]{.pkg}

@@ -1,0 +1,304 @@
+---
+title: "Datatypes in the Tidyverse"
+subtitle: "strings, factors, dates"
+date: "2/17/2026" # M/D/Y
+format:
+  revealjs:
+    theme: [default, ../theme/d2mr-theme.scss]
+    include-in-header:
+        # Opt into some
+      text: |
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="../theme/bubbles.js"></script>
+    slide-number: c/t
+    width: 1600
+    height: 900
+    margin: .1
+    scrollable: true
+    incremental: false
+    transition: slide
+    background-transition: fade
+    highlight-style: ../theme/d2mr-code-theme.theme
+    code-line-numbers: true
+    code-copy: true
+    footer: "D2M-R Q1 | Week 7" #  quarter, week, and class
+    logo: ""
+    chalkboard: true
+    multiplex: false
+editor: source
+execute:
+  echo: true
+  eval: false
+  warning: false
+  message: false
+---
+
+## Lecture planning
+
+8. Working with different data types in the tidyverse
+    1. Why specialized packages exist for text, factors, and dates
+        1. Base R can do this stuff, but it's not always great
+        2. Tidyverse functions are useful:
+            1. Consistent syntax
+            2. More intuitive functions
+            3. More intuitive pattern matching (stringr)
+            4. Seamlessly compatible with dplyr, tidyr, and the rest of the tidyverse
+    2. Text data with stringr
+        1. Overview
+            1. Remember what strings and character vectors are?
+            2. Remember what regex is?
+            3. Special things about strings (using quotes, escaping characters, etc.)
+            4. Base R can do string stuff - Useful base R string functions
+                1. paste & paste0
+                2. c
+                3. toupper, tolower
+                4. is.character
+                5. toString
+                6. Pattern matching with grep family
+        2. Match strings
+            1. str_detect
+            2. str_starts
+            3. str_ends
+            4. str_count
+        3. Subsetting and length
+            1. str_sub
+            2. str_subset
+            3. str_length
+            4. str_pad
+            5. str_trunc
+            6. str_trim
+        4. Mutate, join, split
+            1. str_sub (again)
+            2. str_replace, str_replace_all
+            3. str_remove, str_remove_all
+            4. str_to_lower, str_to_upper, str_to_title
+            5. str_split
+            6. str_c, str_glue
+            7. str_flatten
+    3. Factors with forcats
+        1. Overview
+            1. What are factors? 
+            2. They look like strings, how are they different? Why do we have to have a whole
+            separate package for them?
+                1. Levels
+                2. Order
+                3. Closed set
+        2. Base R can do factor stuff (and unlike with strings, you'll use these base R 
+        factor functions a lot!)
+            1. factor
+            2. levels
+            3. relevel
+            4. other base factor functions are mostly variations on these
+        3. Useful forcats functions
+            1. fct_relevel
+            2. fct_reorder
+            3. fct_rev
+            4. fct_recode
+            5. fct_collapse
+            6. fct_other
+            7. fct_drop
+            8. fct_expand
+    4. Dates and times with lubridate <!-- I don't use lubridate much and it wasn't in the original d2mr, so this is just a possible list of things to cover suggested by copilot -->
+        1. Overview
+            1. What are dates and times?
+            2. Why do we need a whole package for them?
+            3. Base R can do date and time stuff, but it's not great
+                1. as.Date
+                2. as.POSIXct
+                3. as.POSIXlt
+                4. strptime
+        2. lubridate functions
+            1. Parsing dates and times
+                1. ymd, mdy, dmy, ymd_hms, etc.
+                2. parse_date_time
+            2. Extracting components
+                1. year, month, day, hour, minute, second
+                2. wday, yday, mday
+            3. Manipulating dates and times
+                1. %m+% and %m-% for adding and subtracting time
+                2. interval and duration
+                3. floor_date, ceiling_date, round_date
+            4. Formatting dates and times
+                1. format
+                2. strftime
+
+## Housekeeping {.smaller}
+
+This slide has smaller text
+
+- Housekeeping
+- and
+- announcements
+- without
+- animation 
+
+## Housekeeping {.bigger}
+
+This slide has bigger text
+ 
+- at least
+- I hope so 
+
+# New Main Section
+
+## Simple Bulleted Slide
+
+::: {.fragment .dimmable}
+A top-level line that will be dimmed at first.
+:::
+
+With a [link](index.html).
+
+### A Third Level Heading
+
+::: {.incremental}
+-   First level point
+  -  Second level point
+    -   Third level point
+    -   Third level point 2
+-   First level point 2
+
+:::
+
+
+## Code Slide
+
+Introductory content:
+
+```{r}
+#| echo: true
+#| eval: false
+ 
+# Define class name
+class_name <- "D2M-R"
+
+# Print a message with the variable
+paste("Hello", class_name)
+
+```
+ 
+**More information** about the code above.
+
+
+## Bubbles from the bottom
+
+
+::: bubble-chain
+  <p class="bubble-left fragment">Students ask? Students ask?Students ask?Students ask?Students ask? Students ask? Students ask? Students ask? Students ask?Students ask? </p>
+  <p class="bubble-right fragment">And I respond!</p>
+:::
+
+This slide has speech bubbles that pop in after all content has been covered.
+
+The container is anchored at the bottom of the page, and the tails point downward.
+
+
+- Left bubbles, in blue, are things I hear commonly from students
+- Right bubbles, in red, are my responses
+
+
+
+
+## Bubbles from the top
+ 
+On this slide, things are a little different:
+
+- The container is anchored to the top of the content section. 
+- Bubbles are mirrored vertically with tails pointing up.
+
+::: {.bubble-chain .top}
+  <p class="bubble-left fragment">Students ask - UP TOP?</p>
+  <p class="bubble-right fragment">And I respond, also up top!</p>
+:::
+ 
+ 
+## Callouts
+
+::: {.callout}
+Call-outs can be used without additional class features.
+:::
+
+::: {.callout-tip}
+Tip: Use call-outs to highlight important information.
+:::
+
+::: {.callout-note}
+
+## You can change the callout header from the default
+
+Note: These are examples of call-outs.
+:::
+
+::: {.callout-important}
+Important: Don't forget to use call-outs!
+:::
+
+::: {.callout-warning}
+Warning: You have used too many callouts
+:::
+
+
+## Columns
+
+:::: {.columns}
+
+::: {.column width="20%"}
+**tibble**  
+reimagine the dataframe!
+:::
+
+::: {.column width="20%"}
+**readr**  
+easily import and export tabular data
+:::
+
+::: {.column width="20%"}
+**dplyr**  
+a grammar of data manipulation
+:::
+
+::: {.column width="20%"}
+**tidyr**  
+tidy your messy data
+:::
+
+::: {.column width="20%"}
+**ggplot2**  
+a grammar of graphics
+:::
+
+::::
+
+:::: {.columns .fragment}
+
+::: {.column width="25%"}
+**purrr**  
+enhancements for R's functional programming
+:::
+
+::: {.column width="25%"}
+**stringr**  
+simplify working with strings
+:::
+
+::: {.column width="25%"}
+**forcats**  
+simplify working with factors
+:::
+
+::: {.column width="25%"}
+:::
+
+::::
+
+## Inline Styling
+
+You can style things like:
+
+- **bold text**
+- *italic text*
+- ~~strikethrough text~~
+- [links]()
+- `inline code`
+- [function_names]{.func}
+- [package_names]{.pkg}

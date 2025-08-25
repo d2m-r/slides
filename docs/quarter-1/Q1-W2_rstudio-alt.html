@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="Q1-W2_rstudio-alt_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Q1-W2_rstudio-alt_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Q1-W2_rstudio-alt_files/libs/quarto-html/popper.min.js"></script>
+<script src="Q1-W2_rstudio-alt_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Q1-W2_rstudio-alt_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Q1-W2_rstudio-alt_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Q1-W2_rstudio-alt_files/libs/quarto-html/quarto-syntax-highlighting-e4183f324febc8d3ac649c7ef4864457.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="dcterms.date" content="2026-01-13">
+  <title>RStudio IDE</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Q1-W2_rstudio-alt_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Q1-W2_rstudio-alt_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #f5f5f5;
+        color: #7e7e7e;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #7e7e7e;  padding-left: 4px; }
+    div.sourceCode
+      { color: #000000; background-color: #fcfcfc; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #000000; } /* Normal */
+    code span.al { color: #e78ac3; background-color: #fcfcfc; font-weight: bold; } /* Alert */
+    code span.an { color: #1f78b4; background-color: #f4fafd; font-style: italic; } /* Annotation */
+    code span.at { color: #15712a; } /* Attribute */
+    code span.bn { color: #a6761d; } /* BaseN */
+    code span.bu { color: #0c7149; } /* BuiltIn */
+    code span.cf { color: #6f1ba0; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #6a3d9a; } /* Char */
+    code span.cn { color: #a6761d; } /* Constant */
+    code span.co { color: #1f78b4; background-color: #f4fafd; font-style: italic; } /* Comment */
+    code span.cv { color: #1f78b4; background-color: #f4fafd; font-style: italic; } /* CommentVar */
+    code span.do { color: #1f78b4; background-color: #f4fafd; font-style: italic; } /* Documentation */
+    code span.dt { color: #000000; } /* DataType */
+    code span.dv { color: #0d481b; font-weight: bold; } /* DecVal */
+    code span.er { color: #842222; text-decoration: underline; } /* Error */
+    code span.ex { color: #0c7149; font-weight: bold; } /* Extension */
+    code span.fl { color: #0d481b; font-weight: bold; } /* Float */
+    code span.fu { color: #0c7149; } /* Function */
+    code span.im { color: #15712a; font-style: italic; } /* Import */
+    code span.in { color: #6f1ba0; font-weight: bold; } /* Information */
+    code span.kw { color: #6f1ba0; font-weight: bold; } /* Keyword */
+    code span.op { color: #b5089d; } /* Operator */
+    code span.ot { color: #15712a; font-style: italic; } /* Other */
+    code span.pp { color: #15712a; font-style: italic; } /* Preprocessor */
+    code span.re { color: #b9d9f9; background-color: #888888; } /* RegionMarker */
+    code span.sc { color: #6a3d9a; } /* SpecialChar */
+    code span.ss { color: #6a3d9a; } /* SpecialString */
+    code span.st { color: #6a3d9a; } /* String */
+    code span.va { color: #000000; } /* Variable */
+    code span.vs { color: #6a3d9a; } /* VerbatimString */
+    code span.wa { color: #842222; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="Q1-W2_rstudio-alt_files/libs/revealjs/dist/theme/quarto-ae58f5a676acc0cf784e3b1599c2709e.css">
+  <link href="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script type="text/javascript" src="../theme/bubbles.js"></script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">RStudio IDE</h1>
+  <p class="subtitle">Your new favorite workspace</p>
+
+<div class="quarto-title-authors">
+</div>
+
+  <p class="date">2026-01-13</p>
+</section>
+<section id="housekeeping" class="slide level2 smaller">
+<h2>Housekeeping</h2>
+<ul>
+<li><strong>Accountability plans</strong> due Monday of Week 3</li>
+<li><strong>Office hours</strong> reminder: Thursdays 2-4pm by appointment</li>
+<li><strong>Slack</strong> - make sure you’ve joined and introduced yourself</li>
+<li>Questions from Week 1 content?</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Remind students that their accountability plans are due Monday of Week 3</li>
+<li>Emphasize that office hours require appointments - they can book through the link on the course site</li>
+<li>Check that everyone has joined Slack and encourage participation</li>
+<li>Address any lingering questions from the introduction lecture</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section id="what-is-rstudio" class="title-slide slide level1 center">
+<h1>What is RStudio?</h1>
+
+</section>
+<section id="rstudio-vs.-r" class="slide level2">
+<h2>RStudio vs.&nbsp;R</h2>
+<div>
+<ul>
+<li class="fragment"><strong>R</strong> is a programming language and computing environment</li>
+<li class="fragment"><strong>RStudio</strong> is an Integrated Development Environment (IDE) for R</li>
+<li class="fragment">Think of it like the difference between:
+<ul>
+<li class="fragment">A recipe (R) vs.&nbsp;a fully equipped kitchen (RStudio)</li>
+<li class="fragment">A text file (R) vs.&nbsp;Microsoft Word (RStudio)</li>
+<li class="fragment">Raw ingredients (R) vs.&nbsp;a meal prep service (RStudio)</li>
+</ul></li>
+</ul>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+So I could just use R without RStudio?
+</p>
+<p class="bubble-right fragment">
+Technically yes, but you really don’t want to!
+</p>
+</div>
+<aside class="notes">
+<p>R is the underlying programming language and statistical computing environment. You can run R from the command line or basic R console, but it’s quite painful.</p>
+<p>RStudio is an IDE - an Integrated Development Environment - that makes working with R much more pleasant and productive. It provides: - Syntax highlighting - Code completion - Project management - Integrated help - Plot viewing - Package management - Git integration - And much more</p>
+<p>The analogies help students understand that while you CAN use R alone, RStudio makes everything so much easier that there’s really no reason not to use it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-makes-an-ide" class="slide level2">
+<h2>What Makes an IDE?</h2>
+<p>An <strong>Integrated Development Environment</strong> combines multiple tools in one interface:</p>
+<div>
+<ul>
+<li class="fragment"><strong>Code editor</strong> with syntax highlighting and completion</li>
+<li class="fragment"><strong>Console</strong> for running code interactively</li>
+<li class="fragment"><strong>File management</strong> and project organization</li>
+<li class="fragment"><strong>Debugging tools</strong> for finding and fixing errors</li>
+<li class="fragment"><strong>Help system</strong> and documentation access</li>
+<li class="fragment"><strong>Version control</strong> integration</li>
+<li class="fragment"><strong>Package management</strong></li>
+</ul>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Think of RStudio as your research workspace</strong> - everything you need is in one place and works together seamlessly.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Students coming from other software like SPSS or Excel may not be familiar with the concept of an IDE. Help them understand that:</p>
+<ul>
+<li>It’s like having all your research tools in one organized workspace</li>
+<li>Everything talks to each other - your code, data, plots, help files</li>
+<li>You don’t have to switch between different applications</li>
+<li>It keeps track of your work and makes it reproducible</li>
+</ul>
+<p>This is very different from point-and-click software where you might lose track of what you did.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="the-rstudio-interface" class="title-slide slide level1 center">
+<h1>The RStudio Interface</h1>
+
+</section>
+<section id="default-layout" class="slide level2 scrollable">
+<h2>Default Layout</h2>
+
+<img data-src="../images/rstudio-layout.png" class="r-stretch quarto-figure-center"><p class="caption">RStudio’s default 4-pane layout</p><div>
+<ol type="1">
+<li class="fragment"><strong>Top Left</strong>: Source pane (your scripts and documents)</li>
+<li class="fragment"><strong>Top Right</strong>: Environment &amp; History</li>
+<li class="fragment"><strong>Bottom Left</strong>: Console &amp; Terminal<br>
+</li>
+<li class="fragment"><strong>Bottom Right</strong>: Files, Plots, Packages, Help, Viewer</li>
+</ol>
+</div>
+<aside class="notes">
+<p>Show students RStudio and point out each pane. Explain that:</p>
+<ul>
+<li>The layout is customizable, but this default works well for most people</li>
+<li>Each pane can contain multiple tabs</li>
+<li>You can resize panes by dragging the borders</li>
+<li>You can minimize/maximize panes</li>
+<li>The layout will make more sense as we start using each component</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="source-pane" class="slide level2">
+<h2>Source Pane</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Your main workspace for writing code</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong>Scripts</strong> (.R files) - reusable code</li>
+<li class="fragment"><strong>Notebooks</strong> (.qmd/.Rmd files) - code + narrative</li>
+<li class="fragment"><strong>Data files</strong> for viewing</li>
+<li class="fragment"><strong>Other text files</strong> (README, etc.)</li>
+</ul>
+</div>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Syntax highlighting</li>
+<li>Code completion</li>
+<li>Line numbers</li>
+<li>Code folding</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>This is where you’ll spend most of your time!</strong></p>
+<p>Write your code here, not directly in the console.</p>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>The source pane is where students will do most of their work. Emphasize:</p>
+<ul>
+<li>Always write code in scripts/notebooks, not directly in console</li>
+<li>Scripts are reusable and reproducible</li>
+<li>Syntax highlighting makes code easier to read and helps catch errors</li>
+<li>Code completion speeds up coding and reduces typos</li>
+<li>We’ll focus on .qmd files (Quarto notebooks) in this class</li>
+<li>You can have multiple files open in tabs</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="console-pane" class="slide level2">
+<h2>Console Pane</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Interactive R session</strong> - where code actually runs</li>
+<li class="fragment"><strong>See output</strong> from your code immediately<br>
+</li>
+<li class="fragment"><strong>Test small bits</strong> of code quickly</li>
+<li class="fragment"><strong>Error messages</strong> and warnings appear here</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Use the console for:</strong></p>
+<ul>
+<li>Quick calculations</li>
+<li>Testing ideas</li>
+<li>Exploring data</li>
+<li>Installing packages</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Don’t use the console for:</strong></p>
+<ul>
+<li>Writing long scripts</li>
+<li>Important analysis code</li>
+<li>Anything you want to save</li>
+</ul>
+</div></div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+Why not just write everything in the console?
+</p>
+<p class="bubble-right fragment">
+Because then you’d lose all your work when you close RStudio!
+</p>
+</div>
+<aside class="notes">
+<p>Students often want to work directly in the console because it feels more immediate. Help them understand:</p>
+<p>Console is great for: - Quick explorations - Testing whether something works - One-off calculations - Immediate feedback</p>
+<p>But the console is terrible for: - Reproducibility - your code disappears - Making changes - you have to retype everything - Complex analysis - no syntax highlighting, hard to read - Sharing work - nothing to share</p>
+<p>The console is like a scratchpad, the source pane is like your notebook.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="environment-pane" class="slide level2">
+<h2>Environment Pane</h2>
+<p><strong>Shows all objects in your current workspace</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong>Data</strong> objects (datasets, vectors, lists)</li>
+<li class="fragment"><strong>Functions</strong> you’ve created</li>
+<li class="fragment"><strong>Values</strong> you’ve assigned to variables</li>
+<li class="fragment"><strong>Import</strong> button for loading data</li>
+</ul>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Think of this as your desk drawer</strong> - everything you’re currently working with is visible here.</p>
+</div>
+</div>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+What if my Environment pane is empty?
+</p>
+<p class="bubble-right fragment">
+That’s normal when you first start! You haven’t created any objects yet.
+</p>
+</div>
+<aside class="notes">
+<p>The Environment pane is very helpful for:</p>
+<ul>
+<li>Seeing what data and objects you have available</li>
+<li>Checking the size and type of your data</li>
+<li>Quickly viewing data by clicking on dataset names</li>
+<li>Understanding what’s currently loaded in memory</li>
+</ul>
+<p>If it’s empty, that just means they haven’t created any objects yet. As soon as they assign something to a variable (like <code>x &lt;- 5</code>), it will appear here.</p>
+<p>The Import button is a GUI way to load data, but we’ll teach them to do it with code for reproducibility.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="files-pane" class="slide level2">
+<h2>Files Pane</h2>
+<p><strong>Your file manager within RStudio</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong>Navigate</strong> your computer’s folder structure</li>
+<li class="fragment"><strong>Open files</strong> in RStudio by clicking them</li>
+<li class="fragment"><strong>Create new files</strong> and folders</li>
+<li class="fragment"><strong>Upload/download</strong> files (if using RStudio Server)</li>
+<li class="fragment"><strong>Set working directory</strong> with More menu</li>
+</ul>
+</div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Important:</strong> This shows your actual computer files, not just RStudio files!</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The Files pane is like a simplified version of Finder (Mac) or File Explorer (Windows) built into RStudio.</p>
+<p>Key points:</p>
+<ul>
+<li>It shows real files on your computer, not virtual RStudio files</li>
+<li>You can do basic file operations here</li>
+<li>Clicking on data files often opens them in the source pane for viewing</li>
+<li>The working directory concept is important but we’ll cover that more later</li>
+<li>If they’re using RStudio Cloud/Server, this is how they upload/download files</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="plots-pane" class="slide level2">
+<h2>Plots Pane</h2>
+<div>
+<ul>
+<li class="fragment"><strong>View visualizations</strong> you create</li>
+<li class="fragment"><strong>Navigate</strong> between multiple plots with arrows</li>
+<li class="fragment"><strong>Zoom</strong> to see plots in a larger window</li>
+<li class="fragment"><strong>Export</strong> plots as images or PDFs</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Simple plot example</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Plots appear here automatically when you run plotting code!</p>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>The Plots pane is pretty straightforward but very useful:</p>
+<ul>
+<li>Any plot you create will automatically appear here</li>
+<li>You can flip between multiple recent plots</li>
+<li>The zoom feature opens plots in a larger window for better viewing</li>
+<li>Export lets you save plots in various formats</li>
+<li>We’ll be creating lots of plots in this class, especially in Quarter 2</li>
+<li>For now, just know that this is where visualizations will show up</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="packages-pane" class="slide level2">
+<h2>Packages Pane</h2>
+<p><strong>Manage your R packages</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong>See installed packages</strong> (checked = loaded)</li>
+<li class="fragment"><strong>Install new packages</strong> with Install button</li>
+<li class="fragment"><strong>Load packages</strong> by checking the box</li>
+<li class="fragment"><strong>Get help</strong> by clicking package names</li>
+</ul>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Remember:</strong> Installed ≠ Loaded</p>
+<p>You install once, but load every session with <code>library()</code></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The Packages pane is helpful for package management:</p>
+<ul>
+<li>Shows all installed packages on your system</li>
+<li>Checked boxes mean the package is currently loaded</li>
+<li>You can install packages through the GUI here</li>
+<li>Clicking package names opens their documentation</li>
+</ul>
+<p>However, emphasize that for reproducibility, they should load packages with <code>library()</code> in their scripts, not by clicking boxes in the interface.</p>
+<p>The install vs.&nbsp;load distinction is crucial:</p>
+<ul>
+<li>Install = download and store on your computer (once)</li>
+<li>Load = make available in current session (every time you start RStudio)</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="help-pane" class="slide level2">
+<h2>Help Pane</h2>
+<p><strong>Your built-in documentation system</strong></p>
+<div>
+<ul>
+<li class="fragment"><strong>Function help</strong> with <code>?function_name</code></li>
+<li class="fragment"><strong>Search</strong> for functions and topics</li>
+<li class="fragment"><strong>Vignettes</strong> - longer tutorials for packages</li>
+<li class="fragment"><strong>Cheat sheets</strong> for quick reference</li>
+</ul>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Examples of getting help</span></span>
+<span id="cb2-2"><a href=""></a>?mean</span>
+<span id="cb2-3"><a href=""></a>?lm</span>
+<span id="cb2-4"><a href=""></a>??regression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>The Help pane is incredibly valuable and underused by beginners:</p>
+<ul>
+<li>Every R function has documentation accessible with ?</li>
+<li>The documentation includes examples, which are great for learning</li>
+<li>?? searches more broadly across packages</li>
+<li>Vignettes are longer-form tutorials that come with packages</li>
+<li>RStudio also provides cheat sheets for popular packages</li>
+</ul>
+<p>Encourage students to get comfortable reading help files - they’re usually well-written and include examples.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="other-panes-quick-overview" class="slide level2">
+<h2>Other Panes (Quick Overview)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Less commonly used:</strong></p>
+<ul>
+<li><strong>History</strong> - previous commands</li>
+<li><strong>Connections</strong> - databases</li>
+<li><strong>Build</strong> - for package development</li>
+<li><strong>VCS</strong> - version control (Git)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Occasionally useful:</strong></p>
+<ul>
+<li><strong>Tutorial</strong> - interactive lessons</li>
+<li><strong>Viewer</strong> - for web content</li>
+<li><strong>Presentations</strong> - slideshows</li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Don’t worry about these now</strong> - we’ll introduce them as needed throughout the course.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Just briefly mention these exist so students aren’t confused if they see them:</p>
+<ul>
+<li>History can be useful for finding commands you ran earlier</li>
+<li>VCS (Git) will be very important later in the course</li>
+<li>Build is only for advanced users creating packages</li>
+<li>Connections for database users</li>
+<li>Tutorial tab appears when you run interactive lessons</li>
+<li>Viewer shows HTML content and web apps</li>
+<li>Presentations is for R-based slideshows</li>
+</ul>
+<p>The key message is that they don’t need to understand everything now - RStudio shows you what you need when you need it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="essential-keyboard-shortcuts" class="title-slide slide level1 center">
+<h1>Essential Keyboard Shortcuts</h1>
+
+</section>
+<section id="the-big-three" class="slide level2 scrollable">
+<h2>The Big Three</h2>
+<div class="fragment highlight-red">
+<p><strong>Learn these first - they’ll change your life!</strong></p>
+</div>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ol type="1">
+<li><strong>Run code:</strong> <code>Cmd/Ctrl + Enter</code>
+<ul>
+<li>Runs current line or selection</li>
+</ul></li>
+<li><strong>New script:</strong> <code>Cmd/Ctrl + Shift + N</code>
+<ul>
+<li>Creates a new R script file</li>
+</ul></li>
+<li><strong>Save file:</strong> <code>Cmd/Ctrl + S</code>
+<ul>
+<li>Saves your current document</li>
+</ul></li>
+</ol>
+</div><div class="column" style="width:40%;">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Practice these right now!</strong></p>
+<p>Using keyboard shortcuts will make you much more efficient.</p>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>These three shortcuts are absolutely essential:</p>
+<ul>
+<li>Run code (Cmd/Ctrl + Enter) is probably the most-used shortcut in RStudio</li>
+<li>Students need to get in the habit of saving files frequently</li>
+<li>Creating new scripts quickly helps with organization</li>
+</ul>
+<p>Show these shortcuts in action. Have students practice them.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="more-useful-shortcuts" class="slide level2">
+<h2>More Useful Shortcuts</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 28%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Shortcut</th>
+<th style="text-align: left;">Why It’s Useful</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Comment/Uncomment</strong></td>
+<td style="text-align: left;"><code>Cmd/Ctrl + Shift + C</code></td>
+<td style="text-align: left;">Quickly disable code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Clear Console</strong></td>
+<td style="text-align: left;"><code>Cmd/Ctrl + L</code></td>
+<td style="text-align: left;">Clean up your workspace</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Go to Line</strong></td>
+<td style="text-align: left;"><code>Cmd/Ctrl + G</code></td>
+<td style="text-align: left;">Navigate long scripts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Find/Replace</strong></td>
+<td style="text-align: left;"><code>Cmd/Ctrl + F</code></td>
+<td style="text-align: left;">Search within files</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Restart R</strong></td>
+<td style="text-align: left;"><code>Cmd/Ctrl + Shift + F10</code></td>
+<td style="text-align: left;">Fresh start</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>See all shortcuts:</strong> <code>Alt + Shift + K</code> or Help → Keyboard Shortcuts</p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>These shortcuts become more important as students advance:</p>
+<ul>
+<li>Commenting code is essential for documentation and debugging</li>
+<li>Clearing console helps when output gets cluttered<br>
+</li>
+<li>Go to line is vital for longer scripts</li>
+<li>Find/replace is crucial for making systematic changes</li>
+<li>Restarting R gives you a clean slate and tests reproducibility</li>
+</ul>
+<p>Don’t overwhelm them with too many shortcuts at once, but introduce these gradually.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="customizing-rstudio" class="title-slide slide level1 center">
+<h1>Customizing RStudio</h1>
+
+</section>
+<section id="making-rstudio-yours" class="slide level2">
+<h2>Making RStudio Yours</h2>
+<p><strong>Tools → Global Options</strong> (or RStudio → Preferences on Mac)</p>
+<div>
+<ul>
+<li class="fragment"><strong>Appearance</strong> - themes, font size, colors</li>
+<li class="fragment"><strong>Code</strong> - syntax highlighting, completion</li>
+<li class="fragment"><strong>Pane Layout</strong> - rearrange your workspace<br>
+</li>
+<li class="fragment"><strong>Saving</strong> - auto-save options</li>
+<li class="fragment"><strong>Git/SVN</strong> - version control settings</li>
+</ul>
+</div>
+</section>
+<section id="recommended-settings" class="slide level2">
+<h2>Recommended Settings</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Essential first-time setup:</strong></p>
+</div>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment"><strong>Uncheck</strong> “Restore .RData into workspace at startup”</li>
+<li class="fragment"><strong>Set</strong> “Save workspace to .RData on exit” to <strong>Never</strong></li>
+<li class="fragment"><strong>Check</strong> “Always save history”</li>
+<li class="fragment"><strong>Consider</strong> using a dark theme (easier on eyes)</li>
+</ul>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+Why turn off the .RData stuff?
+</p>
+<p class="bubble-right fragment">
+For reproducibility! You want a clean start every time.
+</p>
+</div>
+<aside class="notes">
+<p>The .RData settings are crucial for reproducibility:</p>
+<ul>
+<li>Restoring workspace makes your code dependent on previous work</li>
+<li>Saving workspace clutters things with old objects</li>
+<li>Always starting fresh forces you to write complete, reproducible code</li>
+<li>History is useful to keep so you can see what you did</li>
+</ul>
+<p>Other customization options:</p>
+<ul>
+<li>Dark themes (like Tomorrow Night or Monokai) are popular</li>
+<li>Increase font size if needed for readability</li>
+<li>Some people prefer different pane arrangements</li>
+<li>Code completion and syntax highlighting options can be adjusted</li>
+</ul>
+<p>Show students where to find these settings and why the .RData settings matter.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pane-layout-options" class="slide level2">
+<h2>Pane Layout Options</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Default Layout:</strong></p>
+<ul>
+<li>Source: Top Left</li>
+<li>Console: Bottom Left<br>
+</li>
+<li>Environment: Top Right</li>
+<li>Files/Plots/etc: Bottom Right</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Popular Alternative:</strong></p>
+<ul>
+<li>Source: Top Left</li>
+<li>Console: Top Right</li>
+<li>Environment: Bottom Left<br>
+</li>
+<li>Files/Plots/etc: Bottom Right</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Try different layouts and see what feels comfortable for your workflow!</strong></p>
+</div>
+<aside class="notes">
+<p>Pane layout is personal preference:</p>
+<ul>
+<li>Default layout keeps source and console on the left (logical flow)</li>
+<li>Some prefer console on right to have it always visible</li>
+<li>Environment placement depends on how often you reference it</li>
+<li>Files/Plots pane placement depends on your priorities</li>
+</ul>
+<p>Let students know they can experiment and change it anytime. What matters is that they’re comfortable and can find what they need quickly.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="file-types-in-rstudio" class="title-slide slide level1 center">
+<h1>File Types in RStudio</h1>
+
+</section>
+<section id="quick-preview" class="slide level2">
+<h2>Quick Preview</h2>
+<p>We’ll explore these in detail later, but here’s what you’ll encounter:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Code Files:</strong></p>
+<ul>
+<li><code>.R</code> - R scripts</li>
+<li><code>.qmd</code> - Quarto notebooks ⭐</li>
+<li><code>.Rmd</code> - R Markdown notebooks</li>
+</ul>
+<p><strong>Project Files:</strong></p>
+<ul>
+<li><code>.Rproj</code> - RStudio project file</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Data Files:</strong></p>
+<ul>
+<li><code>.csv</code> - Comma-separated values</li>
+<li><code>.xlsx</code> - Excel files<br>
+</li>
+<li><code>.sav</code> - SPSS files</li>
+<li>Many others…</li>
+</ul>
+<p><strong>Behind-the-scenes:</strong></p>
+<ul>
+<li><code>.gitignore</code>, <code>.Rhistory</code>, etc.</li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Focus on .qmd files</strong> - that’s what we’ll use for the D2M-R workflow!</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>This is just a preview - don’t go into detail:</p>
+<ul>
+<li>.qmd (Quarto) files will be our main focus - they combine code and narrative</li>
+<li>.R files are pure code scripts</li>
+<li>.Rmd files are the older version of .qmd (R Markdown)</li>
+<li>.Rproj files define RStudio projects (very important for organization)</li>
+<li>Data files can be opened and viewed in RStudio</li>
+<li>Hidden files like .gitignore help with project management</li>
+</ul>
+<p>The key message is that .qmd files are what they’ll primarily use in this class.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="getting-started-practice" class="title-slide slide level1 center">
+<h1>Getting Started Practice</h1>
+
+</section>
+<section id="lets-explore-together" class="slide level2 scrollable">
+<h2>💻 Let’s Explore Together</h2>
+<p><strong>Follow along as we:</strong></p>
+<div>
+<ol type="1">
+<li class="fragment">Open RStudio and identify each pane</li>
+<li class="fragment">Create a new script (<code>Cmd/Ctrl + Shift + N</code>)</li>
+<li class="fragment">Write some simple code in the source pane</li>
+<li class="fragment">Run code with <code>Cmd/Ctrl + Enter</code></li>
+<li class="fragment">See the results in console and environment</li>
+<li class="fragment">Save the script (<code>Cmd/Ctrl + S</code>)</li>
+</ol>
+</div>
+<p><strong>Simple code to try:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># My first RStudio session</span></span>
+<span id="cb3-2"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb3-3"><a href=""></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-4"><a href=""></a>result <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb3-5"><a href=""></a><span class="fu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>This is a hands-on demonstration where students follow along:</p>
+<ol type="1">
+<li>Make sure everyone can identify the panes</li>
+<li>Have them create a new script and save it with a meaningful name</li>
+<li>Type the example code in the source pane (not console!)</li>
+<li>Use keyboard shortcut to run code line by line</li>
+<li>Watch objects appear in Environment pane</li>
+<li>Observe output in Console</li>
+<li>Save the script</li>
+</ol>
+<p>This reinforces the workflow of writing code in scripts, running it, and seeing results.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="troubleshooting-common-issues" class="slide level2 scrollable">
+<h2>Troubleshooting Common Issues</h2>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+I can’t see one of the panes!
+</p>
+<p class="bubble-right fragment">
+Check View → Panes to make sure it’s shown, or try resizing.
+</p>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+My code didn’t run!
+</p>
+<p class="bubble-right fragment">
+Make sure your cursor is on the line you want to run, then Cmd/Ctrl + Enter.
+</p>
+</div>
+<div class="bubble-chain">
+<p class="bubble-left fragment">
+Where did my script go?
+</p>
+<p class="bubble-right fragment">
+Check the Source pane tabs, or File → Recent Files to reopen it.
+</p>
+</div>
+<aside class="notes">
+<p>Common issues new users face:</p>
+<ol type="1">
+<li>Panes disappearing - usually from accidental resizing or closing</li>
+<li>Code not running - cursor not in right place, or using wrong shortcut</li>
+<li>Lost scripts - not saved, or just hidden behind other tabs</li>
+<li>Confusion about where output appears</li>
+<li>Accidentally typing in console instead of script</li>
+</ol>
+<p>Address these proactively so students don’t get frustrated.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="next-steps" class="title-slide slide level1 center">
+<h1>Next Steps</h1>
+
+</section>
+<section id="what-weve-covered" class="slide level2">
+<h2>What We’ve Covered</h2>
+<div>
+<ul>
+<li class="fragment"><strong>What RStudio is</strong> and why we use it</li>
+<li class="fragment"><strong>The four main panes</strong> and their purposes</li>
+<li class="fragment"><strong>Essential keyboard shortcuts</strong> for efficiency</li>
+<li class="fragment"><strong>Basic customization</strong> options</li>
+<li class="fragment"><strong>File types</strong> we’ll work with</li>
+</ul>
+</div>
+</section>
+<section id="coming-up" class="slide level2">
+<h2>Coming Up</h2>
+<div>
+<ul>
+<li class="fragment"><strong>Week 3:</strong> Git &amp; GitHub integration</li>
+<li class="fragment"><strong>Week 4:</strong> R language fundamentals<br>
+</li>
+<li class="fragment"><strong>Week 5:</strong> (Fall break - no class)</li>
+<li class="fragment"><strong>Week 6:</strong> Welcome to the tidyverse!</li>
+</ul>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Before next week:</strong> Spend time exploring RStudio, try different themes, practice the keyboard shortcuts!</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Recap what students learned today:</p>
+<ul>
+<li>RStudio as their main workspace for R</li>
+<li>Understanding the interface layout</li>
+<li>Basic navigation and shortcuts</li>
+<li>Customization for personal preference</li>
+</ul>
+<p>Preview what’s coming:</p>
+<ul>
+<li>Git/GitHub will add version control to their workflow</li>
+<li>R language basics will give them the foundation for programming</li>
+<li>Tidyverse will introduce modern data manipulation tools</li>
+</ul>
+<p>Encourage exploration - RStudio has lots of features and the best way to learn is by using it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources 📚</h2>
+<p><strong>RStudio Documentation:</strong></p>
+<ul>
+<li><a href="https://docs.rstudio.com/ide/user/">RStudio IDE User Guide</a></li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200711853">Keyboard Shortcuts Reference</a></li>
+</ul>
+<p><strong>Video Tutorials:</strong></p>
+<ul>
+<li>RStudio Essentials (rstudio.com/resources/webinars)</li>
+<li>Posit Academy free courses</li>
+</ul>
+<p><strong>Quick Reference:</strong></p>
+<ul>
+<li>Keep the keyboard shortcuts handy!</li>
+<li>Experiment with different themes and layouts</li>
+<li>Ask questions on Slack if you get stuck</li>
+</ul>
+<aside class="notes">
+<p>Provide resources for further learning:</p>
+<ul>
+<li>Official documentation is comprehensive</li>
+<li>Video tutorials can be helpful for visual learners<br>
+</li>
+<li>Encourage experimentation - they can’t break anything</li>
+<li>Remind them that Slack is there for questions</li>
+</ul>
+<p>The goal is to make them comfortable with RStudio as their primary workspace for all R-related work in the course.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>D2M-R Q1 | Week 2</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Q1-W2_rstudio-alt_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

@@ -1,0 +1,83 @@
+/*-- scss:defaults --*/
+// Theme adapted from Bootstrap LUX
+
+
+// Default the theme name
+$theme-name: if(variable-exists(theme), $theme, "gris");
+
+// Greyscale
+$white:    #fff !default;
+$grey-100: #f8f9fa !default;
+$grey-200: #f7f7f9 !default;
+$grey-300: #eceeef !default;
+$grey-400: #ced4da !default;
+$grey-500: #adb5bd !default;
+$grey-600: #919aa1 !default;
+$grey-700: #55595c !default;
+$grey-800: #343a40 !default;
+$grey-900: #1a1a1a !default;
+$black:    #000 !default;
+
+// Primary Colors
+$maroon:             #800000 !default;
+$light-greystone:    #D9D9D9 !default;
+$greystone:          #A6A6A6 !default;
+$dark-greystone:     #737373 !default;
+$footer-grey:        #404040 !default;
+$type-grey:          #4D4D4D !default;
+$code-grey:          #f5f5f5 !default; // contrast with auto-colored code & match line numbers
+
+
+// Deep Accent Shades (Muted, UChicago Official)
+$brick:            #A4343A !default;   // deep brick red
+$dark-brick:       #643335 !default;   // darker, brownish red
+$dark-lake:        #002A3A !default;   // very deep blue-green
+$mid-lake:         #004b5a !default;   // mid deep blue-green
+$deep-teal:        #005f73 !default;   // deep teal
+$lake:             #007396 !default;   // deep muted teal/blue
+$dark-terracotta:  #a53c1b !default;   // deep orange-brown
+$forest:           #1B4D3E !default;   // deep muted green
+$warm-white:        #FDFCFB !default;   // warm off-white
+$warm-dark:      #08060f !default;   // warm dark grey
+$cool-white:       #F8FdFE !default;   // cool off-white
+
+// Dropdown/Accordion Category Colors
+/// Slightly adjusted from theme colors for higher contrast and readability
+$prep: #006973 !default;
+$inclass:    #800000 !default;
+$todo:       #004A70 !default;
+$misc:        #a53c1b !default;
+$final:       $forest !default;
+
+
+// Theme
+$primary: $maroon !default;
+$secondary: $dark-greystone !default;
+$primary-muted: $brick !default;
+$secondary-muted: $dark-greystone !default;
+$accent1: $lake !default;
+$accent2: $dark-terracotta !default;
+$accent3: $forest !default;
+$light: $warm-white !default;
+$dark: $warm-dark !default;
+
+/// Used in slides only
+/// need to go in and make consistent with site and book
+
+$primary-color:     $primary !default;
+$secondary-color:   $secondary !default;
+$accent-color:      $accent1 !default;
+
+// Status classes
+$success: $forest !default;
+$danger:  #b33a3a !default; // red only used for danger
+$info:    $lake !default;
+$warning: $maroon !default;
+$note:    $lake !default;
+$tip:     $forest !default;
+$important: $dark-lake !default;
+$caution:   $dark-terracotta !default; 
+
+
+
+
