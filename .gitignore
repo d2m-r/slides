@@ -8,3 +8,5 @@
 conversion-guide.md
 *.DS_Store
 
+*_local
+/archive
