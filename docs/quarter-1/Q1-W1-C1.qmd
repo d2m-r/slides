@@ -1,0 +1,480 @@
+---
+title: "Introduction to D2M-R"
+subtitle: "Q1-W1-C1"
+date: "1/31/2025" # M/D/Y
+order: 1
+format:
+  revealjs:
+    theme: [default, ../d2mr-theme.scss]
+    slide-number: c/t
+    width: 1600
+    height: 900
+    margin: .1
+    scrollable: true
+    incremental: false
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-line-numbers: true
+    code-copy: true
+    footer: "D2M-R Q1 | Week 1 Class 1" #  quarter, week, and class
+    logo: ""
+    chalkboard: true
+    multiplex: false
+editor: source
+execute:
+  echo: true
+  eval: false
+  warning: false
+  message: false
+---
+
+## Course
+
+### From Data to Manuscript in R - Quarter 1
+
+-   **PSYC/MAPS/MACS/CHDV 30550**
+-   **Course website:** [d2m-r.github.io](https://d2m-r.github.io/)
+-   **Textbook:** [Data to Manuscript in R](https://d2m-r.github.io/book/)
+
+## People
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Professor: Dr. Natalie Dowling
+
+-   **Preferred name:** Natalie or Dr. Dowling
+-   **Pronouns:** she/her
+-   **Email:** ndowling\@uchicago.edu
+-   **GitHub:** \@nrdowling
+-   **Office hours:**
+    -   1155 E 60th St, Rm 404
+    -   Thursdays 2-4pm by appointment - [book here]()
+    -   Email to set up an alternative meeting time
+:::
+    
+:::notes
+I genuinely don't care if you call me Natalie or Dr. Dowling. I'm perfectly happy with either, so do whatever feels comfortable for you.
+:::
+    
+::: {.column width="50%"}
+
+### Teaching Assistant: (NAME)
+
+-   **Preferred name:** ---
+-   **Pronouns:** ---
+-   **Email:** ---
+-   **GitHub:** \@---
+-   **Office hours:**
+    -   *location*
+    -   *day/time*
+:::
+
+:::
+
+# Syllabus
+
+## Expectations & Course Goals
+
+::: {.incremental}
+
+### D2M-R will give you:
+
+-   Familiarity with GitHub, R, RStudio, and Quarto markdown
+-   Actionable troubleshooting/debugging strategies
+-   Supports for maintaining a research project workflow
+-   Base tools for working with your own data
+
+### D2M-R will __*not*__ give you:
+
+-   Comprehensive expertise in the topics covered
+-   People to solve your problems for you
+-   Hand-holding or "correct" ways of working
+-   New knowledge of statistics or research design
+
+:::
+
+::: notes
+### D2M-R will give you:
+
+-   A basic knowledge of how to use GitHub, R, RStudio, Quarto/RMarkdown, and the tidyverse packages
+-   Strategies for how to identify and resolve bugs in the data-to-manuscript process
+-   Supports for establishing and maintaining a workflow within your project
+-   Tools to implement your own data analysis and visualization plans
+
+### D2M-R will __*not*__ give you:
+
+-   Comprehensive expertise in any of the tools or packages or depth in packages outside the tidyverse
+-   Instructors or classmates who solve your technical problems for you
+-   Accountability hand-holding or objectively "correct" ways of working
+-   New knowledge of statistics or research design practices
+:::
+
+## D2M-R Workflow
+
+::: incremental
+
+1.  Create and sync a GitHub repo and R project
+2.  Begin a full manuscript in a Quarto notebook (.qmd)
+3.  Use R scripts and chunks to read in, clean, and wrangle data
+4.  Source .R scripts for "background" needs
+5.  Analyze and visualize your data within your Quarto notebook 
+6.  Maintain a BibTeX file with all manuscript citations
+7.  Compose the manuscript narrative in your notebook
+8.  1-click knit your manuscript to a publishable file format
+9.  Dynamically update and maintain your manuscript
+
+:::
+
+::: notes
+
+1.  Create a GitHub repo and corresponding R Project that are always synced
+2.  Create an Quarto notebook (.qmd) that will become your full, complete, and final manuscript
+3.  Use .R scripts to wrangle and export data into intermediate datasets that you can then quickly read-in to your manuscript in a code chunk
+4.  Create and source .R scripts for "background" needs like functions and style
+5.  Analyze and visualize your data in code chunks within your Quarto notebook 
+6. Create and maintain a .bib file with all the material you may cite in your manuscript using BibTeX and R citation syntax
+7.  Write the narrative of your manuscript in your single, dedicated notebook file
+8.  Knit your manuscript to a publishable file format using pre-defined formatting and citation style
+9.  Dynamically update and maintain your manuscript
+
+:::
+
+## Quarter 1
+
+1.  **Create and sync a GitHub repo and R project**
+2.  **Begin a full manuscript in a Quarto notebook (.qmd)**
+3.  **Use R scripts and chunks to read in, clean, and wrangle data**
+4.  **Source .R scripts for "background" needs**
+5.  *First steps:* Analyze and visualize your data within your Quarto notebook </span>
+6.  <span class="text-blur">Maintain a BibTeX file with all manuscript citations</span>
+7.  <span class="text-blur">Compose the manuscript narrative in your notebook</span>
+8.  <span class="text-blur">1-click knit your manuscript to a publishable file format</span>
+9.  <span class="text-blur">Dynamically update and maintain your manuscript</span>
+
+# Course Policies: Overview
+
+[Review the syllabus on the course site for full policies!](.subtitle)
+
+## Communication: Slack
+
+- **Slack participation is required**
+    - Your first stop for support
+- Use the appropriate channels
+- Intended for peer collaboration
+    - Minimal instructor involvement
+    - Peer support is part of your grade
+- Direct messages:
+    - **Do not direct message instructors (including TAs).** 
+    - DMing with other students is permitted but not required
+    
+::: notes
+
+- **Slack participation is required**
+- Link to join our Slack channel is on Canvas
+- **THE** place outside of class to get help with nearly anything
+- Use the appropriate channel to request help
+    - Take your best guess if you're not sure where it goes
+- Intended for peer collaboration
+    - Instructors will moderate and answer questions when needed, *after* students have responded
+    - Collaborative engagement is part of your grade; you are expected to both seek and offer support to your classmates
+- You can DM and/or start private channels with classmates, but you are not required/expected to participate in private messaging
+- **Do not direct message instructors (including TAs).** 
+    - Email us.
+    - We will not respond to Slack DMs.
+
+:::
+
+
+## Communication: Email vs. Slack
+
+
+### Email
+
+- Private communication with professor/TAs
+- Topics that concern *you and only you*
+- Accommodation requests
+
+### Slack
+
+- Class-wide communication with instructors and students
+- Topics that may concern others, e.g.:
+    - Questions about course content
+    - Clarifications about grading policies
+    - Requests for support
+
+
+::: notes
+
+### Email
+
+- Private communication with professors or TAs
+- Use for personal matters, scheduling, or other private issues
+    - Topics that concern you and only you
+- Requests for accommodations
+
+### Slack
+
+- Class-wide communication with instructors and students
+- Topics that may concern others, e.g.:
+    - Questions about course content
+    - Clarifications about course policies
+    - Requests for troubleshooting and debugging support
+    - Really anything that might help another student if they saw it!
+- Optionally: Private communication with other students
+
+:::
+
+## Communication: Other
+
+- Attend office hours to ask questions in person
+    -   i.e. don't ask your "quick question" after class
+- Notice for absences is not required
+- Be cautious about disclosing personal information over email/Slack
+- The [student toolkit]() has a guide to help write emails
+    - Pro tip: Don't use chatGPT. It's super annoying.
+
+
+::: notes
+- Dr. Dowling's office hours are Thursdays 2-4pm by appointment
+    - Appointments are required -- [book here]()
+- *TA office hours information*
+- Call me either Natalie or Dr/Professor Dowling
+- You do not need to let us know if you will be missing class
+    - But you can reach out if you feel behind due to absences
+- Be cautious about disclosing personal information over email/Slack
+    - Remember you *never* need to share details about your health!
+- Stressed about emails? The [student toolkit]() has a guide to help you out
+    -   Side note: We can tell when you use chatGPT. It really doesn't look good. We'd rather get a kind of weird email from you than one of those "I kindly request" emails.
+- **Please do not line up to ask questions at the end of class.**
+    - Those "1-minute" questions add up
+    - That's what Slack is for
+:::
+    
+## Climate
+
+- View the class climate policy [here]().
+- Basically, just be cool, ok?
+- If you have problems with other students or the TA:
+    - Contact me first
+    - Escalate to [UChicago CARES](https://cares.uchicago.edu/)
+- If you have a problem with me:
+    - Discuss it with me directly *if you feel comfortable doing so*
+    - Bring it to [UChicago CARES](https://cares.uchicago.edu/)
+- **You can *always* go to CARES without going through me or anyone else first.**
+
+::: notes
+- View the class climate policy [here]().
+- But really just...be cool, ok?
+- We will all be kind, respectful, responsive, and supportive to one another in the classroom,
+on Slack, and all other interaction.
+- If you have problems with other students or the TA:
+    - Contact me first (if possible)
+    - If we can't resolve it contact [UChicago CARES](https://cares.uchicago.edu/)
+- If you have a problem with me
+    - Discuss it with me directly *if and only if you feel comfortable doing so*
+        - I never want to be the cause of discomfort for anyone! If you have feedback that can help me be a better instructor, I want to hear it.
+    - Bring it to [UChicago CARES](https://cares.uchicago.edu/)
+- You can *always* go to CARES without going through anyone else first, but my goal is
+to create a classroom climate where you feel comfortable talking to me about ways to create
+a more welcoming and respectful environment.
+:::
+
+## Accessibility & Accommodation
+
+
+- Requests for formal accommodations should go through Student Disability Services
+    - *Graduate students* need to request accommodation letters be sent to me
+    - You *never* need to disclose personal details to me or anyone outside SDS
+- Meet with me in office hours for informal accommodation requests
+    - Note: *All* arrangements must align with SDS policies for equity.
+- You must schedule a meeting with me before Friday Week 2 to integrate accommodations into your accountability plan
+    
+::: notes
+- Requests for formal accommodations should go through Student Disability Services
+    - SDS will send *undergraduate* accommodation letters to me automatically
+    - *Graduate students* need to ask SDS to send me a letter
+    - You *never* need to disclose personal details to me or anyone outside SDS
+- If you have an informal request for an accommodation, with me in office hours
+    - We can almost always work something out, but we need to follow SDS policies
+- After sending your letter, schedule a meeting with me to make an accommodation plan
+    - If you do need accommodations, you will factor your accommodation plan into your 
+    accountability plan (coming up in a couple slides)
+:::
+
+## Disclosing personal information
+
+**You are never required to disclose personal information to me or any instructors.** These guidelines are for all classes at UChicago, not just this one.
+
+You do *not* need to:
+
+- Share details about your health, disability, or reasoning for accommodations
+- Get a doctor's note for absences
+    - *Your instructor is not allowed to ask for one!*
+- Defend your need for accommodations
+
+You are an adult with priorities and the capacity for cost/benefit decision-making. You can decide what you want to share and with whom. If you need to miss class because you have terrible period cramps, are having a panic attack, are recovering from a migraine, think your roommate might have COVID, need to cram for an exam for a different class, are shamefully hung over, or just really don't wanna come to campus. You do not need to explain yourself to me or anyone else. Just take care of yourself, and take responsibility for effects on your learning and grades.
+
+This doesn't mean there are never consequences for missing class. You are responsible for keeping up with the material and assignments (per your accommodations, if applicable), and are subject to penalties defined by the syllabus.
+
+
+
+## Accountability Plan
+
+- **You create an assignment schedule for yourself.** 
+    - Defining your own goals is part of the research workflow
+    - This is part of *an explicit learning objective* and part of your grade
+- You will create a personal timeline and accountability plan for the quarter
+    - Checkpoints on Mondays of Weeks 3, 6, and 10 (see full syllabus)
+- Optionally: Base your plan on the suggested timeline in the [assignment instructions]()
+    - This is not supposed to feel overwhelming, so take advantage of this if it helps! 
+- SDS approved accommodations for extensions are built into your plan
+- **10%** of your final grade is based on your accountability plan, including:
+    - Meeting the 3 checkpoint deadlines for the plan itself (meta-deadlines)
+    - Meeting the deadlines you set for yourself
+    - Reflecting on your progress and making adjustments
+    - *Suggesting* a grade (of 10)
+
+::: notes
+- **You create an assignment schedule for yourself.** With very few exceptions, there are no top-down deadlines in this class. Why?
+    - This class is about developing and maintaining a research workflow
+    - A major part of that is learning how to set and meet your own deadlines
+    - Making your own plan and sticking to it *is part of the syllabus*
+- You will create a personal timeline and accountability plan for the quarter
+    - Initial plans are due by Monday of Week 3
+    - Revised plans and reflections are due by Monday of Week 6
+    - Final reflections are due Monday of Week 10 (finals week)
+- You can base your plan on the suggested timeline in the [assignment instructions]()
+    - Use the suggested plan without changes (great option of the idea of designing your own schedule feels overwhelming)
+    - Start with this plan and make adjustments
+    - Start from scratch!
+- If your SDS accommodations include extended deadlines, you will factor those into the plan
+    - i.e. We are using this plan to agree on extensions now. I will not grant extensions to the
+    planned extensions as we go.
+- **10%** of your final grade is based on your accountability plan, including:
+    - Meeting the actual deadlines that I have set for the plan itself
+    - Meeting the deadlines you set for yourself
+    - Reflecting on your progress and making adjustments to your plan
+    - *Suggesting* a grade (of 10) for how well you think you followed your plan
+:::
+
+
+## Academic Integrity: Overview
+
+- View the academic integrity policy [here]().
+- Plagiarism is bad. Cheating is bad. Don't do it.
+    - Why are you even here?
+- All written/textual content in your submitted assignments must be fully produced by you
+- Code may be produced with AI (or human) assistance with a full disclosure statement
+- Disclosure statements are required for *all submitted work*, even if you didn't use AI
+    - Access the statement template with more detailed requirements [here]()
+
+## Academic Integrity: Grading Penalties
+
+::: columns
+::: {.column width="50%"}
+You will *not* be penalized for (with disclosure):
+
+- Using AI to help you with *code*
+- Using code snippets from print or online resources
+- Co-writing *code* with classmates/other humans
+- Unintentionally crossing the line with AI *if it is fully disclosed*
+    - I will ask to you revise and resubmit without penalty
+
+:::
+
+::: {.column width="50%"}
+
+You *will* be penalized for:
+
+- Failing to disclose any of the above
+- Using AI to generate *text* for ANY submitted work
+- Using *text* written by any human other than you, including classmates
+    - Exceptions for some group projects may be granted, but must be requested in advance
+:::
+:::
+
+<span style="font-size: 1.2em; font-weight: bolder;">Submissions that do not follow these guidelines will receive a non-negotiable 0.</span>
+
+## Academic Integrity: You & AI
+
+::: columns
+::: {.column width="40%"}
+
+![The AIlephant in the room. This is DALL-E's best attempt at "An elephant with the letters A and I on its ears." Not very impressive, but I can't blame it too much. It wasn't a good pun to begin with.](../images/ai-lephant.png)
+
+<span style="font-size: .8em;">
+To see GPT's coding skills in action, watch [DougDoug force it to create Snake 2](https://www.youtube.com/watch?v=YnN6eBamwj4) (with mixed success).</span>
+:::
+::: {.column width="60%"}
+
+You should only be taking this class if you want to gain practical skills that will be useful to you outside of the class. 
+
+Hopefully you are using the class to make progress on a research project you are invested in. If you do not use AI wisely, you may not be "cheating" in a way that will hurt your grade, but you will be cheating yourself out of the reason you joined the class. If you don't care enough to actually learn the material yourself, this probably isn't the right class for you.
+
+You can read my [guide]() for what I personally believe are ethical and constructive uses of AI
+in higher education. 
+:::
+:::
+
+
+
+
+# Assessment & Grading
+
+
+
+## Q1 Learning Objectives: Broad
+
+- Organize and independently maintain a plan for project goals, timelines, and accountability
+- Develop and implement a research workflow using: 
+    - Git, GitHub, and version control
+    - RStudio, RMarkdown, and Quarto
+    - Base R and tidyverse packages
+- Learn and practice strategies for debugging and troubleshooting in the data-to-manuscript process
+- Learn and practice skills in data wrangling, analysis, and visualization
+- Apply skills to an independent project with your own^[Your Q1 final project may use publicly available data with approval.] data
+
+
+## Q1 Learning Objectives: Specific
+
+You earn points by demonstrating each of [##] specific learning objectives
+...
+
+
+
+## Grading Overview
+
+You start at 0 points and work up to 100. You don't start at 100 and lose points. Meeting minimum requirements will get you an 85, a B. Earning an A takes more than that.
+
+::: columns
+
+::: {.column width="40%"}
+
+### Minimum Requirements: 85 points
+
+- Submit, follow, and reflect on your accountability plan (10 points)
+- Engage with the community in the classroom and on Slack (10 points)
+- Demonstrate specific course objectives in unit projects (50 points)
+- Demonstrate specific course objectives in final project (15 points)
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="40%"}
+
+### Additional Engagement: 15 points
+
+- Provide exceptional peer support or other community engagement
+- Demonstrate mastery of course objectives at a higher level that strictly required
+- Add elements to projects that include self-directed learning
+
+Examples of what "additional engagement" might look like can be found [here]().
+
+:::
+:::
+

@@ -2,5 +2,12 @@ project:
   title: "slides"
   output-dir: docs
 
-
-
+website:
+  title: "d2m-r materials"
+  
+format:
+  html:
+    theme: 
+      - d2mr-theme.scss
+    #css: styles.css
+    toc: false
