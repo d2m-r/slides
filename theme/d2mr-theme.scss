@@ -432,13 +432,19 @@ h6 {
 @mixin no-top-margin-headings($container) {
   #{$container} {
     h1, h2, h3, h4, h5, h6 {
-      margin-top: 0;
+      margin-top: 100px;
     }
   }
 }
 
 @include no-top-margin-headings('.alert');
 @include no-top-margin-headings('.callout');
+
+
+///// Really alerts should use fake header text, because adding actual
+///// headings can glitch stuff out. This is more important for slides
+///// than books/sites, so I'm leaving this here. It's usable, but 
+///// just shouldn't be used.
 
 /// Make alert headings dependent on alert box background color
 $alert-colors: (
@@ -466,15 +472,18 @@ $alert-colors: (
   )
 );
 
+
 @each $name, $colors in $alert-colors {
   .alert-#{$name} {
     background-color: map-get($colors, bg);
 
+    // boosts specificity by listing full selector for each heading type
     h1, h2, h3, h4, h5, h6 {
-      color: map-get($colors, heading-color);
+      color: map-get($colors, heading-color) !important;
     }
   }
 }
+
 
 // Make headings inside alerts not be anchored or show up in the table of contents
 
@@ -892,14 +901,34 @@ pre > code.sourceCode > span {
     margin-left: 1em;
 }
 
-.reveal ul li {
-    margin-bottom: 0.5em;
+.reveal .slide ul li,
+.reveal .slide ol li {
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
     line-height: 1.4;
+}
+
+
+.reveal .tightlist ul {
+    margin-bottom: 0em !important;
+    margin-top: 0em !important;
+    margin-left: 0px !important;
+    line-height: 1.2 !important;
+    
+}
+
+.reveal .tightlist ul li {
+    margin-bottom: 0em !important;
+    margin-top: 0em !important;
+    margin-left: 0px !important;
+    line-height: 1.2 !important;
+    
 }
 
 .reveal ul li::marker {
     color: $accent1;
 }
+
 
 /* Dimming */
 
@@ -1001,16 +1030,33 @@ pre > code.sourceCode > span {
     }
 
 /* Emphasize important text */
-    .reveal strong {
-        color: var(--secondary-color);
-        font-weight: 700;
-    }
+.reveal strong {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+/* Emphasize keywords */
+.reveal .keyword {
+    background-color: lighten($accent1, 60%);
+    color: $accent1;    
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.reveal .critical {
+    background-color: lighten($danger, 45%);
+    color: $danger;    
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
 
 /* Package name styling */
     .reveal .pkg {
         background-color: lighten($accent3, 60%);
-            color: $accent3;
-            padding: 2px 6px;
+        color: $accent3;
+        padding: 2px 6px;
         border-radius: 4px;
         font-family: "Fira Code", Menlo, "Courier New", monospace;
         font-weight: 500;
