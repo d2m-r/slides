@@ -1,36 +1,36 @@
 ---
 title: "Git & GitHub"
-subtitle: "git, github, rstudio integration"
+subtitle: "version control, github, rstudio integration"
 date: "1/20/2026" # M/D/Y
 format:
   revealjs:
     theme: [default, ../theme/d2mr-theme.scss]
     include-in-header:
-        # Opt into some
       text: |
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
         <script type="text/javascript" src="../theme/bubbles.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     slide-number: c/t
     width: 1600
     height: 900
     margin: .1
+    margin-bottom: "120px"
     scrollable: true
-    incremental: false
+    incremental: true
     transition: slide
     background-transition: fade
     highlight-style: ../theme/d2mr-code-theme.theme
     code-line-numbers: true
     code-copy: true
-    footer: "D2M-R Q1 | Week 3" #  quarter, week, and class
+    footer: "D2M-R Q1 | Week 3"
     logo: ""
     chalkboard: true
     multiplex: false
 editor: source
 execute:
-  echo: true
-  eval: false
-  warning: false
-  message: false
+    echo: true
+    eval: false
+    warning: false
+    message: false
 ---
 
 ## Lecture planning
@@ -104,184 +104,368 @@ Git & GitHub Essentials Chapter
   1. Common issues
   2. Helpful resources
   3. The nuclear option
-    
+
+```{=html}
+<!-- 
+ASSETS NEEDED:
+- Git workflow diagram (commit, push, pull)
+- xckd/phdcomics/etc
+- Side-by-side renders
+    - README.md
+    - repo structure
+- Screenshots
+    - GitHub interface screenshots
+    - Merge conflict examples
+    - .gitignore file examples
+-->
+```
+
 ## Housekeeping {.smaller}
 
-This slide has smaller text
+-   **Accountability plans due TODAY**
+-   Make sure you have GitHub account created
+-   RStudio + Git setup: [happygitwithr.com](https://happygitwithr.com/)
+-   Practice from last week: How's your RStudio customization going?
 
-- Housekeeping
-- and
-- announcements
-- without
-- animation 
+# Why Version Control?
 
-## Housekeeping {.bigger}
+## Final_NDrevisions-finalmarch22_FINALFINAL.docx
 
-This slide has bigger text
- 
-- at least
-- I hope so 
+![PhD Comics: "FINAL".doc](../images/comics-memes/phd-comics-finaldoc.gif)
 
-# New Main Section
+## Version Control Basics
 
-## Simple Bulleted Slide
+<!-- allow column grid to overlap vertically with the title space -->
+:::::::: {.container-fluid style="margin-top: -3em;"}
+::::::: row
+:::::: {.col-5 style="padding-top: 3em;"}
 
-::: {.fragment .dimmable}
-A top-level line that will be dimmed at first.
+-   **Minimally:**
+    -   **What changed?**
+        -   additions, deletions, modifications
+    -   **When?**
+        -   timestamp for each change
+    -   **Who changed what**
+        -   track author contributions in collaborative work
+    -   **Revert changes**
+        -   go back to any previous version instantly
+
+::::::
+:::::: {.col-7}
+
+![Google Doc version history](../images/screenshots/google-doc-version-history.png)
+::::::
+:::::::
+::::::::
+
+
+::: notes
+"version control" is basically a system for keeping track of changes to files over time. A very simple and user-friendly version control system is what you'll find in the "version history" of edits on a google doc.
 :::
 
-With a [link](index.html).
+## Git Version Control
 
-### A Third Level Heading
+<!-- allow column grid to overlap vertically with the title space -->
+:::::::: {.container-fluid style="margin-top: -3em;"}
+::::::: row
+:::::: col-7
 
-::: {.incremental}
--   First level point
-  -  Second level point
-    -   Third level point
-    -   Third level point 2
--   First level point 2
+<!-- nested container for text -->
+::::: container-fluid
+
+:::: row
+::: {.col-12 style="padding-top: 3em;"}
+[Git]{.keyword} is a robust version control system designed for text-based files
+:::
+::::
+
+<!-- columns --> 
+:::: row
+::: {.col-3 .tightlist}
+-   **All the basics:**
+    -   What?
+    -   When?
+    -   Who?
+    -   Revert!
+    
+:::
+
+::: {.col-9 .tightlist}
+-   **Plus:**
+    -   **Which change is this?**
+        -   unique IDs for every revision
+    -   **Why did it change?**
+        -   commit messages explain purpose
+    -   **Branch and merge**
+        -   work on multiple features simultaneously
+    -   **Backup**
+        -   project ("repository") history lives in multiple places
+    -   **Asynchronous collaboration**
+        -   identify and resolve conflicting changes
+    -   **Integration**
+        -   with IDEs (e.g., RStudio) and cloud services (e.g., GitHub)
+        
+:::
+::::
+
+:::::
+<!-- end nested container -->
+::::::
+
+:::::: col-5
+![Git commit history](../images/screenshots/github-commit-history.png){style="height: 1200px"}
+::::::
+:::::::
+::::::::
+
+::: notes
+Version control is like having a complete backup of every version of your project, plus a detailed log of what changed and why. It's not just for programmers - anyone who works with files that change over time benefits.
+:::
+
+## Git ≠ GitHub
+
+::::: {.container-fluid}
+
+:::: row
+::: {.col-12 .fragment}
+[GitHub]{.keyword} is a web-based platform for hosting public and private Git repositories. It is designed to promote code sharing and collaboration, but very useful for individuals, too.
+
+GitHub and Git are related, but not the same thing.
+
+:::
+::::
+
+:::: row
+::: {.col-4 .fragment}
+
+### Git
+-   **Version control system**
+-   Tracks changes in metadata files
+-   Your files + metadata files = project [repository]{.keywork} (aka "repo")
+-   Repos stored locally on your computer
+-   Works offline
+-   Free & open source
+-   *The* standard for version control
+:::
+
+::: col-4
+
+![](../images/branded/octocat.png)
+:::
+
+::: {.col-4 .fragment}
+### GitHub
+
+-   **Web-based hosting service**
+-   Cloud storage for Git repositories
+-   All repo contents, full history, additional features
+-   User-friendly web interface for Git
+-   Collaboration tools
+-   Free and paid features
+-   *One* of many Git hosting services
+:::
+
+::::
+:::::
+
+::: notes
+Education users (anyone with a .edu address) can access premium features for free.
+
+**Analogy:** Git is like a local photo album, GitHub is like posting photos to Instagram.
+
+Git does the version control work on your computer. GitHub is just one place to store and share your Git repositories online. There are alternatives like GitLab, Bitbucket, etc.
+:::
+
+# Git Fundamentals
+
+## Git Vocabulary
+
+Not all of these are essential at the start, but you should quickly get comfortable with [the ones highlighted in red]{.critical}.
+
+::::: container-fluid
+
+:::: row
+
+::: {.col-6 .fragment .tightlist}
+
+### Repo-level 
+
+-   **[Repository]{.critical} or [repo]{.critical}** 
+    - **a project folder tracked by Git**
+-   [init]{.keyword} 
+    - initialize a new Git repository
+-   **[clone]{.critical}**
+    - **create your own personal copy of an existing repository**
+-   [fork]{.keyword} 
+    - copy a repository keeping a connection to the original
+-   [branch]{.keyword} 
+    - create your own temporary line of work in a repo
+-   [checkout]{.keyword} 
+    - switch between branches in a repo
 
 :::
 
+::: {.col-6 .fragment .tightlist}
 
-## Code Slide
+### File-level
 
-Introductory content:
+-   **[commit]{.critical}**
+    - **save a snapshot of changes with a descriptive message**
+-   [fetch]{.keyword}
+    - get latest changes from remote repo without merging
+-   [merge]{.keyword}
+    - combine changes from different branches
+-   **[pull]{.critical} **
+    - **get latest changes from remote repo (=fetch+merge)**
+-   **[push]{.critical}**
+    - **send your commits to remote repo**
+-   [merge conflict]{.keyword}
+    - conflicting changes that need manual resolution
 
-```{r}
-#| echo: true
-#| eval: false
- 
-# Define class name
-class_name <- "D2M-R"
+:::
+::::
 
-# Print a message with the variable
-paste("Hello", class_name)
+:::: row
+::: col-12
+::: {.callout-note .fragment}
 
+### More to look for on your own
+
+diff, stash, rebase, tag, cherry-pick, revert, reset, HEAD, remote, origin, upstream
+
+:::
+:::
+::::
+
+:::::
+
+
+::: notes
+Repo: A directory (i.e., folder) the holds all documents and document edits associated with a project
+Init: Initializing a repo, making an existing directory ready to work with git (RStudio will do this for you)
+Clone: Copy an existing repository, creating a fully distinct and separate repo that you own and control
+Fork: Copy an existing repository, maintaining a connection to the original; you have full control over your fork, but not the original repo
+Branch: Create an isolated segment of a repo (that you own), so that you can make many changes before combining it back with the original (for collaboration) 
+Checkout: Swap between different branches of a repo
+
+Commit: A snapshot of changes in the repo; documented with an informative note left for posterity called a commit message
+
+Pull: Synchronizing your local repo with latest changes from a remote server (like Github)
+
+Push: Sending your commits (and the changed docs) from your local repo to the remote server
+
+Diff: The process run by git comparing and combining old and new files when you push changes
+
+Merge: The resulting process of a diff, where multiple versions of a file are intelligently combined 
+
+Merge conflict: Error (recognized in the diff) where multiple changes to any single line of text can’t be automatically resolved and require user decisions
+
+:::
+
+## The Basic Git(Hub) Workflow
+
+1. **Pull changes** 
+    - Every time you sit down to work, before doing anything else
+2. **Commit changes**
+    - Very frequently!
+    - Any time you've made a "nameable" change
+    - Use brief, informative commit messages
+3. **Push changes**
+    - Don't forget to commit first
+    - Every time you pause or complete a work session
+
+<!-- TODO: find/create workflow diagram -->
+
+::: notes
+This means you should have way more commits than pushes. Each commit is a snapshot of your project at a specific point in time. Pushing sends all your committed changes to GitHub.
+:::
+
+## Git in the Command Line / Terminal
+
+Local git repos are managed through the command line (Terminal on Mac, Git Bash on Windows). The process of sitting down to work, pulling from an upstream repo, making a few changes, adding those edited files to the staging area, committing with a brief commit message, and then pushing to upstream at the end of your work session might look something like this:
+
+``` bash
+cd repos/d2m-r/slides
+git pull origin main
+## at this point make changes to files in RStudio or wherever
+git add .
+git commit -m "Create first draft for GitHub lecture"
+git push origin main
 ```
- 
-**More information** about the code above.
 
+## Git in RStudio
 
-## Bubbles from the bottom
+In D2M-R, you'll interact with Git through RStudio rather than Terminal or Command Prompt. 
 
+You'll mostly use the Git pane, which gives you a pretty user-friendly interface for the same commands you would run in the terminal.
 
-::: bubble-chain
-  <p class="bubble-left fragment">Students ask? Students ask?Students ask?Students ask?Students ask? Students ask? Students ask? Students ask? Students ask?Students ask? </p>
-  <p class="bubble-right fragment">And I respond!</p>
+<!-- ![RStudio Git Pane](../images/rstudio-git-pane.png) -->
+
+But you can also use the Terminal tab in RStudio to run git commands directly, exactly as you would in a standalone terminal.
+
+You'll need this for more advanced tasks like resolving merge conflicts, but you can always opt to use it instead of the interface if you prefer.
+
+## Commits: Snapshots in Time
+
+A [commit]{.keyword} is the metadata associated with a change.
+
+::::: container-fluid
+:::: row
+::: col-6
+
+``` bash
+commit a3d2f1b
+Author: Natalie Dowling <ndowling@uchicago.edu>
+Date: Mon Jan 20 14:30:15 2026
+    
+    Add data cleaning script for survey responses
+    
+    - Remove duplicate entries
+    - Standardize column names  
+    - Handle missing values in age variable
+```
+
 :::
+::: col-6
 
-This slide has speech bubbles that pop in after all content has been covered.
-
-The container is anchored at the bottom of the page, and the tails point downward.
-
-
-- Left bubbles, in blue, are things I hear commonly from students
-- Right bubbles, in red, are my responses
-
-
-
-
-## Bubbles from the top
- 
-On this slide, things are a little different:
-
-- The container is anchored to the top of the content section. 
-- Bubbles are mirrored vertically with tails pointing up.
-
-::: {.bubble-chain .top}
-  <p class="bubble-left fragment">Students ask - UP TOP?</p>
-  <p class="bubble-right fragment">And I respond, also up top!</p>
+``` bash
+commit UNIQUE ID HASH
+Author: YOUR NAME <YOUR@EMAIL.ADDRESS>
+Date: FULL DATE & TIMESTAMP
+    
+    ONE LINE SUMMARY OF CHANGE(S)
+    
+    - OPTIONAL
+    - DESCRIPTIVE
+    - DETAILS
+```
 :::
- 
- 
-## Callouts
-
-::: {.callout}
-Call-outs can be used without additional class features.
-:::
-
-::: {.callout-tip}
-Tip: Use call-outs to highlight important information.
-:::
-
-::: {.callout-note}
-
-## You can change the callout header from the default
-
-Note: These are examples of call-outs.
-:::
-
-::: {.callout-important}
-Important: Don't forget to use call-outs!
-:::
-
-::: {.callout-warning}
-Warning: You have used too many callouts
-:::
-
-
-## Columns
-
-:::: {.columns}
-
-::: {.column width="20%"}
-**tibble**  
-reimagine the dataframe!
-:::
-
-::: {.column width="20%"}
-**readr**  
-easily import and export tabular data
-:::
-
-::: {.column width="20%"}
-**dplyr**  
-a grammar of data manipulation
-:::
-
-::: {.column width="20%"}
-**tidyr**  
-tidy your messy data
-:::
-
-::: {.column width="20%"}
-**ggplot2**  
-a grammar of graphics
-:::
-
 ::::
 
-:::: {.columns .fragment}
+:::: row
+::: {.col-6 .fragment}
 
-::: {.column width="25%"}
-**purrr**  
-enhancements for R's functional programming
+### Good commit messages:
+
+-   Describe *what* and *why*, not *how*
+-   Start with a present tense verb ("Add", "Fix", "Update")
+-   First line under 50 characters
+
 :::
 
-::: {.column width="25%"}
-**stringr**  
-simplify working with strings
+::: {.col-6 .fragment}
+### Bad commit messages:
+-   Vague ("Fix stuff", "Updates")
+-   Uninformative ("Friday afternoon commit")
+-   Cover way too many or unrelated changes
 :::
-
-::: {.column width="25%"}
-**forcats**  
-simplify working with factors
-:::
-
-::: {.column width="25%"}
-:::
-
 ::::
+:::::
 
-## Inline Styling
 
-You can style things like:
 
-- **bold text**
-- *italic text*
-- ~~strikethrough text~~
-- [links]()
-- `inline code`
-- [function_names]{.func}
-- [package_names]{.pkg}
+
+
+::: notes
+
+:::
