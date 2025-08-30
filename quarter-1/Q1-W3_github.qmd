@@ -463,6 +463,19 @@ Date: FULL DATE & TIMESTAMP
 :::::
 
 
+::: {.callout-warning .fragment .bigger style="position: absolute; width: 70%; left: 0; right: 0; top: 0; margin: 0 auto; z-index:999;"}
+
+### A shameful confession
+
+
+I am a total hypocrite and rarely follow these "good" and "bad" guidelines. The longer I work, the more likely my commit messages devolve into `oops i broke the kid data but the adult glms work now` or `omg i can't anymore here are some broken plots fix this later or don't i don't care` or `i need a drink` (These are actual commits from my actual repos. I'm not proud.)
+
+Present-me is often pretty frustrated with past-me's choices, but I can't pretend that I don't also find it entertaining and humanizing. (You'd think I wouldn't need to humanize myself *to myself*, wouldn't you? You'd be wrong.)
+
+While I encourage you to do as I say, not as I do, what actually matters is that you **1) commit often** and 2) write **messages that make sense** to anyone who has to read them (including, hopefully, future you).
+
+
+:::
 
 
 
