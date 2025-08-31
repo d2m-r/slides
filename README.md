@@ -12,23 +12,23 @@ Complementary materials are found in class's GitHub organization: [github.com/d2
 
 ## Active to-do
 
-** Git & GitHub slides **
+**Git & GitHub slides**
 
-[ ]  Content drafting
-  [x]  version control
-  [x]  git
-  [x]  github (vs git)
-  [x]  vocab & workflow
-  [x]  commits
-  [ ]  gitignore
-  [ ]  readmes
-  [ ]  github w/ rstudio
-  [ ]  repo structures & hygiene
-  [ ]  merge conflicts and githell
-[ ]  Images/assets
-  [ ]  readme rendering
-  [ ]  version control screenshots
-  [ ]  workflow diagram
+- [ ]  Content drafting
+  - [x]  version control
+  - [x]  git
+  - [x]  github (vs git)
+  - [x]  vocab & workflow
+  - [x]  commits
+  - [ ]  gitignore
+  - [ ]  readmes
+  - [ ]  github w/ rstudio
+  - [ ]  repo structures & hygiene
+  - [ ]  merge conflicts and githell
+- [ ]  Images/assets
+  - [ ]  readme rendering
+  - [ ]  version control screenshots
+  - [ ]  workflow diagram
 
 ## Repo structure
 
