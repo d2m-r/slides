@@ -8,7 +8,27 @@ Complementary materials are found in class's GitHub organization: [github.com/d2
 
 ## Development
 
-2025-08-31 - Repo structure in place, including simple index page and theming includes. Placeholer qmd presentations for most weeks. 
+**2025-08-31:** Repo structure in place, including simple index page and theming includes. Placeholer qmd presentations for most weeks. 
+
+## Active to-do
+
+** Git & GitHub slides **
+
+[ ]  Content drafting
+  [x]  version control
+  [x]  git
+  [x]  github (vs git)
+  [x]  vocab & workflow
+  [x]  commits
+  [ ]  gitignore
+  [ ]  readmes
+  [ ]  github w/ rstudio
+  [ ]  repo structures & hygiene
+  [ ]  merge conflicts and githell
+[ ]  Images/assets
+  [ ]  readme rendering
+  [ ]  version control screenshots
+  [ ]  workflow diagram
 
 ## Repo structure
 
@@ -44,3 +64,7 @@ d2m-r/slides/
 ```
 
 *File tree styled using [tree.nathanfriend.com](tree.nathanfriend.com).*
+
+### Contact
+
+D2M-R materials developed by Natalie Dowling. Contact ndowling - at - uchicago - dot - edu.
