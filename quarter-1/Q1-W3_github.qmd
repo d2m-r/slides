@@ -222,6 +222,19 @@ ASSETS NEEDED:
 Version control is like having a complete backup of every version of your project, plus a detailed log of what changed and why. It's not just for programmers - anyone who works with files that change over time benefits.
 :::
 
+## Git Repositories
+
+A [repository]{.keyword} (or "repo") is a project folder tracked by Git. Everything Git does is centered around repos.
+
+Any folder on your computer can be turned into a Git repository (i.e. "initialized"), but a well-organized repo typically includes a few key components:
+
+-   Project files (e.g., scripts, data, documents)
+-   Metadata files (hidden files and directories that Git uses to manage version control)
+-   Bespoke files like `README.md`, `.gitignore`, and `.yml` files (more on these later)
+
+Git repos can be local (on your computer) or remote (hosted on a server like GitHub).
+
+
 ## Git ≠ GitHub
 
 ::::: {.container-fluid}
@@ -274,6 +287,44 @@ Education users (anyone with a .edu address) can access premium features for fre
 **Analogy:** Git is like a local photo album, GitHub is like posting photos to Instagram.
 
 Git does the version control work on your computer. GitHub is just one place to store and share your Git repositories online. There are alternatives like GitLab, Bitbucket, etc.
+:::
+
+## GitHub Features
+
+::::: {.container-fluid}
+:::: row
+::: {.col-5 .fragment}
+
+In this class we'll use GitHub to:
+
+-   Maintain all class materials
+-   Create and share your own code and projects
+-   Practice git and GitHub skills
+-   Collaborate on group projects
+
+:::
+
+::: {.col-7 .fragment}
+
+But GitHub offers many more features, including:
+
+-   **Issues** to track tasks, enhancements, and bugs
+-   **Pull requests** to propose and discuss changes before integrating them into the main project
+-   **GitHub Pages** to host websites directly from a repository
+    -   like the class site!
+-   **GitHub Copilot** to assist with code generation and suggestions
+-   **Actions** to automate workflows
+-   **Projects** to organize and prioritize work
+-   **Codespaces** to provide cloud-based development environments
+
+:::
+::::
+:::::
+
+::: notes
+
+Some of these extras you'll be able to play around with during this course, but they won't be explicitly part of the syllabus. Developing familiarity with these features can contribute to the engagement portion of your grade.
+
 :::
 
 # Git Fundamentals
@@ -362,6 +413,127 @@ Merge conflict: Error (recognized in the diff) where multiple changes to any sin
 
 :::
 
+## Commits: Snapshots in Time
+
+A [commit]{.keyword} is the metadata associated with a change.
+
+::::: container-fluid
+:::: row
+::: col-6
+
+``` bash
+commit a3d2f1b
+Author: Natalie Dowling <ndowling@uchicago.edu>
+Date: Mon Jan 20 14:30:15 2026
+    
+    Add data cleaning script for survey responses
+    
+    - Remove duplicate entries
+    - Standardize column names  
+    - Handle missing values in age variable
+```
+
+:::
+::: col-6
+
+``` bash
+commit UNIQUE ID HASH
+Author: YOUR NAME <YOUR@EMAIL.ADDRESS>
+Date: FULL DATE & TIMESTAMP
+    
+    ONE LINE SUMMARY OF CHANGE(S)
+    
+    - OPTIONAL
+    - DESCRIPTIVE
+    - DETAILS
+```
+:::
+::::
+:::::
+
+## Commit Messages: Best Practices
+
+::::: container-fluid
+:::: row
+::: {.col-6 .fragment}
+
+### Good commit messages:
+
+-   Describe *what* and *why*, not *how*
+-   Start with a present tense verb ("Add", "Fix", "Update")
+-   First line under 50 characters
+
+::: fragment
+```md
+Add data cleaning script for survey responses
+
+Move glms out of qmd into a separate script
+
+Start zero-drafting methods
+```
+:::
+
+:::
+
+::: {.col-6 .fragment}
+### Bad commit messages:
+-   Vague 
+-   Uninformative
+-   Cover way too many or unrelated changes
+
+::: fragment
+```md
+Updates to data
+
+Friday afternoon commit
+
+data cleaning script, move glms, start methods, fix typos, add bibliography
+```
+:::
+:::
+::::
+
+:::: row
+::: col-12
+::: {.callout-warning .fragment}
+
+### A shameful confession
+
+
+I am a total hypocrite and rarely follow these "good" and "bad" guidelines. The longer I work, the more likely my commit messages devolve into `oops i broke the kid data but the adult glms work now` or `omg i can't anymore here are some broken plots fix this later or don't i don't care` or `i need a drink`. 
+
+These are actual commits from my actual repos. I'm not proud. Present-me is often pretty frustrated with past-me's choices, but I can't pretend that I don't also find it entertaining and humanizing. (You'd think I wouldn't need to humanize myself *to myself*, wouldn't you? You'd be wrong.)
+
+While I encourage you to do as I say, not as I do, what actually matters is that you 1) **commit often** and 2) write **messages that make sense** to anyone who has to read them (including, hopefully, future you).
+
+:::
+:::
+::::
+:::::
+
+
+<!-- ::: {.callout-warning .fragment .bigger style="position: absolute; width: 70%; left: 0; right: 0; top: 0; margin: 0 auto; z-index:999;"} -->
+
+<!-- ### A shameful confession -->
+
+
+<!-- I am a total hypocrite and rarely follow these "good" and "bad" guidelines. The longer I work, the more likely my commit messages devolve into `oops i broke the kid data but the adult glms work now` or `omg i can't anymore here are some broken plots fix this later or don't i don't care` or `i need a drink` (These are actual commits from my actual repos. I'm not proud.) -->
+
+<!-- Present-me is often pretty frustrated with past-me's choices, but I can't pretend that I don't also find it entertaining and humanizing. (You'd think I wouldn't need to humanize myself *to myself*, wouldn't you? You'd be wrong.) -->
+
+<!-- While I encourage you to do as I say, not as I do, what actually matters is that you **1) commit often** and 2) write **messages that make sense** to anyone who has to read them (including, hopefully, future you). -->
+
+
+<!-- ::: -->
+
+
+
+::: notes
+
+:::
+
+
+
 ## The Basic Git(Hub) Workflow
 
 1. **Pull changes** 
@@ -405,80 +577,223 @@ But you can also use the Terminal tab in RStudio to run git commands directly, e
 
 You'll need this for more advanced tasks like resolving merge conflicts, but you can always opt to use it instead of the interface if you prefer.
 
-## Commits: Snapshots in Time
 
-A [commit]{.keyword} is the metadata associated with a change.
+# Git Project Components
 
-::::: container-fluid
+What literally goes in your git repo?
+
+## Repository Structure
+
+A typical Git repository includes:
+
+-   **Project files**
+    -   The actual content of your project (e.g., scripts, data, documents), organized in a logical folder structure
+-   **Metadata files**
+    -   Hidden files and directories (like `.git/`) that Git uses to manage version control
+-   **README.md**
+    -   A markdown file that provides an overview of the project, instructions for use, and other relevant information
+-   **.gitignore**
+    -   A text file that specifies which files or directories Git should ignore
+-   **Configuration files** (as needed)
+    -  Things like `.yml` options, bibliography files, themes, etc.
+
+
+## Repo Structure: Example 1
+
+My preferred structure for a Quarto manuscript project:
+
+::::: {.container-fluid}
 :::: row
-::: col-6
+::: {.col-6 .tightlist .fragment}
 
-``` bash
-commit a3d2f1b
-Author: Natalie Dowling <ndowling@uchicago.edu>
-Date: Mon Jan 20 14:30:15 2026
-    
-    Add data cleaning script for survey responses
-    
-    - Remove duplicate entries
-    - Standardize column names  
-    - Handle missing values in age variable
-```
+### Project file directories
 
-:::
-::: col-6
-
-``` bash
-commit UNIQUE ID HASH
-Author: YOUR NAME <YOUR@EMAIL.ADDRESS>
-Date: FULL DATE & TIMESTAMP
-    
-    ONE LINE SUMMARY OF CHANGE(S)
-    
-    - OPTIONAL
-    - DESCRIPTIVE
-    - DETAILS
-```
-:::
-::::
-
-:::: row
-::: {.col-6 .fragment}
-
-### Good commit messages:
-
--   Describe *what* and *why*, not *how*
--   Start with a present tense verb ("Add", "Fix", "Update")
--   First line under 50 characters
+1. `/localonly`: only present in your local R Project, listed in your .gitignore and never synced to github
+2. `/data`: .csv/tabular data files for all raw or intermediate datasets read into in your .qmd, optional `/raw` subfolder for raw data read (only) into unsourced R scripts
+3. `/source`: .R scripts to be called in an early chunk of your .qmd, e.g., stylistic preferences, functions, minor data wrangling
+4. `/images`: exported figures and any image files to read-in to your R Markdown manuscript
+5. `/_extensions`: auto-generated or installed Quarto extensions, like apaquarto
 
 :::
 
-::: {.col-6 .fragment}
-### Bad commit messages:
--   Vague ("Fix stuff", "Updates")
--   Uninformative ("Friday afternoon commit")
--   Cover way too many or unrelated changes
+::: {.col-6 .tightlist .fragment}
+
+### Top-level files
+
+1. `README.md`: project overview, repo structure, to-do list, etc.
+2. `.gitignore`: starting from the R .gitignore template
+3. `project-manuscript.qmd`: the home of your eventual publication 
+4. `bibliography.bib`: a plain-text file containing all the BibTeX entries cited in your manuscript
+5. `yourCitationStyle.csl`: the script used to format in-text and bibliography citations when knitting
+
 :::
 ::::
 :::::
 
 
-::: {.callout-warning .fragment .bigger style="position: absolute; width: 70%; left: 0; right: 0; top: 0; margin: 0 auto; z-index:999;"}
-
-### A shameful confession
-
-
-I am a total hypocrite and rarely follow these "good" and "bad" guidelines. The longer I work, the more likely my commit messages devolve into `oops i broke the kid data but the adult glms work now` or `omg i can't anymore here are some broken plots fix this later or don't i don't care` or `i need a drink` (These are actual commits from my actual repos. I'm not proud.)
-
-Present-me is often pretty frustrated with past-me's choices, but I can't pretend that I don't also find it entertaining and humanizing. (You'd think I wouldn't need to humanize myself *to myself*, wouldn't you? You'd be wrong.)
-
-While I encourage you to do as I say, not as I do, what actually matters is that you **1) commit often** and 2) write **messages that make sense** to anyone who has to read them (including, hopefully, future you).
-
-
-:::
-
-
-
 ::: notes
 
+Not everything is needed for every project. For example, extensions like apaquarto will create and store a .csl file within the extension files; you won't see it in your top-level directory.
+
+For the kind of Quarto project we're focusing on in this class, you will always have **exactly 1 .qmd** file, which is the manuscript itself. It lives in the top level directory alongside your readme and gitignore.
+
 :::
+
+## Repo Structure: Example 2
+
+A simple, generic project:
+
+```         
+my-research-project/
+├── README.md
+├── my-project.Rproj  
+├── .gitignore
+├── data/
+│   ├── raw/                # Original data (maybe not in Git)
+│   └── processed/          # Cleaned data  
+├── scripts/
+│   ├── 01_clean.R          # Numbered workflow
+│   ├── 02_analyze.R
+│   └── functions.R         # Reusable functions
+├── outputs/
+│   ├── plots/
+│   └── tables/
+└── docs/
+│   └── analysis.qmd        # Main report
+├── localonly/              # LISTED IN YOUR .GITIGNORE
+    └── protected-data/     # ONLY EXISTS ON YOUR COMPUTER, NOT GITHUB
+```
+
+## Hidden files and directories
+
+Repos and R Projects will also include some hidden files and directories
+
+- `.git/` - Git metadata, what makes Git work
+- `.Rproj.user/` - RStudio project settings
+- `.quarto/` - Quarto project settings
+
+You won't interact with these directories directly, and you won't see them in RStudio or on GitHub.
+
+You may also have other hidden files, for example:
+
+- `.Rproj`
+- `.RData`
+- `.Rhistory`
+- `.DS_Store`  
+
+You won't interact with these either but they won't always be fully hidden in every interface. You can add them to your `.gitignore` file so they don't clutter up your repo.
+
+
+## README.md
+
+::::: {.container-fluid style="max-width: 40%; margin-left: 0; margin-right: auto;"}
+
+A `README.md` file provides a project overview. It is typically the first thing someone sees when they visit your repository on GitHub.
+
+-   Simple markdown (`.md`) document
+-   What you see rendered on a repo's GitHub page
+-   Can do lots of things, but should at a minimum describe:
+    -   Purpose of the repo
+    -   Dataset(s)
+    -   Repo structure
+    -   Any relevant licensing, restrictions, or citations
+
+:::::
+
+<!-- right-aligned, stacked images -->
+::::: {.container-fluid style="position: absolute; width: 60%; right: -100px; top: -100px; bottom: -100px; margin: auto;"}
+
+![](../images/screenshots/readme-md.png){style="width: 100%"}
+
+![](../images/screenshots/readme-html.png){style="width: 100%"}
+:::::
+
+## .gitignore: what
+
+::::: container-fluid
+:::: row
+::: {.col-6 .fragment}
+
+A `.gitignore` file tells Git which files and directories to ignore when comparing differences between versions.
+
+-   Plain text file w/out extension
+-   Files & folders that should be excluded from all git processes
+-   Matched on strings in file/folder names, including wildcard characters and simplified regex
+-   [View documentation](https://git-scm.com/docs/gitignore)
+
+:::
+
+::: {.col-6}
+
+![](../images/screenshots/gitignore.png)
+
+:::
+::::
+:::::
+
+## .gitignore: why
+
+::: {.alert .alert-danger}
+
+**Not everything belongs online.**
+
+:::
+
+-   [**PRIVACY.**]{style="color: #A4343A;"}
+    -   **Do not upload anything with sensitive or identifiable information.**
+    -   It is your responsibility to follow your IRB.
+-   **Security**
+    - passwords, security keys, login tokens
+-   **Bloat**
+    -   Git is designed for text files
+    -   Large files push *very* slowly and can cause RStudio to hang
+    -   Some files are regenerated automatically
+-   **Conflict**
+    -   "behind the scenes" files that actually interact with local, git, or R processes will conflict for baffling reasons (sort of a technological observer effect)
+
+
+
+## .gitignore: how
+
+::: {.row .narrowlist}
+::: {.col-4 .fragment}
+
+**Optionally start with [a template](https://github.com/github/gitignore/blob/main/R.gitignore)** then:
+
+-   Use informative `# comments`
+-   Protect private data in a `localonly/` folder
+    -   Dedicated place for anything you need to keep offline that the .gitignore might not explicitly catch
+    -   Good place to keep deanonymized datasets instead of trusting yourself to remember to add them to the .gitignore
+-   Ignore files/folders 
+    - Matching the name: `data/raw/sensitive_data.csv`, `topsecret/`
+    -   Using wildcards: `*.pdf`, `no-git_*`
+
+::: 
+
+::: {.col-4 .fragment}
+
+**Ignore large files**
+
+-   Media files: e.g, `*.png`, `*.jpg`, `*.mp4`
+    -   tend to be very large, often contain sensitive info
+-   Presentation files: e.g., `*.pptx`, `*.key`
+    -   not necessary for reproducibility, often large
+-   Specialized and raw files: e.g, `*.bdl`, `*.ear`, `*.mgh`
+    -   data needs to be tabular eventually anyway
+
+:::
+
+::: {.col-4 .fragment}
+
+**Ignore auto-generated files**
+
+-   System files: e.g., `*.DS_Store`, `*.RData`, `*.Rhistory`
+    -   platform-specific, or not text-based
+-   Process files: e.g., `*.log`, `*.aux`, `*.out`
+    -   should be deleted after success but can stick around if knitting fails
+-   Compiled files: e.g., `*.pdf`, `*.docx`, `*.html`
+    -   recreated every time you knit
+
+:::
+:::
+

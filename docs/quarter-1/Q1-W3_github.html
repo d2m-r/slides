@@ -96,7 +96,7 @@
     code span.vs { color: #6a3d9a; } /* VerbatimString */
     code span.wa { color: #842222; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Q1-W3_github_files/libs/revealjs/dist/theme/quarto-ae58f5a676acc0cf784e3b1599c2709e.css">
+  <link rel="stylesheet" href="Q1-W3_github_files/libs/revealjs/dist/theme/quarto-635ec22a412266463e2b7384355a8fe0.css">
   <link href="Q1-W3_github_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Q1-W3_github_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Q1-W3_github_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -191,8 +191,8 @@
       margin-right: 0; 
     }
   </style>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script type="text/javascript" src="../theme/bubbles.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -200,7 +200,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Git &amp; GitHub</h1>
-  <p class="subtitle">git, github, rstudio integration</p>
+  <p class="subtitle">version control, github, rstudio integration</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -211,273 +211,862 @@
 <h2>Lecture planning</h2>
 <p>Git &amp; GitHub Essentials Chapter</p>
 <ol type="1">
-<li>Introduction – the point of version control</li>
-<li>Git</li>
-<li>Overview &amp; workflow musts</li>
-<li>Git lingo 1. Repositories
+<li class="fragment">Introduction – the point of version control</li>
+<li class="fragment">Git</li>
+<li class="fragment">Overview &amp; workflow musts</li>
+<li class="fragment">Git lingo 1. Repositories
 <ol type="1">
-<li>repository / repo</li>
-<li>initialize</li>
-<li>clone</li>
-<li>branch &amp; checkout
+<li class="fragment">repository / repo</li>
+<li class="fragment">initialize</li>
+<li class="fragment">clone</li>
+<li class="fragment">branch &amp; checkout
 <ol start="2" type="1">
-<li>Version control</li>
+<li class="fragment">Version control</li>
 </ol></li>
-<li>commit</li>
-<li>stage</li>
-<li>fetch</li>
-<li>pull</li>
-<li>push</li>
+<li class="fragment">commit</li>
+<li class="fragment">stage</li>
+<li class="fragment">fetch</li>
+<li class="fragment">pull</li>
+<li class="fragment">push</li>
 </ol></li>
-<li>Merging
+<li class="fragment">Merging
 <ol type="1">
-<li>diff</li>
-<li>merge</li>
-<li>merge conflict</li>
-<li>rebase</li>
-<li>fast-forward (ff)</li>
-<li>squash</li>
-<li>cherry-pick</li>
-<li>stash
+<li class="fragment">diff</li>
+<li class="fragment">merge</li>
+<li class="fragment">merge conflict</li>
+<li class="fragment">rebase</li>
+<li class="fragment">fast-forward (ff)</li>
+<li class="fragment">squash</li>
+<li class="fragment">cherry-pick</li>
+<li class="fragment">stash
 <ol start="4" type="1">
-<li>Remote repositories</li>
+<li class="fragment">Remote repositories</li>
 </ol></li>
-<li>remote</li>
-<li>origin</li>
-<li>upstream</li>
-<li>fork</li>
-<li>pull request
+<li class="fragment">remote</li>
+<li class="fragment">origin</li>
+<li class="fragment">upstream</li>
+<li class="fragment">fork</li>
+<li class="fragment">pull request
 <ol start="5" type="1">
-<li>(Optional) Using Git in the terminal</li>
+<li class="fragment">(Optional) Using Git in the terminal</li>
 </ol></li>
 </ol></li>
-<li>Repo structure</li>
-<li>What does and does not go in a repo?</li>
-<li>Top-level essentials
+<li class="fragment">Repo structure</li>
+<li class="fragment">What does and does not go in a repo?</li>
+<li class="fragment">Top-level essentials
 <ol type="1">
-<li>README</li>
-<li>.gitignore</li>
+<li class="fragment">README</li>
+<li class="fragment">.gitignore</li>
 </ol></li>
-<li>The rest of your stuff</li>
-<li>Metadata and information</li>
-<li>GitHub</li>
-<li>What is GitHub? How is it different from Git?</li>
-<li>GitHub features 1. Issues 2. Pull requests 3. Pages 4. Copilot 5. More
+<li class="fragment">The rest of your stuff</li>
+<li class="fragment">Metadata and information</li>
+<li class="fragment">GitHub</li>
+<li class="fragment">What is GitHub? How is it different from Git?</li>
+<li class="fragment">GitHub features 1. Issues 2. Pull requests 3. Pages 4. Copilot 5. More
 <ol type="1">
-<li>Actions</li>
-<li>Projects</li>
-<li>Codespaces</li>
+<li class="fragment">Actions</li>
+<li class="fragment">Projects</li>
+<li class="fragment">Codespaces</li>
 </ol></li>
-<li>Interfacing with GitHub (without RStudio) 1. GitHub website 2. GitHub Desktop 3. Other options
+<li class="fragment">Interfacing with GitHub (without RStudio) 1. GitHub website 2. GitHub Desktop 3. Other options
 <ol type="1">
-<li>VS Code and other IDEs</li>
-<li>GitHub CLI</li>
+<li class="fragment">VS Code and other IDEs</li>
+<li class="fragment">GitHub CLI</li>
 </ol></li>
-<li>Interfacing with GitHub in RStudio 1. Connecting RStudio to GitHub 2. Using GitHub in RStudio
+<li class="fragment">Interfacing with GitHub in RStudio 1. Connecting RStudio to GitHub 2. Using GitHub in RStudio
 <ol type="1">
-<li>Cloning a repo</li>
-<li>Committing changes</li>
-<li>Pushing changes</li>
-<li>Pulling changes</li>
-<li>Creating pull requests</li>
+<li class="fragment">Cloning a repo</li>
+<li class="fragment">Committing changes</li>
+<li class="fragment">Pushing changes</li>
+<li class="fragment">Pulling changes</li>
+<li class="fragment">Creating pull requests</li>
 </ol></li>
-<li>Git Pains</li>
-<li>Common issues</li>
-<li>Helpful resources</li>
-<li>The nuclear option</li>
+<li class="fragment">Git Pains</li>
+<li class="fragment">Common issues</li>
+<li class="fragment">Helpful resources</li>
+<li class="fragment">The nuclear option</li>
 </ol>
+<!-- 
+ASSETS NEEDED:
+- Git workflow diagram (commit, push, pull)
+- xckd/phdcomics/etc
+- Side-by-side renders
+    - README.md
+    - repo structure
+- Screenshots
+    - GitHub interface screenshots
+    - Merge conflict examples
+    - .gitignore file examples
+-->
 </section>
 <section id="housekeeping" class="slide level2 smaller">
 <h2>Housekeeping</h2>
-<p>This slide has smaller text</p>
 <ul>
-<li>Housekeeping</li>
-<li>and</li>
-<li>announcements</li>
-<li>without</li>
-<li>animation</li>
-</ul>
-</section>
-<section id="housekeeping-1" class="slide level2 bigger">
-<h2>Housekeeping</h2>
-<p>This slide has bigger text</p>
-<ul>
-<li>at least</li>
-<li>I hope so</li>
+<li class="fragment"><strong>Accountability plans due TODAY</strong></li>
+<li class="fragment">Make sure you have GitHub account created</li>
+<li class="fragment">RStudio + Git setup: <a href="https://happygitwithr.com/">happygitwithr.com</a></li>
+<li class="fragment">Practice from last week: How’s your RStudio customization going?</li>
 </ul>
 </section>
 <section>
-<section id="new-main-section" class="title-slide slide level1 center">
-<h1>New Main Section</h1>
+<section id="why-version-control" class="title-slide slide level1 center">
+<h1>Why Version Control?</h1>
 
 </section>
-<section id="simple-bulleted-slide" class="slide level2">
-<h2>Simple Bulleted Slide</h2>
-<div class="fragment dimmable">
-<p>A top-level line that will be dimmed at first.</p>
-</div>
-<p>With a <a href="index.html">link</a>.</p>
-<h3 id="a-third-level-heading">A Third Level Heading</h3>
-<div>
+<section id="final_ndrevisions-finalmarch22_finalfinal.docx" class="slide level2">
+<h2>Final_NDrevisions-finalmarch22_FINALFINAL.docx</h2>
+
+<img data-src="../images/comics-memes/phd-comics-finaldoc.gif" class="r-stretch quarto-figure-center"><p class="caption">PhD Comics: “FINAL”.doc</p></section>
+<section id="version-control-basics" class="slide level2">
+<h2>Version Control Basics</h2>
+<!-- allow column grid to overlap vertically with the title space -->
+<div class="container-fluid" style="margin-top: -3em;">
+<div class="row">
+<div class="col-5" style="padding-top: 3em;">
 <ul>
-<li class="fragment">First level point</li>
-<li class="fragment">Second level point - Third level point - Third level point 2</li>
-<li class="fragment">First level point 2</li>
+<li class="fragment"><strong>Minimally:</strong>
+<ul>
+<li class="fragment"><strong>What changed?</strong>
+<ul>
+<li class="fragment">additions, deletions, modifications</li>
+</ul></li>
+<li class="fragment"><strong>When?</strong>
+<ul>
+<li class="fragment">timestamp for each change</li>
+</ul></li>
+<li class="fragment"><strong>Who changed what</strong>
+<ul>
+<li class="fragment">track author contributions in collaborative work</li>
+</ul></li>
+<li class="fragment"><strong>Revert changes</strong>
+<ul>
+<li class="fragment">go back to any previous version instantly</li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
-</section>
-<section id="code-slide" class="slide level2">
-<h2>Code Slide</h2>
-<p>Introductory content:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Define class name</span></span>
-<span id="cb1-2"><a href=""></a>class_name <span class="ot">&lt;-</span> <span class="st">"D2M-R"</span></span>
-<span id="cb1-3"><a href=""></a></span>
-<span id="cb1-4"><a href=""></a><span class="co"># Print a message with the variable</span></span>
-<span id="cb1-5"><a href=""></a><span class="fu">paste</span>(<span class="st">"Hello"</span>, class_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="col-7">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/screenshots/google-doc-version-history.png"></p>
+<figcaption>Google Doc version history</figcaption>
+</figure>
 </div>
-<p><strong>More information</strong> about the code above.</p>
-</section>
-<section id="bubbles-from-the-bottom" class="slide level2">
-<h2>Bubbles from the bottom</h2>
-<div class="bubble-chain">
-<p class="bubble-left fragment">
-Students ask? Students ask?Students ask?Students ask?Students ask? Students ask? Students ask? Students ask? Students ask?Students ask?
-</p>
-<p class="bubble-right fragment">
-And I respond!
-</p>
 </div>
-<p>This slide has speech bubbles that pop in after all content has been covered.</p>
-<p>The container is anchored at the bottom of the page, and the tails point downward.</p>
+</div>
+</div>
+<aside class="notes">
+<p>“version control” is basically a system for keeping track of changes to files over time. A very simple and user-friendly version control system is what you’ll find in the “version history” of edits on a google doc.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="git-version-control" class="slide level2">
+<h2>Git Version Control</h2>
+<!-- allow column grid to overlap vertically with the title space -->
+<div class="container-fluid" style="margin-top: -3em;">
+<div class="row">
+<div class="col-7">
+<!-- nested container for text -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-12" style="padding-top: 3em;">
+<p><span class="keyword">Git</span> is a robust version control system designed for text-based files</p>
+</div>
+</div>
+<!-- columns -->
+<div class="row">
+<div class="col-3 tightlist">
 <ul>
-<li>Left bubbles, in blue, are things I hear commonly from students</li>
-<li>Right bubbles, in red, are my responses</li>
-</ul>
-</section>
-<section id="bubbles-from-the-top" class="slide level2">
-<h2>Bubbles from the top</h2>
-<p>On this slide, things are a little different:</p>
+<li class="fragment"><strong>All the basics:</strong>
 <ul>
-<li>The container is anchored to the top of the content section.</li>
-<li>Bubbles are mirrored vertically with tails pointing up.</li>
+<li class="fragment">What?</li>
+<li class="fragment">When?</li>
+<li class="fragment">Who?</li>
+<li class="fragment">Revert!</li>
+</ul></li>
 </ul>
-<div class="bubble-chain top">
-<p class="bubble-left fragment">
-Students ask - UP TOP?
-</p>
-<p class="bubble-right fragment">
-And I respond, also up top!
-</p>
 </div>
+<div class="col-9 tightlist">
+<ul>
+<li class="fragment"><strong>Plus:</strong>
+<ul>
+<li class="fragment"><strong>Which change is this?</strong>
+<ul>
+<li class="fragment">unique IDs for every revision</li>
+</ul></li>
+<li class="fragment"><strong>Why did it change?</strong>
+<ul>
+<li class="fragment">commit messages explain purpose</li>
+</ul></li>
+<li class="fragment"><strong>Branch and merge</strong>
+<ul>
+<li class="fragment">work on multiple features simultaneously</li>
+</ul></li>
+<li class="fragment"><strong>Backup</strong>
+<ul>
+<li class="fragment">project (“repository”) history lives in multiple places</li>
+</ul></li>
+<li class="fragment"><strong>Asynchronous collaboration</strong>
+<ul>
+<li class="fragment">identify and resolve conflicting changes</li>
+</ul></li>
+<li class="fragment"><strong>Integration</strong>
+<ul>
+<li class="fragment">with IDEs (e.g., RStudio) and cloud services (e.g., GitHub)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- end nested container -->
+</div>
+<div class="col-5">
+<div class="quarto-figure quarto-figure-center" style="height: 1200px">
+<figure>
+<p><img data-src="../images/screenshots/github-commit-history.png"></p>
+<figcaption>Git commit history</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Version control is like having a complete backup of every version of your project, plus a detailed log of what changed and why. It’s not just for programmers - anyone who works with files that change over time benefits.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="callouts" class="slide level2">
-<h2>Callouts</h2>
-<div class="callout callout-none no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p>Call-outs can be used without additional class features.</p>
+<section id="git-repositories" class="slide level2">
+<h2>Git Repositories</h2>
+<p>A <span class="keyword">repository</span> (or “repo”) is a project folder tracked by Git. Everything Git does is centered around repos.</p>
+<p>Any folder on your computer can be turned into a Git repository (i.e.&nbsp;“initialized”), but a well-organized repo typically includes a few key components:</p>
+<ul>
+<li class="fragment">Project files (e.g., scripts, data, documents)</li>
+<li class="fragment">Metadata files (hidden files and directories that Git uses to manage version control)</li>
+<li class="fragment">Bespoke files like <code>README.md</code>, <code>.gitignore</code>, and <code>.yml</code> files (more on these later)</li>
+</ul>
+<p>Git repos can be local (on your computer) or remote (hosted on a server like GitHub).</p>
+</section>
+<section id="git-github" class="slide level2">
+<h2>Git ≠ GitHub</h2>
+<div class="container-fluid">
+<div class="row">
+<div class="col-12 fragment">
+<p><span class="keyword">GitHub</span> is a web-based platform for hosting public and private Git repositories. It is designed to promote code sharing and collaboration, but very useful for individuals, too.</p>
+<p>GitHub and Git are related, but not the same thing.</p>
+</div>
+</div>
+<div class="row">
+<div class="col-4 fragment">
+<h3 id="git">Git</h3>
+<ul>
+<li class="fragment"><strong>Version control system</strong></li>
+<li class="fragment">Tracks changes in metadata files</li>
+<li class="fragment">Your files + metadata files = project <span class="keywork">repository</span> (aka “repo”)</li>
+<li class="fragment">Repos stored locally on your computer</li>
+<li class="fragment">Works offline</li>
+<li class="fragment">Free &amp; open source</li>
+<li class="fragment"><em>The</em> standard for version control</li>
+</ul>
+</div>
+<div class="col-4">
+<p><img data-src="../images/branded/octocat.png"></p>
+</div>
+<div class="col-4 fragment">
+<h3 id="github">GitHub</h3>
+<ul>
+<li class="fragment"><strong>Web-based hosting service</strong></li>
+<li class="fragment">Cloud storage for Git repositories</li>
+<li class="fragment">All repo contents, full history, additional features</li>
+<li class="fragment">User-friendly web interface for Git</li>
+<li class="fragment">Collaboration tools</li>
+<li class="fragment">Free and paid features</li>
+<li class="fragment"><em>One</em> of many Git hosting services</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<aside class="notes">
+<p>Education users (anyone with a .edu address) can access premium features for free.</p>
+<p><strong>Analogy:</strong> Git is like a local photo album, GitHub is like posting photos to Instagram.</p>
+<p>Git does the version control work on your computer. GitHub is just one place to store and share your Git repositories online. There are alternatives like GitLab, Bitbucket, etc.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="github-features" class="slide level2">
+<h2>GitHub Features</h2>
+<div class="container-fluid">
+<div class="row">
+<div class="col-5 fragment">
+<p>In this class we’ll use GitHub to:</p>
+<ul>
+<li class="fragment">Maintain all class materials</li>
+<li class="fragment">Create and share your own code and projects</li>
+<li class="fragment">Practice git and GitHub skills</li>
+<li class="fragment">Collaborate on group projects</li>
+</ul>
 </div>
-<p><strong>Tip</strong></p>
+<div class="col-7 fragment">
+<p>But GitHub offers many more features, including:</p>
+<ul>
+<li class="fragment"><strong>Issues</strong> to track tasks, enhancements, and bugs</li>
+<li class="fragment"><strong>Pull requests</strong> to propose and discuss changes before integrating them into the main project</li>
+<li class="fragment"><strong>GitHub Pages</strong> to host websites directly from a repository
+<ul>
+<li class="fragment">like the class site!</li>
+</ul></li>
+<li class="fragment"><strong>GitHub Copilot</strong> to assist with code generation and suggestions</li>
+<li class="fragment"><strong>Actions</strong> to automate workflows</li>
+<li class="fragment"><strong>Projects</strong> to organize and prioritize work</li>
+<li class="fragment"><strong>Codespaces</strong> to provide cloud-based development environments</li>
+</ul>
 </div>
-<div class="callout-content">
-<p>Tip: Use call-outs to highlight important information.</p>
 </div>
 </div>
+<aside class="notes">
+<p>Some of these extras you’ll be able to play around with during this course, but they won’t be explicitly part of the syllabus. Developing familiarity with these features can contribute to the engagement portion of your grade.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="git-fundamentals" class="title-slide slide level1 center">
+<h1>Git Fundamentals</h1>
+
+</section>
+<section id="git-vocabulary" class="slide level2">
+<h2>Git Vocabulary</h2>
+<p>Not all of these are essential at the start, but you should quickly get comfortable with <span class="critical">the ones highlighted in red</span>.</p>
+<div class="container-fluid">
+<div class="row">
+<div class="col-6 fragment tightlist">
+<h3 id="repo-level">Repo-level</h3>
+<ul>
+<li class="fragment"><strong><span class="critical">Repository</span> or <span class="critical">repo</span></strong>
+<ul>
+<li class="fragment"><strong>a project folder tracked by Git</strong></li>
+</ul></li>
+<li class="fragment"><span class="keyword">init</span>
+<ul>
+<li class="fragment">initialize a new Git repository</li>
+</ul></li>
+<li class="fragment"><strong><span class="critical">clone</span></strong>
+<ul>
+<li class="fragment"><strong>create your own personal copy of an existing repository</strong></li>
+</ul></li>
+<li class="fragment"><span class="keyword">fork</span>
+<ul>
+<li class="fragment">copy a repository keeping a connection to the original</li>
+</ul></li>
+<li class="fragment"><span class="keyword">branch</span>
+<ul>
+<li class="fragment">create your own temporary line of work in a repo</li>
+</ul></li>
+<li class="fragment"><span class="keyword">checkout</span>
+<ul>
+<li class="fragment">switch between branches in a repo</li>
+</ul></li>
+</ul>
 </div>
+<div class="col-6 fragment tightlist">
+<h3 id="file-level">File-level</h3>
+<ul>
+<li class="fragment"><strong><span class="critical">commit</span></strong>
+<ul>
+<li class="fragment"><strong>save a snapshot of changes with a descriptive message</strong></li>
+</ul></li>
+<li class="fragment"><span class="keyword">fetch</span>
+<ul>
+<li class="fragment">get latest changes from remote repo without merging</li>
+</ul></li>
+<li class="fragment"><span class="keyword">merge</span>
+<ul>
+<li class="fragment">combine changes from different branches</li>
+</ul></li>
+<li class="fragment"><strong><span class="critical">pull</span> </strong>
+<ul>
+<li class="fragment"><strong>get latest changes from remote repo (=fetch+merge)</strong></li>
+</ul></li>
+<li class="fragment"><strong><span class="critical">push</span></strong>
+<ul>
+<li class="fragment"><strong>send your commits to remote repo</strong></li>
+</ul></li>
+<li class="fragment"><span class="keyword">merge conflict</span>
+<ul>
+<li class="fragment">conflicting changes that need manual resolution</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-12">
+<div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>You can change the callout header from the default</strong></p>
+<p><strong>More to look for on your own</strong></p>
 </div>
 <div class="callout-content">
-<p>Note: These are examples of call-outs.</p>
+<p>diff, stash, rebase, tag, cherry-pick, revert, reset, HEAD, remote, origin, upstream</p>
 </div>
 </div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Important</strong></p>
-</div>
-<div class="callout-content">
-<p>Important: Don’t forget to use call-outs!</p>
 </div>
 </div>
 </div>
+</div>
+<aside class="notes">
+<p>Repo: A directory (i.e., folder) the holds all documents and document edits associated with a project Init: Initializing a repo, making an existing directory ready to work with git (RStudio will do this for you) Clone: Copy an existing repository, creating a fully distinct and separate repo that you own and control Fork: Copy an existing repository, maintaining a connection to the original; you have full control over your fork, but not the original repo Branch: Create an isolated segment of a repo (that you own), so that you can make many changes before combining it back with the original (for collaboration) Checkout: Swap between different branches of a repo</p>
+<p>Commit: A snapshot of changes in the repo; documented with an informative note left for posterity called a commit message</p>
+<p>Pull: Synchronizing your local repo with latest changes from a remote server (like Github)</p>
+<p>Push: Sending your commits (and the changed docs) from your local repo to the remote server</p>
+<p>Diff: The process run by git comparing and combining old and new files when you push changes</p>
+<p>Merge: The resulting process of a diff, where multiple versions of a file are intelligently combined</p>
+<p>Merge conflict: Error (recognized in the diff) where multiple changes to any single line of text can’t be automatically resolved and require user decisions</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="commits-snapshots-in-time" class="slide level2">
+<h2>Commits: Snapshots in Time</h2>
+<p>A <span class="keyword">commit</span> is the metadata associated with a change.</p>
+<div class="container-fluid">
+<div class="row">
+<div class="col-6">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="ex">commit</span> a3d2f1b</span>
+<span id="cb1-2"><a href=""></a><span class="ex">Author:</span> Natalie Dowling <span class="op">&lt;</span>ndowling@uchicago.edu<span class="op">&gt;</span></span>
+<span id="cb1-3"><a href=""></a><span class="ex">Date:</span> Mon Jan 20 14:30:15 2026</span>
+<span id="cb1-4"><a href=""></a>    </span>
+<span id="cb1-5"><a href=""></a>    <span class="ex">Add</span> data cleaning script for survey responses</span>
+<span id="cb1-6"><a href=""></a>    </span>
+<span id="cb1-7"><a href=""></a>    <span class="ex">-</span> Remove duplicate entries</span>
+<span id="cb1-8"><a href=""></a>    <span class="ex">-</span> Standardize column names  </span>
+<span id="cb1-9"><a href=""></a>    <span class="ex">-</span> Handle missing values in age variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="col-6">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="ex">commit</span> UNIQUE ID HASH</span>
+<span id="cb2-2"><a href=""></a><span class="ex">Author:</span> YOUR NAME <span class="op">&lt;</span>YOUR@EMAIL.ADDRESS<span class="op">&gt;</span></span>
+<span id="cb2-3"><a href=""></a><span class="ex">Date:</span> FULL DATE <span class="kw">&amp;</span> <span class="ex">TIMESTAMP</span></span>
+<span id="cb2-4"><a href=""></a>    </span>
+<span id="cb2-5"><a href=""></a>    <span class="ex">ONE</span> LINE SUMMARY OF CHANGE<span class="er">(</span><span class="ex">S</span><span class="kw">)</span></span>
+<span id="cb2-6"><a href=""></a>    </span>
+<span id="cb2-7"><a href=""></a>    <span class="ex">-</span> OPTIONAL</span>
+<span id="cb2-8"><a href=""></a>    <span class="ex">-</span> DESCRIPTIVE</span>
+<span id="cb2-9"><a href=""></a>    <span class="ex">-</span> DETAILS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="commit-messages-best-practices" class="slide level2">
+<h2>Commit Messages: Best Practices</h2>
+<div class="container-fluid">
+<div class="row">
+<div class="col-6 fragment">
+<h3 id="good-commit-messages">Good commit messages:</h3>
+<ul>
+<li class="fragment">Describe <em>what</em> and <em>why</em>, not <em>how</em></li>
+<li class="fragment">Start with a present tense verb (“Add”, “Fix”, “Update”)</li>
+<li class="fragment">First line under 50 characters</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a>Add data cleaning script for survey responses</span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>Move glms out of qmd into a separate script</span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a>Start zero-drafting methods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="col-6 fragment">
+<h3 id="bad-commit-messages">Bad commit messages:</h3>
+<ul>
+<li class="fragment">Vague</li>
+<li class="fragment">Uninformative</li>
+<li class="fragment">Cover way too many or unrelated changes</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href=""></a>Updates to data</span>
+<span id="cb4-2"><a href=""></a></span>
+<span id="cb4-3"><a href=""></a>Friday afternoon commit</span>
+<span id="cb4-4"><a href=""></a></span>
+<span id="cb4-5"><a href=""></a>data cleaning script, move glms, start methods, fix typos, add bibliography</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-12">
+<div class="fragment">
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Warning</strong></p>
+<p><strong>A shameful confession</strong></p>
 </div>
 <div class="callout-content">
-<p>Warning: You have used too many callouts</p>
+<p>I am a total hypocrite and rarely follow these “good” and “bad” guidelines. The longer I work, the more likely my commit messages devolve into <code>oops i broke the kid data but the adult glms work now</code> or <code>omg i can't anymore here are some broken plots fix this later or don't i don't care</code> or <code>i need a drink</code>.</p>
+<p>These are actual commits from my actual repos. I’m not proud. Present-me is often pretty frustrated with past-me’s choices, but I can’t pretend that I don’t also find it entertaining and humanizing. (You’d think I wouldn’t need to humanize myself <em>to myself</em>, wouldn’t you? You’d be wrong.)</p>
+<p>While I encourage you to do as I say, not as I do, what actually matters is that you 1) <strong>commit often</strong> and 2) write <strong>messages that make sense</strong> to anyone who has to read them (including, hopefully, future you).</p>
 </div>
 </div>
 </div>
-</section>
-<section id="columns" class="slide level2">
-<h2>Columns</h2>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p><strong>tibble</strong><br>
-reimagine the dataframe!</p>
-</div><div class="column" style="width:20%;">
-<p><strong>readr</strong><br>
-easily import and export tabular data</p>
-</div><div class="column" style="width:20%;">
-<p><strong>dplyr</strong><br>
-a grammar of data manipulation</p>
-</div><div class="column" style="width:20%;">
-<p><strong>tidyr</strong><br>
-tidy your messy data</p>
-</div><div class="column" style="width:20%;">
-<p><strong>ggplot2</strong><br>
-a grammar of graphics</p>
-</div></div>
-<div class="columns fragment">
-<div class="column" style="width:25%;">
-<p><strong>purrr</strong><br>
-enhancements for R’s functional programming</p>
-</div><div class="column" style="width:25%;">
-<p><strong>stringr</strong><br>
-simplify working with strings</p>
-</div><div class="column" style="width:25%;">
-<p><strong>forcats</strong><br>
-simplify working with factors</p>
-</div><div class="column" style="width:25%;">
+</div>
+</div>
+</div>
+</div>
+<!-- ::: {.callout-warning .fragment .bigger style="position: absolute; width: 70%; left: 0; right: 0; top: 0; margin: 0 auto; z-index:999;"} -->
+<!-- ### A shameful confession -->
+<!-- I am a total hypocrite and rarely follow these "good" and "bad" guidelines. The longer I work, the more likely my commit messages devolve into `oops i broke the kid data but the adult glms work now` or `omg i can't anymore here are some broken plots fix this later or don't i don't care` or `i need a drink` (These are actual commits from my actual repos. I'm not proud.) -->
+<!-- Present-me is often pretty frustrated with past-me's choices, but I can't pretend that I don't also find it entertaining and humanizing. (You'd think I wouldn't need to humanize myself *to myself*, wouldn't you? You'd be wrong.) -->
+<!-- While I encourage you to do as I say, not as I do, what actually matters is that you **1) commit often** and 2) write **messages that make sense** to anyone who has to read them (including, hopefully, future you). -->
+<!-- ::: -->
+<aside class="notes">
 
-</div></div>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="inline-styling" class="slide level2">
-<h2>Inline Styling</h2>
-<p>You can style things like:</p>
+<section id="the-basic-github-workflow" class="slide level2 scrollable">
+<h2>The Basic Git(Hub) Workflow</h2>
+<ol type="1">
+<li class="fragment"><strong>Pull changes</strong>
 <ul>
-<li><strong>bold text</strong></li>
-<li><em>italic text</em></li>
-<li><del>strikethrough text</del></li>
-<li><a href="">links</a></li>
-<li><code>inline code</code></li>
-<li><span class="func">function_names</span></li>
-<li><span class="pkg">package_names</span></li>
+<li class="fragment">Every time you sit down to work, before doing anything else</li>
+</ul></li>
+<li class="fragment"><strong>Commit changes</strong>
+<ul>
+<li class="fragment">Very frequently!</li>
+<li class="fragment">Any time you’ve made a “nameable” change</li>
+<li class="fragment">Use brief, informative commit messages</li>
+</ul></li>
+<li class="fragment"><strong>Push changes</strong>
+<ul>
+<li class="fragment">Don’t forget to commit first</li>
+<li class="fragment">Every time you pause or complete a work session</li>
+</ul></li>
+</ol>
+<!-- TODO: find/create workflow diagram -->
+<aside class="notes">
+<p>This means you should have way more commits than pushes. Each commit is a snapshot of your project at a specific point in time. Pushing sends all your committed changes to GitHub.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="git-in-the-command-line-terminal" class="slide level2">
+<h2>Git in the Command Line / Terminal</h2>
+<p>Local git repos are managed through the command line (Terminal on Mac, Git Bash on Windows). The process of sitting down to work, pulling from an upstream repo, making a few changes, adding those edited files to the staging area, committing with a brief commit message, and then pushing to upstream at the end of your work session might look something like this:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href=""></a><span class="bu">cd</span> repos/d2m-r/slides</span>
+<span id="cb5-2"><a href=""></a><span class="fu">git</span> pull origin main</span>
+<span id="cb5-3"><a href=""></a><span class="co">## at this point make changes to files in RStudio or wherever</span></span>
+<span id="cb5-4"><a href=""></a><span class="fu">git</span> add .</span>
+<span id="cb5-5"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Create first draft for GitHub lecture"</span></span>
+<span id="cb5-6"><a href=""></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="git-in-rstudio" class="slide level2">
+<h2>Git in RStudio</h2>
+<p>In D2M-R, you’ll interact with Git through RStudio rather than Terminal or Command Prompt.</p>
+<p>You’ll mostly use the Git pane, which gives you a pretty user-friendly interface for the same commands you would run in the terminal.</p>
+<!-- ![RStudio Git Pane](../images/rstudio-git-pane.png) -->
+<p>But you can also use the Terminal tab in RStudio to run git commands directly, exactly as you would in a standalone terminal.</p>
+<p>You’ll need this for more advanced tasks like resolving merge conflicts, but you can always opt to use it instead of the interface if you prefer.</p>
+</section></section>
+<section>
+<section id="git-project-components" class="title-slide slide level1 center">
+<h1>Git Project Components</h1>
+<p>What literally goes in your git repo?</p>
+</section>
+<section id="repository-structure" class="slide level2">
+<h2>Repository Structure</h2>
+<p>A typical Git repository includes:</p>
+<ul>
+<li class="fragment"><strong>Project files</strong>
+<ul>
+<li class="fragment">The actual content of your project (e.g., scripts, data, documents), organized in a logical folder structure</li>
+</ul></li>
+<li class="fragment"><strong>Metadata files</strong>
+<ul>
+<li class="fragment">Hidden files and directories (like <code>.git/</code>) that Git uses to manage version control</li>
+</ul></li>
+<li class="fragment"><strong>README.md</strong>
+<ul>
+<li class="fragment">A markdown file that provides an overview of the project, instructions for use, and other relevant information</li>
+</ul></li>
+<li class="fragment"><strong>.gitignore</strong>
+<ul>
+<li class="fragment">A text file that specifies which files or directories Git should ignore</li>
+</ul></li>
+<li class="fragment"><strong>Configuration files</strong> (as needed)
+<ul>
+<li class="fragment">Things like <code>.yml</code> options, bibliography files, themes, etc.</li>
+</ul></li>
 </ul>
+</section>
+<section id="repo-structure-example-1" class="slide level2 scrollable">
+<h2>Repo Structure: Example 1</h2>
+<p>My preferred structure for a Quarto manuscript project:</p>
+<div class="container-fluid">
+<div class="row">
+<div class="col-6 tightlist fragment">
+<h3 id="project-file-directories">Project file directories</h3>
+<ol type="1">
+<li class="fragment"><code>/localonly</code>: only present in your local R Project, listed in your .gitignore and never synced to github</li>
+<li class="fragment"><code>/data</code>: .csv/tabular data files for all raw or intermediate datasets read into in your .qmd, optional <code>/raw</code> subfolder for raw data read (only) into unsourced R scripts</li>
+<li class="fragment"><code>/source</code>: .R scripts to be called in an early chunk of your .qmd, e.g., stylistic preferences, functions, minor data wrangling</li>
+<li class="fragment"><code>/images</code>: exported figures and any image files to read-in to your R Markdown manuscript</li>
+<li class="fragment"><code>/_extensions</code>: auto-generated or installed Quarto extensions, like apaquarto</li>
+</ol>
+</div>
+<div class="col-6 tightlist fragment">
+<h3 id="top-level-files">Top-level files</h3>
+<ol type="1">
+<li class="fragment"><code>README.md</code>: project overview, repo structure, to-do list, etc.</li>
+<li class="fragment"><code>.gitignore</code>: starting from the R .gitignore template</li>
+<li class="fragment"><code>project-manuscript.qmd</code>: the home of your eventual publication</li>
+<li class="fragment"><code>bibliography.bib</code>: a plain-text file containing all the BibTeX entries cited in your manuscript</li>
+<li class="fragment"><code>yourCitationStyle.csl</code>: the script used to format in-text and bibliography citations when knitting</li>
+</ol>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Not everything is needed for every project. For example, extensions like apaquarto will create and store a .csl file within the extension files; you won’t see it in your top-level directory.</p>
+<p>For the kind of Quarto project we’re focusing on in this class, you will always have <strong>exactly 1 .qmd</strong> file, which is the manuscript itself. It lives in the top level directory alongside your readme and gitignore.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="repo-structure-example-2" class="slide level2">
+<h2>Repo Structure: Example 2</h2>
+<p>A simple, generic project:</p>
+<pre><code>my-research-project/
+├── README.md
+├── my-project.Rproj  
+├── .gitignore
+├── data/
+│   ├── raw/                # Original data (maybe not in Git)
+│   └── processed/          # Cleaned data  
+├── scripts/
+│   ├── 01_clean.R          # Numbered workflow
+│   ├── 02_analyze.R
+│   └── functions.R         # Reusable functions
+├── outputs/
+│   ├── plots/
+│   └── tables/
+└── docs/
+│   └── analysis.qmd        # Main report
+├── localonly/              # LISTED IN YOUR .GITIGNORE
+    └── protected-data/     # ONLY EXISTS ON YOUR COMPUTER, NOT GITHUB</code></pre>
+</section>
+<section id="hidden-files-and-directories" class="slide level2">
+<h2>Hidden files and directories</h2>
+<p>Repos and R Projects will also include some hidden files and directories</p>
+<ul>
+<li class="fragment"><code>.git/</code> - Git metadata, what makes Git work</li>
+<li class="fragment"><code>.Rproj.user/</code> - RStudio project settings</li>
+<li class="fragment"><code>.quarto/</code> - Quarto project settings</li>
+</ul>
+<p>You won’t interact with these directories directly, and you won’t see them in RStudio or on GitHub.</p>
+<p>You may also have other hidden files, for example:</p>
+<ul>
+<li class="fragment"><code>.Rproj</code></li>
+<li class="fragment"><code>.RData</code></li>
+<li class="fragment"><code>.Rhistory</code></li>
+<li class="fragment"><code>.DS_Store</code></li>
+</ul>
+<p>You won’t interact with these either but they won’t always be fully hidden in every interface. You can add them to your <code>.gitignore</code> file so they don’t clutter up your repo.</p>
+</section>
+<section id="readme.md" class="slide level2">
+<h2>README.md</h2>
+<div class="container-fluid" style="max-width: 40%; margin-left: 0; margin-right: auto;">
+<p>A <code>README.md</code> file provides a project overview. It is typically the first thing someone sees when they visit your repository on GitHub.</p>
+<ul>
+<li class="fragment">Simple markdown (<code>.md</code>) document</li>
+<li class="fragment">What you see rendered on a repo’s GitHub page</li>
+<li class="fragment">Can do lots of things, but should at a minimum describe:
+<ul>
+<li class="fragment">Purpose of the repo</li>
+<li class="fragment">Dataset(s)</li>
+<li class="fragment">Repo structure</li>
+<li class="fragment">Any relevant licensing, restrictions, or citations</li>
+</ul></li>
+</ul>
+</div>
+<!-- right-aligned, stacked images -->
+<div class="container-fluid" style="position: absolute; width: 60%; right: -100px; top: -100px; bottom: -100px; margin: auto;">
+<p><img data-src="../images/screenshots/readme-md.png" style="width: 100%"></p>
+<p><img data-src="../images/screenshots/readme-html.png" style="width: 100%"></p>
+</div>
+</section>
+<section id="gitignore-what" class="slide level2">
+<h2>.gitignore: what</h2>
+<div class="container-fluid">
+<div class="row">
+<div class="col-6 fragment">
+<p>A <code>.gitignore</code> file tells Git which files and directories to ignore when comparing differences between versions.</p>
+<ul>
+<li class="fragment">Plain text file w/out extension</li>
+<li class="fragment">Files &amp; folders that should be excluded from all git processes</li>
+<li class="fragment">Matched on strings in file/folder names, including wildcard characters and simplified regex</li>
+<li class="fragment"><a href="https://git-scm.com/docs/gitignore">View documentation</a></li>
+</ul>
+</div>
+<div class="col-6">
+<p><img data-src="../images/screenshots/gitignore.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="gitignore-why" class="slide level2">
+<h2>.gitignore: why</h2>
+<div class="alert alert-danger">
+<p><strong>Not everything belongs online.</strong></p>
+</div>
+<ul>
+<li class="fragment"><span style="color: #A4343A;"><strong>PRIVACY.</strong></span>
+<ul>
+<li class="fragment"><strong>Do not upload anything with sensitive or identifiable information.</strong></li>
+<li class="fragment">It is your responsibility to follow your IRB.</li>
+</ul></li>
+<li class="fragment"><strong>Security</strong>
+<ul>
+<li class="fragment">passwords, security keys, login tokens</li>
+</ul></li>
+<li class="fragment"><strong>Bloat</strong>
+<ul>
+<li class="fragment">Git is designed for text files</li>
+<li class="fragment">Large files push <em>very</em> slowly and can cause RStudio to hang</li>
+<li class="fragment">Some files are regenerated automatically</li>
+</ul></li>
+<li class="fragment"><strong>Conflict</strong>
+<ul>
+<li class="fragment">“behind the scenes” files that actually interact with local, git, or R processes will conflict for baffling reasons (sort of a technological observer effect)</li>
+</ul></li>
+</ul>
+</section>
+<section id="gitignore-how" class="slide level2">
+<h2>.gitignore: how</h2>
+<div class="row narrowlist">
+<div class="col-4 fragment">
+<p><strong>Optionally start with <a href="https://github.com/github/gitignore/blob/main/R.gitignore">a template</a></strong> then:</p>
+<ul>
+<li class="fragment">Use informative <code># comments</code></li>
+<li class="fragment">Protect private data in a <code>localonly/</code> folder
+<ul>
+<li class="fragment">Dedicated place for anything you need to keep offline that the .gitignore might not explicitly catch</li>
+<li class="fragment">Good place to keep deanonymized datasets instead of trusting yourself to remember to add them to the .gitignore</li>
+</ul></li>
+<li class="fragment">Ignore files/folders
+<ul>
+<li class="fragment">Matching the name: <code>data/raw/sensitive_data.csv</code>, <code>topsecret/</code></li>
+<li class="fragment">Using wildcards: <code>*.pdf</code>, <code>no-git_*</code></li>
+</ul></li>
+</ul>
+</div>
+<div class="col-4 fragment">
+<p><strong>Ignore large files</strong></p>
+<ul>
+<li class="fragment">Media files: e.g, <code>*.png</code>, <code>*.jpg</code>, <code>*.mp4</code>
+<ul>
+<li class="fragment">tend to be very large, often contain sensitive info</li>
+</ul></li>
+<li class="fragment">Presentation files: e.g., <code>*.pptx</code>, <code>*.key</code>
+<ul>
+<li class="fragment">not necessary for reproducibility, often large</li>
+</ul></li>
+<li class="fragment">Specialized and raw files: e.g, <code>*.bdl</code>, <code>*.ear</code>, <code>*.mgh</code>
+<ul>
+<li class="fragment">data needs to be tabular eventually anyway</li>
+</ul></li>
+</ul>
+</div>
+<div class="col-4 fragment">
+<p><strong>Ignore auto-generated files</strong></p>
+<ul>
+<li class="fragment">System files: e.g., <code>*.DS_Store</code>, <code>*.RData</code>, <code>*.Rhistory</code>
+<ul>
+<li class="fragment">platform-specific, or not text-based</li>
+</ul></li>
+<li class="fragment">Process files: e.g., <code>*.log</code>, <code>*.aux</code>, <code>*.out</code>
+<ul>
+<li class="fragment">should be deleted after success but can stick around if knitting fails</li>
+</ul></li>
+<li class="fragment">Compiled files: e.g., <code>*.pdf</code>, <code>*.docx</code>, <code>*.html</code>
+<ul>
+<li class="fragment">recreated every time you knit</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
 </section></section>
     </div>
@@ -697,44 +1286,6 @@ simplify working with factors</p>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
